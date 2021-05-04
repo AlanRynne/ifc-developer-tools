@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: Build Monorepo
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,13 +19,17 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: 🚧 Checkout code
+        uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: 🥁 Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: lerna bootstrap
-      - run: lerna run build
+      - name: ♻️ NPM CI
+        run: npm ci
+      - name: 🥾 Bootstrap monorepo
+        run: lerna bootstrap
+      - name: 🔨 Build all packages
+        run: lerna run build
