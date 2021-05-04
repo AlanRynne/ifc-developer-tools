@@ -33,5 +33,5 @@ jobs:
         run: lerna bootstrap
       - name: 🔨 Build all packages
         run: lerna run build
-      - name 🧪 Test all packages
+      - name: 🧪 Test all packages
         run: lerna run test
