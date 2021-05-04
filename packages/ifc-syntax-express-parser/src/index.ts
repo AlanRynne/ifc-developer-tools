@@ -79,7 +79,7 @@ export class ExpressParser {
   }
 }
 
-const releaseFolder = "../../../examples/express/"
+const releaseFolder = "./examples/express/"
 
 export const IfcReleases = {
   IFC2X3: "IFC2X3.exp",
