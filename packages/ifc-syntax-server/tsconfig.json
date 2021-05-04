@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "include": ["src", "src/**/*.json"],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceRoot": "./src"
+  },
+  "exclude": ["node_modules", ".vscode-test"]
+}
