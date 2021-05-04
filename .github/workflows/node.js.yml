@@ -28,4 +28,5 @@ jobs:
       - run: npm ci
       - run: lerna bootstrap
       - run: lerna run build
+      - run: ls
       - run: lerna run test --scope=@alanrynne/ifc-syntax-express-parser
