@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: Build Monorepo
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     strategy:
       matrix:
@@ -33,3 +33,5 @@ jobs:
         run: lerna bootstrap
       - name: 🔨 Build all packages
         run: lerna run build
+      - name 🧪 Test all packages
+        run: lerna run test
