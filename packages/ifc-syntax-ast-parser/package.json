@@ -1,0 +1,44 @@
+{
+  "name": "@alanrynne/ifc-syntax-ast-parser",
+  "version": "0.1.2",
+  "description": "An abstract syntax tree generator for IFC files.",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "author": "Alan Rynne",
+  "license": "MIT",
+  "scripts": {
+    "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.ts && tsc",
+    "test": "jest",
+    "pretest": "yarn run build",
+    "coverage": "jest --coverage",
+    "diagrams": "nearley-railroad ./src/grammar/grammar.ne -o ./docs/ifc-diagrams.html",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn test",
+    "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
+  },
+  "keywords": [
+    "Industry Foundation Classes",
+    "IFC",
+    "BIM",
+    "Building Information Modelling",
+    "AST",
+    "Parser"
+  ],
+  "dependencies": {
+    "moo": "^0.5.1",
+    "nearley": "^2.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
+    "@types/node-dir": "0.0.33",
+    "directory-tree": "^2.2.4",
+    "jest": "^25.1.0",
+    "node-dir": "^0.1.17",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
+  }
+}

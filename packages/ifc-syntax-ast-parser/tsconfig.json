@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compileOnSave": true,
+  "include": ["src/"],
+  "exclude": ["src/*.test.ts", "node_modules"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "forceConsistentCasingInFileNames": true
+  }
+}
