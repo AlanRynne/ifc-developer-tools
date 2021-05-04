@@ -1,0 +1,37 @@
+{
+  "name": "@alanrynne/ifc-syntax-express-parser",
+  "version": "0.1.1",
+  "description": "A Nearley based parser for EXPRESS language files. Commonly used to define IFC data structure versions.",
+  "repository": "https://github.com/AlanRynne/ifc-syntax-express-parser.git",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "build": "yarn build-grammar && tsc -b",
+    "build-grammar": "nearleyc src/grammar/express.grammar.ne --out src/grammar/index.ts",
+    "clean": "rm -r dist src/grammar/index.ts",
+    "pretest": "yarn run build",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn test"
+  },
+  "keywords": [
+    "ifc",
+    "express",
+    "BuildingSmart",
+    "OpenBIM"
+  ],
+  "author": "Alan Rynne",
+  "license": "ISC",
+  "dependencies": {
+    "moo": "^0.5.1",
+    "nearley": "^2.19.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/moo": "^0.5.3",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^3.9.7"
+  }
+}

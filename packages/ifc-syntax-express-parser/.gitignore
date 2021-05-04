@@ -1,0 +1,15 @@
+node_modules/
+
+**/bin/
+**/obj/
+out/*
+**/Icon
+**/DS_Store
+
+src/grammar/index.ts
+
+dist/
+coverage/
+results/**
+
+!**/.gitkeep
