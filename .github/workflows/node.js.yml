@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install lerna
+        run: npm i -g lerna
       - name: ♻️ NPM CI
         run: npm ci
       - name: 🥾 Bootstrap monorepo
