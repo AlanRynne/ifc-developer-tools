@@ -1,9 +1,4 @@
-import {
-  ExpressParser,
-  getSchemaForRelease,
-  IFCVersion,
-  IfcReleases
-} from "."
+import { ExpressParser, getSchemaForRelease, IFCVersion, IfcReleases } from "."
 import fs from "fs"
 
 // describe("Express Parser Tests", () => {
