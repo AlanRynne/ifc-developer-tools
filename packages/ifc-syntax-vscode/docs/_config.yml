@@ -1,0 +1,36 @@
+remote_theme: Paramdigma/hydryne-jekyll-theme
+title: Welcome
+url: "https://rynne.es"
+baseurl: "/ifc-syntax"
+
+logo: /assets/images/IFC-Syntax-Icon.png
+data:
+  navigation:
+    - name: Blog
+      link: /blog
+      new_window: false
+      highlight: false
+    - name: About
+      link: /about
+      new_window: false
+      highlight: false
+    - name: Contact
+      link: /contact
+      new_window: false
+      highlight: false
+  footer:
+    - links:
+      - name: Blog
+        link: /blog/
+      - name: About
+        link: /about/
+      - name: Contact
+        link: /contact/
+
+collections:
+  staff_members:
+    _hide_content: true
+
+paginate: 10
+paginate_path: "/blog/:num/"
+permalink: pretty

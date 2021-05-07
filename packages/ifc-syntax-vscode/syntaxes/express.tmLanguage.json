@@ -1,0 +1,170 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "EXPRESS",
+	"patterns": [
+		{
+			"include": "#schema"
+		},
+		{
+			"include": "#comment"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.express",
+					"match": "\\b(SUPERTYPE|SUBTYPE|IF|WHILE|FOR|RETURN|OF|IN|ELSE|REPEAT|THEN)\\b"
+				},
+				{
+					"name": "storage.type.express",
+					"match": "\\b(STRING|INTEGER|NUMBER|BOOLEAN|BINARY|REAL|LOGICAL|ENUMERATION|SELECT|SELF|LIST|ARRAY|SET|BAG)\\b"
+				},
+				{
+					"name": "keyword.operator.word.express",
+					"match": "\\b(ABSTRACT|OPTIONAL|AND|OR|XOR|WHERE|INVERSE|DERIVE|UNIQUE|LOCAL|REPEAT)\\b"
+				},
+				{
+					"name": "entity.name.function",
+					"match": "\\b(TYPEOF|EXISTS|NOT|SIZEOF|ONEOF)\\b"
+				},
+				{
+					"name": "entity.name.class.express",
+					"match": "\\b(ENTITY|FUNCTION|RULE|TYPE|END_ENTITY|END_FUNCTION|END_RULE|END_TYPE)\\b"
+				},
+				{
+					"name": "entity.name.section.express",
+					"match": "\\b(SCHEMA|END_SCHEMA)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.express",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.express",
+					"match": "\\\\."
+				}
+			]
+		},
+		"string": {
+			"name": "string.quoted.single.express",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.express",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comment": {
+			"name": "comment.block.express",
+			"begin": "\\(\\*",
+			"end": "\\*\\)",
+			"patterns": [
+				{
+					"name": "constant.character.escape.express",
+					"match": "\\\\."
+				}
+			]
+		},
+		"number": {
+			"name": "constant.numeric.express",
+			"match": "(\\b|\\-)\\d+(\\.\\d+)?\\b"
+		},
+		"entity": {
+			"name": "entity",
+			"begin": "ENTITY",
+			"beginCaptures": {
+				"0": {
+					"name": "entity.name.class.express"
+				}
+			},
+			"end": "(END_ENTITY)(;)",
+			"endCaptures": {
+				"0": {
+					"name": "entity.name.class.express"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#number"
+				}
+			]
+		},
+		"type": {
+			"name": "type",
+			"begin": "TYPE",
+			"beginCaptures": {
+				"0": {
+					"name": "entity.name.class.express"
+				}
+			},
+			"end": "END_TYPE;",
+			"endCaptures": {
+				"0": {
+					"name": "entity.name.class.express"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#number"
+				}
+			]
+		},
+		"schema": {
+			"name": "source.express",
+			"begin": "SCHEMA (\\w+)",
+			"beginCaptures": {
+				"0": {
+					"name": "entity.name.section.express"
+				},
+				"1": {
+					"name": "entity.name.tag.express"
+				}
+			},
+			"end": "END_SCHEMA;",
+			"endCaptures": {
+				"0": {
+					"name": "entity.name.section.express"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#entity"
+				},
+				{
+					"include": "#type"
+				}
+			]
+		}
+	},
+	"scopeName": "source.express"
+}
