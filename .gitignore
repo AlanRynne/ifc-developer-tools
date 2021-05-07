@@ -3,3 +3,5 @@
 **/*.tsbuildinfo
 **/.DS_Store
 **/.idea
+
+**/uncovered/*.ifc
