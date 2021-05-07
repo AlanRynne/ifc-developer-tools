@@ -1,21 +1,15 @@
 {
+  "extends": "../../tsconfig.build.json",
+
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
     "outDir": "out",
-    "rootDir": "src",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true
+    "rootDir": "src"
   },
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test"],
   "references": [
     {
       "path": "./client"
-    },
-    {
-      "path": "./server"
     }
   ]
 }

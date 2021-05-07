@@ -1,5 +1,5 @@
 {
-  "name": "ifc-syntax",
+  "name": "@alanrynne/ifc-syntax-vscode",
   "displayName": "IFC Syntax",
   "description": "Extension that brings IFC (Industry Foundation Classes) support to VSCode",
   "repository": "https://github.com/AlanRynne/ifc-syntax.git",
@@ -136,10 +136,9 @@
   },
   "scripts": {
     "vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
-    "compile": "tsc -b",
+    "build": "tsc -b",
     "watch": "tsc -b -w",
-    "postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-    "test": "sh ./scripts/e2e.sh"
+    "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

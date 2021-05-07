@@ -2,7 +2,6 @@
   "name": "@alanrynne/ifc-syntax-docgen",
   "version": "1.0.0",
   "description": "IFC Doc2Json Generator",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "tsc",
