@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@alanrynne/ifc-syntax-express-parser": "file://../ifc-syntax-express-parser"
+    "@alanrynne/ifc-syntax-express-parser": "^0.1.1"
   },
   "devDependencies": {
     "@types/node": "^14.11.1",

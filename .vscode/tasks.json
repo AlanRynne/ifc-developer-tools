@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile VSCode Extension",
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "options": {
+        "cwd": "./packages/ifc-syntax-vscode"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Watch VSCode Extension",
+      "type": "npm",
+      "script": "watch",
+      "options": {
+        "cwd": "./packages/ifc-syntax-vscode"
+      },
+      "isBackground": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "never"
+      },
+      "problemMatcher": ["$tsc-watch"]
+    }
+  ]
+}
