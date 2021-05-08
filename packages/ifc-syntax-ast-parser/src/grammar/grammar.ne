@@ -1,7 +1,6 @@
 @preprocessor typescript
 
 @{% 
-
 import { lexer } from './tokens'
 import { first } from './functions'
 import * as Nodes from "../ast/nodes";
@@ -11,15 +10,6 @@ import { ASTType, ASTNode, ASTRange } from "../ast/index";
 
 @lexer lexer
 
-line -> _ tag_iso_open _ {% d => d[1] %}
-      | _ tag_header _ {% d => d[1] %}
-      | _ tag_data _{% d => d[1] %}
-      | _ header_entity _ {% d => d[1] %}
-      | _ tag_end_sec _ {% d => d[1] %}
-      | _ data_entity _ {% d => d[1] %}
-      | _ tag_iso_close _ {% d => d[1] %}
-      | _ comment _ {% d => d[1] %}
-      | _ {% d => null %}
 
 # ----
 # MAIN
@@ -66,15 +56,16 @@ header_entities -> header_entity | header_entities _ header_entity {% d => {
 }%}
 
 # Resolves a header entity declaration
-header_entity -> %word _ %lparen _ header_inputs _ %rparen %eol newline {% (data) => {
+header_entity -> comment _ newline {% first %}
+                | %word _ %lparen newline:? _ header_inputs _ %rparen %eol newline {% (data) => {
                         return new Nodes.FunctionNode(
                             data[0].value,
-                            data[4],
+                            data[5],
                             new ASTRange(
                                 data[2].offset,
-                                data[6].offset + data[7].text.length,
+                                data[7].offset + data[7].text.length,
                                 data[2].line,
-                                data[6].line))
+                                data[7].line))
 }%}
 
 
@@ -87,7 +78,8 @@ header_inputs -> header_input {% d => Array.isArray(d[0]) ? d[0] : [d[0]] %}
                }%}
 
 
-header_input -> singleline_cmnt:? _ header_input_raw {% (data) => data[2] %}
+header_input -> singleline_cmnt _ header_input_raw {% (data) => [data[0],data[2]] %}
+                | header_input_raw {% first %}
 
 
 # Resolves all valid header inputs (currently just strings?)
@@ -140,7 +132,7 @@ data_entity -> var _ %assign _ data_entity_constructor %eol (_ singleline_cmnt):
             data[0].loc.start.line,
             data[5].line)
     )
-} %}
+} %} | comment _ newline {% first %}
 
 
 # Resolves an IFC constructor function
@@ -255,10 +247,10 @@ tag_end_sec -> %endtag %eol newline
 } %}
 
 
-tag_iso_open -> %isotag %eol 
+tag_iso_open -> %isotag %eol newline 
 {% first %}
 
-tag_iso_close -> %isoclosetag %eol 
+tag_iso_close -> %isoclosetag %eol newline 
 {% first %}
 
 
@@ -294,7 +286,7 @@ single_quote_string -> %snglquote %string:? %snglquote
         ) 
 }%}
 
-multiline_cmnt -> %cmnt_strt (cmnt_content):* %cmnt_end
+multiline_cmnt -> %cmnt_strt newline (cmnt_content newline):* %cmnt_end
 {% (data) => {
     let d = ''
     for(let i in data[2]){
@@ -394,4 +386,4 @@ spl -> _ %newline
 
 newline -> %newline (_ %newline):* {% data => null %}
 
-_ -> (%space | %newline):+ {% data => null %} | null
+_ -> null | %space:+ {% data => null %} 

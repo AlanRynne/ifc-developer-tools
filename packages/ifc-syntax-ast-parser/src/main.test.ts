@@ -3,10 +3,18 @@ import dir from "node-dir"
 import path from "path"
 import readline from "readline"
 import { Ifc2Ast } from "./main"
+import { DocumentNode } from "./ast/nodes"
+import {
+  ASTPositionVisitor,
+  ASTDefinitionFinderVisitor,
+  ASTDefinitionVisitor
+} from "./ast/visitor/ASTVisitor"
+import { ASTPosition } from "./ast/core/ASTPosition"
+import { ASTNode, ASTType } from "./ast"
 import { debug } from "console"
 
-const INDIR = "../../examples/ifc/ifcKit"
-const OUTDIR = "../../results/ast-parser"
+const INDIR = "examples"
+const OUTDIR = "results"
 
 var files = dir.files(INDIR, { sync: true })
 var ifcFiles = files.filter(file => path.extname(file) === ".ifc")
@@ -18,7 +26,7 @@ describe("IFC files line by line", () => {
       async () => {
         debug(file)
         const results = await readLines(file)
-        return expect(results).toBeTruthy()
+        return expect(results).toBeInstanceOf(DocumentNode)
       },
       1000
     )
@@ -55,6 +63,14 @@ async function readLines(path: string) {
     .catch(err => {
       throw err
     })
+    
+  let pos = new ASTPosition(17, 37)
+  let pos2 = new ASTPosition(17, 28)
+
+  let posNode = new ASTPositionVisitor().visit(node, pos) as ASTNode
+  let posNode2 = new ASTPositionVisitor().visit(node, pos2) as ASTNode
+  let defFind = new ASTDefinitionFinderVisitor().visit(node, 1)
+  let docDefs = new ASTDefinitionVisitor().visit(node)
 
   return node
 }

@@ -10,11 +10,12 @@
       "args": [
         "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
       ],
-      "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
+      "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
       "preLaunchTask": {
         "type": "npm",
         "script": "watch"
-      }
+      },
+      "sourceMaps": true
     },
     {
       "type": "node",
@@ -23,7 +24,10 @@
       "port": 6009,
       "restart": true,
       "timeout": 20000,
-      "outFiles": ["${workspaceRoot}/server/out/**/*.js"]
+      "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
+      "sourceMaps": true,
+      "protocol": "inspector",
+      "disableOptimisticBPs": true
     }
   ],
   "compounds": [

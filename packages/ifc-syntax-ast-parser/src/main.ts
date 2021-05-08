@@ -1,11 +1,12 @@
-import { Parser } from "nearley"
 import ifcGrammar from "./grammar/ifc" // Nearley generated file, not commited to source code!!
-import { ASTNode, ASTRange } from "./ast"
+import * as nearley from "nearley"
+import { ASTNode } from "./ast"
 import { DocumentNode } from "./ast/nodes"
 import {
   ASTDefinitionVisitor,
   ASTPositionVisitor
 } from "./ast/visitor/ASTVisitor"
+import { debug } from "console"
 
 // The compiled nearley grammar
 export default ifcGrammar
@@ -31,7 +32,7 @@ export class Ifc2Ast {
 
   public reset() {
     this.lastState = null
-    this.parser = new Parser(ifcGrammar, { keepHistory: false })
+    this.parser = new nearley.Parser(ifcGrammar, { keepHistory: false })
   }
 
   public parseIfcFile(
@@ -42,8 +43,7 @@ export class Ifc2Ast {
     return new Promise<ASTNode>((resolve, reject) => {
       try {
         let lineNum = 0
-        let result: ASTNode[] = new Array(lines.length)
-        lines.forEach(async line => {
+        lines.forEach(line => {
           lineNum += 1
 
           try {
@@ -64,26 +64,17 @@ export class Ifc2Ast {
             }
             let txt = addTrailingNewLine ? line + "\n" : line
             this.parser.feed(txt)
-            //this.lastState = this.parser.save()
-            if (this.parser.results.length > 0) {
-              if (this.parser.results.length > 1) {
-                console.warn("Ambiguous line")
-                this.reset()
-                return
-              }
-              result[lineNum - 1] = this.parser.results[0]
-              this.reset()
-            }
+            this.lastState = this.parser.save()
           } catch (error) {
             if (onError) onError(error)
             var state = this.lastState
             this.reset()
-            // this.lastState = state
-            // this.lastState.lexerState.line++
-            // this.parser.restore(this.lastState)
+            this.lastState = state
+            this.lastState.lexerState.line++
+            this.parser.restore(this.lastState)
           }
         }, this)
-        resolve(new DocumentNode("", result, new ASTRange(0, 0, 0, 0)))
+        resolve(this.parser.results[0])
       } catch (error) {
         // Something unexpected happened!
         reject(error)

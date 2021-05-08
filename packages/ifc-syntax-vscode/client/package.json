@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/extension.js",
+  "engines": {
+    "vscode": "^1.33.0"
+  },
+  "keywords": [],
+  "author": "Alan Rynne",
+  "license": "MIT",
+  "devDependencies": {
+    "vscode": "^1.1.37"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^5.2.1"
+  },
+  "scripts": {
+    "update-vscode": "vscode-install",
+    "postinstall": "vscode-install"
+  }
+}
