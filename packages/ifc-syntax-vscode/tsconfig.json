@@ -2,16 +2,10 @@
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "module": "commonjs",
+    "target": "es6"
   },
   "include": ["src"],
-  "exclude": ["node_modules", ".vscode-test"],
-  "references": [
-    {
-      "path": "./client"
-    }
-  ],
-  "typeAcquisition": {
-    "enable": true
-  }
+  "exclude": ["node_modules", ".vscode-test"]
 }
