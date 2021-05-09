@@ -10,6 +10,5 @@ src/grammar/index.ts
 
 dist/
 coverage/
-results/**
 
 !**/.gitkeep
