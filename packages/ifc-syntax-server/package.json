@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@alanrynne/ifc-syntax-ast-parser": "^0.1.2",
+    "@alanrynne/ifc-syntax-parser": "^1.0.0",
     "vscode-languageserver": "^5.2.1"
   },
   "scripts": {
