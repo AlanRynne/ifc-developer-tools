@@ -17,13 +17,13 @@ npm install ifc-syntax-express-parser
 Using it is fairly easy, just create a new `ExpressParser` class instance, and call the `parse()` function with the path of the file as input.
 
 ```javascript
-import { ExpressParser } from 'ifc-syntax-express-parser';
+import { ExpressParser } from "ifc-syntax-express-parser"
 
-const filePath = './path/to/your/file.exp';
-const expressParser = new ExpressParser();
+const filePath = "./path/to/your/file.exp"
+const expressParser = new ExpressParser()
 expressParser.parse(filePath).then((schema: IIfcSchema) => {
   // Do whatever you need with the schema entities.
-});
+})
 ```
 
 ## Contributing
