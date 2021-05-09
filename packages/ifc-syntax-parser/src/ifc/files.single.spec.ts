@@ -15,6 +15,6 @@ describe("Single file test", () => {
 
     var res = parser.ifc()
 
-    console.debug("Finished parsing", res)
+    console.debug("Finished parsing")
   })
 })
