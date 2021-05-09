@@ -1,5 +1,4 @@
 import { ASTType, ASTNode, ASTRange } from "../index";
-import { IVisitor } from "../visitor/IVisitor";
 
 export class KeywordNode extends ASTNode {
 
