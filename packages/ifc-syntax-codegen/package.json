@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "",
   "main": "src/index.ts",
+  "private": true,
   "scripts": {
     "build": "tsc -b",
     "build:ts": "",

@@ -9,6 +9,7 @@
     "email": "alan@rynne.es",
     "url": "https://rynne.es"
   },
+  "private": true,
   "keywords": [
     "IFC",
     "Industry Foundation Classes",

@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "IFC Doc2Json Generator",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
