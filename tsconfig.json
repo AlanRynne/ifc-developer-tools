@@ -1,3 +1,4 @@
+// This file will be picked up by the IDE to provide completions, but not used in the build process.
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {

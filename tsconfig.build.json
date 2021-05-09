@@ -1,3 +1,4 @@
+// This file holds the actual build config
 {
   "compilerOptions": {
     "baseUrl": "./",
