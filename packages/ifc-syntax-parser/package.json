@@ -1,7 +1,7 @@
 {
-  "name": "@alanrynne/ifc-chevro",
+  "name": "@alanrynne/ifc-syntax-parser",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parser for IFC files based in Chevrotain.js",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",

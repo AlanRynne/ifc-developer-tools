@@ -15,7 +15,7 @@
         "type": "npm",
         "script": "watch"
       },
-      "sourceMaps": true
+      "sourceMaps": true,
     },
     {
       "type": "node",
@@ -25,9 +25,7 @@
       "restart": true,
       "timeout": 20000,
       "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
-      "sourceMaps": true,
-      "protocol": "inspector",
-      "disableOptimisticBPs": true
+      "sourceMaps": true
     }
   ],
   "compounds": [
