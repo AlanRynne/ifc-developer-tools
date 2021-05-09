@@ -8,7 +8,8 @@ The Home for the **IFC Developer Tools** code!
 
 | Package | Description | URL|
 |---|---|:---:|
-|`ifc-syntax-ast-parser`| Parse IFC files to AST + Visitors||
+|`ifc-syntax-ast-parser`| **Deprecated** Parse IFC files to AST + Visitors||
+|`ifc-syntax-parser`| **New** Parse IFC files to AST + Visitors||
 |`ifc-syntax-express-parser`| Parse Express files to JSON ||
 |`ifc-syntax-server`| IFC Language Server||
 |`ifc-syntax-vscode`| IFC VSCode Extension||
