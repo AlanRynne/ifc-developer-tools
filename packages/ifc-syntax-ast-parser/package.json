@@ -1,9 +1,10 @@
 {
   "name": "@alanrynne/ifc-syntax-ast-parser",
-  "version": "0.2.1-alpha.3",
+  "version": "0.2.1-alpha.4",
   "description": "An abstract syntax tree generator for IFC files.",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
+  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
   "files": [
     "dist/**/*"
   ],
@@ -41,5 +42,5 @@
     "ts-jest": "^26.5.6",
     "typescript": "^4.2.4"
   },
-  "gitHead": "be2b3090226aef6003d0f3dcf4a0ed9572f910b8"
+  "gitHead": "87dd656b7056d24bdcfe83cee2d4336f4462c822"
 }

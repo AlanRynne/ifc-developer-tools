@@ -1,8 +1,8 @@
 {
   "name": "@alanrynne/ifc-syntax-express-parser",
-  "version": "0.2.1-alpha.3",
+  "version": "0.2.1-alpha.4",
   "description": "A Nearley based parser for EXPRESS language files. Commonly used to define IFC data structure versions.",
-  "repository": "https://github.com/AlanRynne/ifc-syntax-express-parser.git",
+  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -35,5 +35,5 @@
     "ts-jest": "^26.5.6",
     "typescript": "^3.9.7"
   },
-  "gitHead": "be2b3090226aef6003d0f3dcf4a0ed9572f910b8"
+  "gitHead": "87dd656b7056d24bdcfe83cee2d4336f4462c822"
 }

@@ -1,9 +1,10 @@
 {
   "name": "@alanrynne/ifc-syntax-docgen",
-  "version": "0.2.1-alpha.3",
+  "version": "0.2.1-alpha.4",
   "description": "IFC Doc2Json Generator",
   "main": "index.js",
   "private": true,
+  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
