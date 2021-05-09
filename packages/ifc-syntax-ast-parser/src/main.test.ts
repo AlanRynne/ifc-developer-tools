@@ -14,7 +14,6 @@ import { ASTNode, ASTType } from "./ast"
 import { debug } from "console"
 
 const INDIR = "../../examples/ifc/ifcKit"
-const OUTDIR = "results"
 
 var files = dir.files(INDIR, { sync: true })
 var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
