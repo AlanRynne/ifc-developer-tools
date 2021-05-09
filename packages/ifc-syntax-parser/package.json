@@ -6,14 +6,15 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest --coverage",
+    "test": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest",
+    "coverage": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest --coverage",
     "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chevrotain": "^7.0.3"
+    "chevrotain": "^9.0.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.18",
