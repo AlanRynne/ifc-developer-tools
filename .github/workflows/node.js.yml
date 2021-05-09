@@ -35,5 +35,9 @@ jobs:
         run: lerna bootstrap
       - name: 🔨 Build all packages
         run: lerna run build
-      - name: 🧪 Test all packages
-        run: lerna run test
+      - name: 🧪 Test all packages with coverage
+        run: lerna run coverage
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          verbose: true # optional (default = false)
