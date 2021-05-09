@@ -13,11 +13,11 @@ import { ASTPosition } from "./ast/core/ASTPosition"
 import { ASTNode, ASTType } from "./ast"
 import { debug } from "console"
 
-const INDIR = "examples"
+const INDIR = "../../examples/ifc/ifcKit"
 const OUTDIR = "results"
 
 var files = dir.files(INDIR, { sync: true })
-var ifcFiles = files.filter(file => path.extname(file) === ".ifc")
+var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
 
 describe("IFC files line by line", () => {
   ifcFiles.forEach(file => {
@@ -63,7 +63,7 @@ async function readLines(path: string) {
     .catch(err => {
       throw err
     })
-    
+
   let pos = new ASTPosition(17, 37)
   let pos2 = new ASTPosition(17, 28)
 
