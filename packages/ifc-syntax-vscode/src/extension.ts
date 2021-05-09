@@ -7,7 +7,7 @@ import {
   LanguageClientOptions,
   ServerOptions,
   TransportKind
-} from "vscode-languageclient"
+} from "vscode-languageclient/node"
 
 import registerCommands from "./registerCommands"
 import { IfcHeadInfoProvider } from "./ifcHeadTreeProvider"

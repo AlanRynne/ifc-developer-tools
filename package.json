@@ -3,6 +3,6 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^26.0.23",
-    "lerna": "^3.22.1"
+    "lerna": "^4.0.0"
   }
 }

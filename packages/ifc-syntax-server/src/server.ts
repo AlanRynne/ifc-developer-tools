@@ -9,8 +9,10 @@ import {
   ProposedFeatures,
   InitializeParams,
   DidChangeConfigurationNotification,
-  MessageActionItem
-} from "vscode-languageserver"
+  TextDocumentSyncKind
+} from "vscode-languageserver/node"
+
+import { TextDocument } from "vscode-languageserver-textdocument"
 
 import { IfcSyntaxSettings, DefaultSettings } from "./settings"
 
@@ -28,7 +30,9 @@ import IfcSchemas from "./schemas"
 export let connection = createConnection(ProposedFeatures.all)
 
 // Create a simple text document manager. The text document manager supports full document sync only
-export let documents: TextDocuments = new TextDocuments()
+export let documents: TextDocuments<TextDocument> = new TextDocuments(
+  TextDocument
+)
 // Setup configuration flags
 export let hasConfigurationCapability: boolean = false
 export let hasWorkspaceFolderCapability: boolean = false
@@ -80,11 +84,8 @@ connection.onInitialize((params: InitializeParams) => {
           changeNotifications: true
         }
       },
-      textDocumentSync: documents.syncKind,
-      // Tell the client that the server supports code completion
-      // completionProvider: {
-      //     resolveProvider: true,
-      // },
+      // TODO: Ideally sync should be incremental to prevent re-parsing the entire file.
+      textDocumentSync: TextDocumentSyncKind.Full,
       hoverProvider: true,
       definitionProvider: true,
       documentSymbolProvider: true
