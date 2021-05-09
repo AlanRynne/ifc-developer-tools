@@ -17,6 +17,7 @@
   },
   "scripts": {
     "update-vscode": "vscode-install",
-    "postinstall": "vscode-install"
+    "postinstall": "vscode-install",
+    "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
   }
 }

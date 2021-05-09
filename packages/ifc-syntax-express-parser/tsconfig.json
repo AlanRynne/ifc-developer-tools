@@ -3,11 +3,10 @@
   "exclude": ["node_modules", "tests"],
   "include": ["src"],
   "compilerOptions": {
-    "strict": false,
-    "allowJs": false,
     "checkJs": false,
     "outDir": "dist",
     "rootDir": "src",
+    "baseUrl": ".",
     "forceConsistentCasingInFileNames": true
   }
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest"
+    "test": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest",
+    "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],
   "author": "",

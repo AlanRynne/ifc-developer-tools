@@ -1,5 +1,6 @@
 import * as path from "path"
 import * as vscode from "vscode"
+import * as ServerIfc from "@alanrynne/ifc-syntax-server"
 
 import {
   LanguageClient,
@@ -69,9 +70,8 @@ export function deactivate(): Thenable<void> {
 
 function setupServer(context: vscode.ExtensionContext): LanguageClient {
   // The server is implemented in node
-  let serverModule = context.asAbsolutePath(
-    path.join("server", "dist", "server.js")
-  )
+  let serverModule = require.resolve("@alanrynne/ifc-syntax-server")
+
   // The debug options for the server
   let debugOptions = {
     execArgv: ["--nolazy", "--inspect=6009", "--inspect-brk"]

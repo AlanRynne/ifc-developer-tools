@@ -3,9 +3,8 @@
   "include": ["src", "src/**/*.json"],
   "compilerOptions": {
     "resolveJsonModule": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "sourceRoot": "./src"
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "exclude": ["node_modules", ".vscode-test"]
 }
