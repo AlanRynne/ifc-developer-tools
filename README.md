@@ -50,4 +50,4 @@ lerna run test
 
 # Contributing
 
-THIS REPO IS PRIVATE! YOU SHOULD NOT BE HERE!! 🤣🤣
+Contributions are welcome! :)
