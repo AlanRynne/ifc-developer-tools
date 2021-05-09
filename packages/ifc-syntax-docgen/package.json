@@ -1,6 +1,6 @@
 {
   "name": "@alanrynne/ifc-syntax-docgen",
-  "version": "0.2.1-alpha.4",
+  "version": "0.2.1",
   "description": "IFC Doc2Json Generator",
   "main": "index.js",
   "private": true,

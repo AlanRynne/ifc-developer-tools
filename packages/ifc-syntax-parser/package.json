@@ -1,6 +1,6 @@
 {
   "name": "@alanrynne/ifc-syntax-parser",
-  "version": "0.2.1-alpha.4",
+  "version": "0.2.1",
   "description": "Parser for IFC files based in Chevrotain.js",
   "main": "dist/main.js",
   "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
@@ -28,5 +28,5 @@
     "ts-jest": "^26.5.6",
     "typescript": "^4.1.2"
   },
-  "gitHead": "87dd656b7056d24bdcfe83cee2d4336f4462c822"
+  "gitHead": "006fc5c534032be7547d58e98b48a2bf2d9cccc2"
 }

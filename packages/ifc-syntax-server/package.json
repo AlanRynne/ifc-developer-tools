@@ -1,15 +1,15 @@
 {
   "name": "@alanrynne/ifc-syntax-server",
   "author": "Alan Rynne",
-  "version": "0.2.1-alpha.4",
+  "version": "0.2.1",
   "description": "Language server for IFC files.",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
   "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
   "license": "MIT",
   "dependencies": {
-    "@alanrynne/ifc-syntax-ast-parser": "^0.2.1-alpha.4",
-    "@alanrynne/ifc-syntax-parser": "^0.2.1-alpha.4",
+    "@alanrynne/ifc-syntax-ast-parser": "^0.2.1",
+    "@alanrynne/ifc-syntax-parser": "^0.2.1",
     "vscode-languageserver": "^7.0.0",
     "vscode-languageserver-textdocument": "^1.0.1"
   },
@@ -21,5 +21,5 @@
   "devDependencies": {
     "typescript": "^4.2.4"
   },
-  "gitHead": "87dd656b7056d24bdcfe83cee2d4336f4462c822"
+  "gitHead": "006fc5c534032be7547d58e98b48a2bf2d9cccc2"
 }
