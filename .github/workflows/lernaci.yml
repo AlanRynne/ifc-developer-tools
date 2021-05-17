@@ -27,19 +27,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install lerna
-        run: npm i -g lerna
       - name: ♻️ NPM CI
         run: npm ci
       - name: 🥾 Bootstrap monorepo
-        run: lerna bootstrap
+        run: npm run lerna -- bootstrap
       - name: 🔨 Build IFC typescript packages
-        run: lerna run build:ts
+        run: npm run lerna -- run build:ts
       - name: 🛠 Build All packages
-        run: lerna run build
+        run: npm run lerna -- run build
       - name: 🧪 Test all packages with coverage
         run: lerna run coverage
-      - uses: codecov/codecov-action@v1
+      - name: 📊 Upload test results to Codecov
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           verbose: true # optional (default = false)
