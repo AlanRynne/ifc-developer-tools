@@ -6,4 +6,4 @@
 **/build
 **/uncovered/*.ifc
 **/lerna-debug.log
-**/packages/ifc*-ts/
+# **/packages/ifc*-ts/
