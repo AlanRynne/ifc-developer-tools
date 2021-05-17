@@ -1,5 +1,5 @@
 {
-    "schema": "IFC4X2",
+    "schema": "IFC4X1",
     "header": [
         "Copyright by:",
         "buildingSMART International Limited, 1996-2020",
@@ -18,7 +18,7 @@
         "for incidental consequential damages in connection with the furnishing, performance or use",
         "of the material. The information contained in this document is subject to change without notice.",
         "Issue date:",
-        "nedelja, 24. marec 2019"
+        "Thursday, June 8, 2017"
     ],
     "types": {
         "IfcAbsorbedDoseMeasure": {
@@ -1004,45 +1004,6 @@
                     "LINTEL",
                     "SPANDREL",
                     "T_BEAM",
-                    "GIRDER_SEGMENT",
-                    "DIAPHRAGM",
-                    "PIERCAP",
-                    "HATSTONE",
-                    "CORNICE",
-                    "EDGEBEAM",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBearingTypeDisplacementEnum": {
-            "ifcType": "type",
-            "name": "IfcBearingTypeDisplacementEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "FIXED_MOVEMENT",
-                    "GUIDED_LONGITUDINAL",
-                    "GUIDED_TRANSVERSAL",
-                    "FREE_MOVEMENT",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBearingTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBearingTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "CYLINDRICAL",
-                    "SPHERICAL",
-                    "ELASTOMERIC",
-                    "POT",
-                    "GUIDE",
-                    "ROCKER",
-                    "ROLLER",
-                    "DISK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1092,46 +1053,6 @@
                 ]
             }
         },
-        "IfcBridgePartTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBridgePartTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "ABUTMENT",
-                    "DECK",
-                    "DECK_SEGMENT",
-                    "FOUNDATION",
-                    "PIER",
-                    "PIER_SEGMENT",
-                    "PYLON",
-                    "SUBSTRUCTURE",
-                    "SUPERSTRUCTURE",
-                    "SURFACESTRUCTURE",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBridgeTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBridgeTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "ARCHED",
-                    "CABLE_STAYED",
-                    "CANTILEVER",
-                    "CULVERT",
-                    "FRAMEWORK",
-                    "GIRDER",
-                    "SUSPENSION",
-                    "TRUSS",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcBuildingElementPartTypeEnum": {
             "ifcType": "type",
             "name": "IfcBuildingElementPartTypeEnum",
@@ -1140,7 +1061,6 @@
                 "values": [
                     "INSULATION",
                     "PRECASTPANEL",
-                    "APRON",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1174,8 +1094,6 @@
                     "OUTERSHELL",
                     "SHADING",
                     "TRANSPORT",
-                    "REINFORCING",
-                    "PRESTRESSING",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1253,19 +1171,6 @@
                 ]
             }
         },
-        "IfcCaissonFoundationTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcCaissonFoundationTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "WELL",
-                    "CAISSON",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcChangeActionEnum": {
             "ifcType": "type",
             "name": "IfcChangeActionEnum",
@@ -1331,9 +1236,6 @@
                 "values": [
                     "COLUMN",
                     "PILASTER",
-                    "PIERSTEM",
-                    "PIERSTEM_SEGMENT",
-                    "STANDCOLUMN",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1584,7 +1486,6 @@
                     "MEMBRANE",
                     "SLEEVING",
                     "WRAPPING",
-                    "COPING",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1745,7 +1646,6 @@
                     "ANCHORPLATE",
                     "BRACKET",
                     "SHOE",
-                    "EXPANSION_JOINT_DEVICE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2148,11 +2048,6 @@
                     "RIGID_FRAME",
                     "SLAB_FIELD",
                     "TRUSS",
-                    "ABUTMENT",
-                    "PIER",
-                    "PYLON",
-                    "CROSS_BRACING",
-                    "DECK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2417,7 +2312,6 @@
                 "type": "enum",
                 "values": [
                     "TERRAIN",
-                    "SOIL_BORING_POINT",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2727,7 +2621,6 @@
                     "SHEARCONNECTOR",
                     "STAPLE",
                     "STUDSHEARCONNECTOR",
-                    "COUPLER",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2767,11 +2660,6 @@
                     "STRINGER",
                     "STRUT",
                     "STUD",
-                    "STIFFENING_RIB",
-                    "ARCH_SEGMENT",
-                    "SUSPENSION_CABLE",
-                    "SUSPENDER",
-                    "STAY_CABLE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3012,13 +2900,6 @@
                 "values": [
                     "CURTAIN_PANEL",
                     "SHEET",
-                    "FLANGE_PLATE",
-                    "WEB_PLATE",
-                    "STIFFENER_PLATE",
-                    "GUSSET_PLATE",
-                    "COVER_PLATE",
-                    "SPLICE_PLATE",
-                    "BASE_PLATE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3098,8 +2979,6 @@
             "type": {
                 "type": "enum",
                 "values": [
-                    "BLISTER",
-                    "DEVIATOR",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3311,7 +3190,6 @@
                     "RING",
                     "SHEAR",
                     "STUD",
-                    "SPACEBAR",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3575,10 +3453,6 @@
                     "ROOF",
                     "LANDING",
                     "BASESLAB",
-                    "APPROACH_SLAB",
-                    "PAVING",
-                    "WEARING",
-                    "SIDEWALK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3799,7 +3673,6 @@
                     "MARK",
                     "TAG",
                     "TREATMENT",
-                    "DEFECT",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3912,22 +3785,6 @@
                     "COUPLER",
                     "FIXED_END",
                     "TENSIONING_END",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcTendonConduitTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcTendonConduitTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "DUCT",
-                    "COUPLER",
-                    "GROUTING_DUCT",
-                    "TRUMPET",
-                    "DIABOLO",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -4167,23 +4024,6 @@
                 ]
             }
         },
-        "IfcVibrationDamperTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcVibrationDamperTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "BENDING_YIELD",
-                    "SHEAR_YIELD",
-                    "AXIAL_YIELD",
-                    "FRICTION",
-                    "VISCOUS",
-                    "RUBBER",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcVibrationIsolatorTypeEnum": {
             "ifcType": "type",
             "name": "IfcVibrationIsolatorTypeEnum",
@@ -4192,7 +4032,6 @@
                 "values": [
                     "COMPRESSION",
                     "SPRING",
-                    "BASE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -4230,7 +4069,6 @@
                     "STANDARD",
                     "POLYGONAL",
                     "ELEMENTEDWALL",
-                    "RETAININGWALL",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -6602,40 +6440,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcBearing": {
-            "ifcType": "entity",
-            "name": "IfcBearing",
-            "abstract": false,
-            "supertype": "IfcBuildingElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBearingTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcBearingType": {
-            "ifcType": "entity",
-            "name": "IfcBearingType",
-            "abstract": false,
-            "supertype": "IfcBuildingElementType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBearingTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcBlobTexture": {
             "ifcType": "entity",
             "name": "IfcBlobTexture",
@@ -6922,15 +6726,10 @@
                 "IfcPolyline",
                 "IfcTrimmedCurve"
             ],
-            "properties": {},
+            "properties": null,
             "unique": null,
             "derive": null,
-            "inverse": {
-                "PositioningElement": {
-                    "type": "IfcLinearPositioningElement",
-                    "for": "Axis"
-                }
-            },
+            "inverse": null,
             "where": null
         },
         "IfcBoundedSurface": {
@@ -6996,45 +6795,11 @@
             "inverse": null,
             "where": null
         },
-        "IfcBridge": {
-            "ifcType": "entity",
-            "name": "IfcBridge",
-            "abstract": false,
-            "supertype": "IfcFacility",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBridgeTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcBridgePart": {
-            "ifcType": "entity",
-            "name": "IfcBridgePart",
-            "abstract": false,
-            "supertype": "IfcFacilityPart",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBridgePartTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcBuilding": {
             "ifcType": "entity",
             "name": "IfcBuilding",
             "abstract": false,
-            "supertype": "IfcFacility",
+            "supertype": "IfcSpatialStructureElement",
             "subtypes": null,
             "properties": {
                 "ElevationOfRefHeight": {
@@ -7062,16 +6827,15 @@
             "supertype": "IfcElement",
             "subtypes": [
                 "IfcBeam",
-                "IfcBearing",
                 "IfcBuildingElementProxy",
                 "IfcChimney",
                 "IfcColumn",
                 "IfcCovering",
                 "IfcCurtainWall",
-                "IfcDeepFoundation",
                 "IfcDoor",
                 "IfcFooting",
                 "IfcMember",
+                "IfcPile",
                 "IfcPlate",
                 "IfcRailing",
                 "IfcRamp",
@@ -7165,16 +6929,15 @@
             "supertype": "IfcElementType",
             "subtypes": [
                 "IfcBeamType",
-                "IfcBearingType",
                 "IfcBuildingElementProxyType",
                 "IfcChimneyType",
                 "IfcColumnType",
                 "IfcCoveringType",
                 "IfcCurtainWallType",
-                "IfcDeepFoundationType",
                 "IfcDoorType",
                 "IfcFootingType",
                 "IfcMemberType",
+                "IfcPileType",
                 "IfcPlateType",
                 "IfcRailingType",
                 "IfcRampFlightType",
@@ -7197,7 +6960,7 @@
             "ifcType": "entity",
             "name": "IfcBuildingStorey",
             "abstract": false,
-            "supertype": "IfcFacilityPart",
+            "supertype": "IfcSpatialStructureElement",
             "subtypes": null,
             "properties": {
                 "Elevation": {
@@ -7426,40 +7189,6 @@
             "properties": {
                 "PredefinedType": {
                     "type": "IfcCableSegmentTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCaissonFoundation": {
-            "ifcType": "entity",
-            "name": "IfcCaissonFoundation",
-            "abstract": false,
-            "supertype": "IfcDeepFoundation",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcCaissonFoundationTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCaissonFoundationType": {
-            "ifcType": "entity",
-            "name": "IfcCaissonFoundationType",
-            "abstract": false,
-            "supertype": "IfcDeepFoundationType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcCaissonFoundationTypeEnum",
                     "optional": false
                 }
             },
@@ -9667,36 +9396,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcDeepFoundation": {
-            "ifcType": "entity",
-            "name": "IfcDeepFoundation",
-            "abstract": false,
-            "supertype": "IfcBuildingElement",
-            "subtypes": [
-                "IfcCaissonFoundation",
-                "IfcPile"
-            ],
-            "properties": {},
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcDeepFoundationType": {
-            "ifcType": "entity",
-            "name": "IfcDeepFoundationType",
-            "abstract": false,
-            "supertype": "IfcBuildingElementType",
-            "subtypes": [
-                "IfcCaissonFoundationType",
-                "IfcPileType"
-            ],
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcDerivedProfileDef": {
             "ifcType": "entity",
             "name": "IfcDerivedProfileDef",
@@ -11114,7 +10813,6 @@
                 "IfcFastener",
                 "IfcMechanicalFastener",
                 "IfcReinforcingElement",
-                "IfcVibrationDamper",
                 "IfcVibrationIsolator"
             ],
             "properties": null,
@@ -11134,7 +10832,6 @@
                 "IfcFastenerType",
                 "IfcMechanicalFastenerType",
                 "IfcReinforcingElementType",
-                "IfcVibrationDamperType",
                 "IfcVibrationIsolatorType"
             ],
             "properties": null,
@@ -11889,36 +11586,6 @@
                     "optional": false
                 }
             },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcFacility": {
-            "ifcType": "entity",
-            "name": "IfcFacility",
-            "abstract": false,
-            "supertype": "IfcSpatialStructureElement",
-            "subtypes": [
-                "IfcBridge",
-                "IfcBuilding"
-            ],
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcFacilityPart": {
-            "ifcType": "entity",
-            "name": "IfcFacilityPart",
-            "abstract": false,
-            "supertype": "IfcSpatialStructureElement",
-            "subtypes": [
-                "IfcBridgePart",
-                "IfcBuildingStorey"
-            ],
-            "properties": null,
             "unique": null,
             "derive": null,
             "inverse": null,
@@ -14061,7 +13728,7 @@
             "supertype": "IfcObjectPlacement",
             "subtypes": null,
             "properties": {
-                "PlacementMeasuredAlong": {
+                "PlacementRelTo": {
                     "type": "IfcCurve",
                     "optional": false
                 },
@@ -14086,7 +13753,7 @@
         "IfcLinearPositioningElement": {
             "ifcType": "entity",
             "name": "IfcLinearPositioningElement",
-            "abstract": false,
+            "abstract": true,
             "supertype": "IfcPositioningElement",
             "subtypes": [
                 "IfcAlignment"
@@ -14109,6 +13776,10 @@
             "supertype": "IfcObjectPlacement",
             "subtypes": null,
             "properties": {
+                "PlacementRelTo": {
+                    "type": "IfcObjectPlacement",
+                    "optional": true
+                },
                 "RelativePlacement": {
                     "type": "IfcAxis2Placement",
                     "optional": false
@@ -15225,12 +14896,7 @@
                 "IfcLinearPlacement",
                 "IfcLocalPlacement"
             ],
-            "properties": {
-                "PlacementRelTo": {
-                    "type": "IfcObjectPlacement",
-                    "optional": true
-                }
-            },
+            "properties": {},
             "unique": null,
             "derive": null,
             "inverse": {
@@ -15242,6 +14908,15 @@
                         "maxSize": null
                     },
                     "for": "ObjectPlacement"
+                },
+                "ReferencedByPlacements": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcLocalPlacement",
+                        "minSize": "0",
+                        "maxSize": null
+                    },
+                    "for": "PlacementRelTo"
                 }
             },
             "where": null
@@ -16039,7 +15714,7 @@
             "ifcType": "entity",
             "name": "IfcPile",
             "abstract": false,
-            "supertype": "IfcDeepFoundation",
+            "supertype": "IfcBuildingElement",
             "subtypes": null,
             "properties": {
                 "PredefinedType": {
@@ -16060,7 +15735,7 @@
             "ifcType": "entity",
             "name": "IfcPileType",
             "abstract": false,
-            "supertype": "IfcDeepFoundationType",
+            "supertype": "IfcBuildingElementType",
             "subtypes": null,
             "properties": {
                 "PredefinedType": {
@@ -16522,15 +16197,6 @@
                         "maxSize": "1"
                     },
                     "for": "RelatedElements"
-                },
-                "Positions": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelPositions",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatingPositioningElement"
                 }
             },
             "where": null
@@ -16946,15 +16612,6 @@
                         "maxSize": null
                     },
                     "for": "RelatingProduct"
-                },
-                "PositionedRelativeTo": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelPositions",
-                        "minSize": "0",
-                        "maxSize": "1"
-                    },
-                    "for": "RelatedProducts"
                 }
             },
             "where": null
@@ -18531,8 +18188,7 @@
                 "IfcReinforcingBar",
                 "IfcReinforcingMesh",
                 "IfcTendon",
-                "IfcTendonAnchor",
-                "IfcTendonConduit"
+                "IfcTendonAnchor"
             ],
             "properties": {
                 "SteelGrade": {
@@ -18554,7 +18210,6 @@
                 "IfcReinforcingBarType",
                 "IfcReinforcingMeshType",
                 "IfcTendonAnchorType",
-                "IfcTendonConduitType",
                 "IfcTendonType"
             ],
             "properties": null,
@@ -19014,7 +18669,6 @@
                 "IfcRelFillsElement",
                 "IfcRelFlowControlElements",
                 "IfcRelInterferesElements",
-                "IfcRelPositions",
                 "IfcRelReferencedInSpatialStructure",
                 "IfcRelSequence",
                 "IfcRelServicesBuildings",
@@ -19579,32 +19233,6 @@
                     "type": {
                         "type": "LIST",
                         "contains": "IfcObjectDefinition",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcRelPositions": {
-            "ifcType": "entity",
-            "name": "IfcRelPositions",
-            "abstract": false,
-            "supertype": "IfcRelConnects",
-            "subtypes": null,
-            "properties": {
-                "RelatingPositioningElement": {
-                    "type": "IfcPositioningElement",
-                    "optional": false
-                },
-                "RelatedProducts": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcProduct",
                         "minSize": "1",
                         "maxSize": null
                     },
@@ -21237,8 +20865,8 @@
             "abstract": true,
             "supertype": "IfcSpatialElement",
             "subtypes": [
-                "IfcFacility",
-                "IfcFacilityPart",
+                "IfcBuilding",
+                "IfcBuildingStorey",
                 "IfcSite",
                 "IfcSpace"
             ],
@@ -23481,40 +23109,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcTendonConduit": {
-            "ifcType": "entity",
-            "name": "IfcTendonConduit",
-            "abstract": false,
-            "supertype": "IfcReinforcingElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcTendonConduitTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcTendonConduitType": {
-            "ifcType": "entity",
-            "name": "IfcTendonConduitType",
-            "abstract": false,
-            "supertype": "IfcReinforcingElementType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcTendonConduitTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcTendonType": {
             "ifcType": "entity",
             "name": "IfcTendonType",
@@ -24706,40 +24300,6 @@
                 "VertexGeometry": {
                     "type": "IfcPoint",
                     "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcVibrationDamper": {
-            "ifcType": "entity",
-            "name": "IfcVibrationDamper",
-            "abstract": false,
-            "supertype": "IfcElementComponent",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcVibrationDamperTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcVibrationDamperType": {
-            "ifcType": "entity",
-            "name": "IfcVibrationDamperType",
-            "abstract": false,
-            "supertype": "IfcElementComponentType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcVibrationDamperTypeEnum",
-                    "optional": true
                 }
             },
             "unique": null,

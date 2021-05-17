@@ -1,8 +1,8 @@
 {
-    "schema": "IFC4X2",
+    "schema": "IFC4",
     "header": [
         "Copyright by:",
-        "buildingSMART International Limited, 1996-2020",
+        "buildingSMART International Ltd, 1996-2020",
         "Any technical documentation made available by buildingSMART International Limited",
         "is the copyrighted work of buildingSMART International Limited and is owned by the",
         "buildingSMART International Limited. It may be photocopied, used in software development,",
@@ -17,8 +17,16 @@
         "buildingSMART International Limited shall not be liable for errors contained therein or",
         "for incidental consequential damages in connection with the furnishing, performance or use",
         "of the material. The information contained in this document is subject to change without notice.",
+        "Content:",
+        "full IFC object model EXPRESS definitions for the IFC4 Release",
+        "(released for production",
+        "- express longform distribution",
+        "- compiled for EXPRESS version 1 technical corrigendum 2",
         "Issue date:",
-        "nedelja, 24. marec 2019"
+        "February 28, 2013",
+        "Development Team:",
+        "Modeling Support Group of buildingSMART International",
+        "compiled by Thomas Liebich"
     ],
     "types": {
         "IfcAbsorbedDoseMeasure": {
@@ -41,16 +49,6 @@
             "name": "IfcAngularVelocityMeasure",
             "type": "REAL"
         },
-        "IfcArcIndex": {
-            "ifcType": "type",
-            "name": "IfcArcIndex",
-            "type": {
-                "type": "LIST",
-                "contains": "IfcPositiveInteger",
-                "minSize": "3",
-                "maxSize": "3"
-            }
-        },
         "IfcAreaDensityMeasure": {
             "ifcType": "type",
             "name": "IfcAreaDensityMeasure",
@@ -60,11 +58,6 @@
             "ifcType": "type",
             "name": "IfcAreaMeasure",
             "type": "REAL"
-        },
-        "IfcBinary": {
-            "ifcType": "type",
-            "name": "IfcBinary",
-            "type": "BINARY"
         },
         "IfcBoolean": {
             "ifcType": "type",
@@ -303,16 +296,6 @@
             "name": "IfcLengthMeasure",
             "type": "REAL"
         },
-        "IfcLineIndex": {
-            "ifcType": "type",
-            "name": "IfcLineIndex",
-            "type": {
-                "type": "LIST",
-                "contains": "IfcPositiveInteger",
-                "minSize": "2",
-                "maxSize": null
-            }
-        },
         "IfcLinearForceMeasure": {
             "ifcType": "type",
             "name": "IfcLinearForceMeasure",
@@ -462,11 +445,6 @@
             "ifcType": "type",
             "name": "IfcPlaneAngleMeasure",
             "type": "REAL"
-        },
-        "IfcPositiveInteger": {
-            "ifcType": "type",
-            "name": "IfcPositiveInteger",
-            "type": "IfcInteger"
         },
         "IfcPositiveLengthMeasure": {
             "ifcType": "type",
@@ -870,17 +848,6 @@
                 ]
             }
         },
-        "IfcAlignmentTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcAlignmentTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcAnalysisModelTypeEnum": {
             "ifcType": "type",
             "name": "IfcAnalysisModelTypeEnum",
@@ -1004,45 +971,6 @@
                     "LINTEL",
                     "SPANDREL",
                     "T_BEAM",
-                    "GIRDER_SEGMENT",
-                    "DIAPHRAGM",
-                    "PIERCAP",
-                    "HATSTONE",
-                    "CORNICE",
-                    "EDGEBEAM",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBearingTypeDisplacementEnum": {
-            "ifcType": "type",
-            "name": "IfcBearingTypeDisplacementEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "FIXED_MOVEMENT",
-                    "GUIDED_LONGITUDINAL",
-                    "GUIDED_TRANSVERSAL",
-                    "FREE_MOVEMENT",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBearingTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBearingTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "CYLINDRICAL",
-                    "SPHERICAL",
-                    "ELASTOMERIC",
-                    "POT",
-                    "GUIDE",
-                    "ROCKER",
-                    "ROLLER",
-                    "DISK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1092,46 +1020,6 @@
                 ]
             }
         },
-        "IfcBridgePartTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBridgePartTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "ABUTMENT",
-                    "DECK",
-                    "DECK_SEGMENT",
-                    "FOUNDATION",
-                    "PIER",
-                    "PIER_SEGMENT",
-                    "PYLON",
-                    "SUBSTRUCTURE",
-                    "SUPERSTRUCTURE",
-                    "SURFACESTRUCTURE",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcBridgeTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcBridgeTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "ARCHED",
-                    "CABLE_STAYED",
-                    "CANTILEVER",
-                    "CULVERT",
-                    "FRAMEWORK",
-                    "GIRDER",
-                    "SUSPENSION",
-                    "TRUSS",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcBuildingElementPartTypeEnum": {
             "ifcType": "type",
             "name": "IfcBuildingElementPartTypeEnum",
@@ -1140,7 +1028,6 @@
                 "values": [
                     "INSULATION",
                     "PRECASTPANEL",
-                    "APRON",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1156,7 +1043,6 @@
                     "ELEMENT",
                     "PARTIAL",
                     "PROVISIONFORVOID",
-                    "PROVISIONFORSPACE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1174,8 +1060,6 @@
                     "OUTERSHELL",
                     "SHADING",
                     "TRANSPORT",
-                    "REINFORCING",
-                    "PRESTRESSING",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1253,19 +1137,6 @@
                 ]
             }
         },
-        "IfcCaissonFoundationTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcCaissonFoundationTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "WELL",
-                    "CAISSON",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcChangeActionEnum": {
             "ifcType": "type",
             "name": "IfcChangeActionEnum",
@@ -1331,9 +1202,6 @@
                 "values": [
                     "COLUMN",
                     "PILASTER",
-                    "PIERSTEM",
-                    "PIERSTEM_SEGMENT",
-                    "STANDCOLUMN",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1584,7 +1452,6 @@
                     "MEMBRANE",
                     "SLEEVING",
                     "WRAPPING",
-                    "COPING",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -1745,7 +1612,6 @@
                     "ANCHORPLATE",
                     "BRACKET",
                     "SHOE",
-                    "EXPANSION_JOINT_DEVICE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2148,11 +2014,6 @@
                     "RIGID_FRAME",
                     "SLAB_FIELD",
                     "TRUSS",
-                    "ABUTMENT",
-                    "PIER",
-                    "PYLON",
-                    "CROSS_BRACING",
-                    "DECK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2260,7 +2121,7 @@
                     "EXTERNAL_WATER",
                     "EXTERNAL_FIRE",
                     "USERDEFINED",
-                    "NOTDEFINED"
+                    "NOTDEFIEND"
                 ]
             }
         },
@@ -2417,7 +2278,6 @@
                 "type": "enum",
                 "values": [
                     "TERRAIN",
-                    "SOIL_BORING_POINT",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2727,7 +2587,6 @@
                     "SHEARCONNECTOR",
                     "STAPLE",
                     "STUDSHEARCONNECTOR",
-                    "COUPLER",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -2767,11 +2626,6 @@
                     "STRINGER",
                     "STRUT",
                     "STUD",
-                    "STIFFENING_RIB",
-                    "ARCH_SEGMENT",
-                    "SUSPENSION_CABLE",
-                    "SUSPENDER",
-                    "STAY_CABLE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3012,27 +2866,8 @@
                 "values": [
                     "CURTAIN_PANEL",
                     "SHEET",
-                    "FLANGE_PLATE",
-                    "WEB_PLATE",
-                    "STIFFENER_PLATE",
-                    "GUSSET_PLATE",
-                    "COVER_PLATE",
-                    "SPLICE_PLATE",
-                    "BASE_PLATE",
                     "USERDEFINED",
                     "NOTDEFINED"
-                ]
-            }
-        },
-        "IfcPreferredSurfaceCurveRepresentation": {
-            "ifcType": "type",
-            "name": "IfcPreferredSurfaceCurveRepresentation",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "CURVE3D",
-                    "PCURVE_S1",
-                    "PCURVE_S2"
                 ]
             }
         },
@@ -3098,8 +2933,6 @@
             "type": {
                 "type": "enum",
                 "values": [
-                    "BLISTER",
-                    "DEVIATOR",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3234,20 +3067,6 @@
                 ]
             }
         },
-        "IfcReferentTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcReferentTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "KILOPOINT",
-                    "MILEPOINT",
-                    "STATION",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcReflectanceMethodEnum": {
             "ifcType": "type",
             "name": "IfcReflectanceMethodEnum",
@@ -3311,7 +3130,6 @@
                     "RING",
                     "SHEAR",
                     "STUD",
-                    "SPACEBAR",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3486,17 +3304,13 @@
             "type": {
                 "type": "enum",
                 "values": [
-                    "COSENSOR",
-                    "CO2SENSOR",
                     "CONDUCTANCESENSOR",
                     "CONTACTSENSOR",
                     "FIRESENSOR",
                     "FLOWSENSOR",
-                    "FROSTSENSOR",
                     "GASSENSOR",
                     "HEATSENSOR",
                     "HUMIDITYSENSOR",
-                    "IDENTIFIERSENSOR",
                     "IONCONCENTRATIONSENSOR",
                     "LEVELSENSOR",
                     "LIGHTSENSOR",
@@ -3575,10 +3389,6 @@
                     "ROOF",
                     "LANDING",
                     "BASESLAB",
-                    "APPROACH_SLAB",
-                    "PAVING",
-                    "WEARING",
-                    "SIDEWALK",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3799,7 +3609,6 @@
                     "MARK",
                     "TAG",
                     "TREATMENT",
-                    "DEFECT",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -3917,22 +3726,6 @@
                 ]
             }
         },
-        "IfcTendonConduitTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcTendonConduitTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "DUCT",
-                    "COUPLER",
-                    "GROUTING_DUCT",
-                    "TRUMPET",
-                    "DIABOLO",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcTendonTypeEnum": {
             "ifcType": "type",
             "name": "IfcTendonTypeEnum",
@@ -4003,21 +3796,6 @@
                     "CONTINUOUS",
                     "CONTSAMEGRADIENT",
                     "CONTSAMEGRADIENTSAMECURVATURE"
-                ]
-            }
-        },
-        "IfcTransitionCurveType": {
-            "ifcType": "type",
-            "name": "IfcTransitionCurveType",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "BIQUADRATICPARABOLA",
-                    "BLOSSCURVE",
-                    "CLOTHOIDCURVE",
-                    "COSINECURVE",
-                    "CUBICPARABOLA",
-                    "SINECURVE"
                 ]
             }
         },
@@ -4167,23 +3945,6 @@
                 ]
             }
         },
-        "IfcVibrationDamperTypeEnum": {
-            "ifcType": "type",
-            "name": "IfcVibrationDamperTypeEnum",
-            "type": {
-                "type": "enum",
-                "values": [
-                    "BENDING_YIELD",
-                    "SHEAR_YIELD",
-                    "AXIAL_YIELD",
-                    "FRICTION",
-                    "VISCOUS",
-                    "RUBBER",
-                    "USERDEFINED",
-                    "NOTDEFINED"
-                ]
-            }
-        },
         "IfcVibrationIsolatorTypeEnum": {
             "ifcType": "type",
             "name": "IfcVibrationIsolatorTypeEnum",
@@ -4192,7 +3953,6 @@
                 "values": [
                     "COMPRESSION",
                     "SPRING",
-                    "BASE",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -4230,7 +3990,6 @@
                     "STANDARD",
                     "POLYGONAL",
                     "ELEMENTEDWALL",
-                    "RETAININGWALL",
                     "USERDEFINED",
                     "NOTDEFINED"
                 ]
@@ -4460,8 +4219,7 @@
                     "IfcBooleanResult",
                     "IfcCsgPrimitive3D",
                     "IfcHalfSpaceSolid",
-                    "IfcSolidModel",
-                    "IfcTessellatedFaceSet"
+                    "IfcSolidModel"
                 ]
             }
         },
@@ -4549,8 +4307,7 @@
                 "type": "select",
                 "values": [
                     "IfcCompositeCurveOnSurface",
-                    "IfcPcurve",
-                    "IfcSurfaceCurve"
+                    "IfcPcurve"
                 ]
             }
         },
@@ -4958,7 +4715,6 @@
                     "IfcPhysicalQuantity",
                     "IfcProfileDef",
                     "IfcPropertyAbstraction",
-                    "IfcShapeAspect",
                     "IfcTimeSeries"
                 ]
             }
@@ -4985,17 +4741,6 @@
                 ]
             }
         },
-        "IfcSegmentIndexSelect": {
-            "ifcType": "type",
-            "name": "IfcSegmentIndexSelect",
-            "type": {
-                "type": "select",
-                "values": [
-                    "IfcArcIndex",
-                    "IfcLineIndex"
-                ]
-            }
-        },
         "IfcShell": {
             "ifcType": "type",
             "name": "IfcShell",
@@ -5013,7 +4758,6 @@
             "type": {
                 "type": "select",
                 "values": [
-                    "IfcBinary",
                     "IfcBoolean",
                     "IfcDate",
                     "IfcDateTime",
@@ -5022,7 +4766,6 @@
                     "IfcInteger",
                     "IfcLabel",
                     "IfcLogical",
-                    "IfcPositiveInteger",
                     "IfcReal",
                     "IfcText",
                     "IfcTime",
@@ -5565,268 +5308,6 @@
                 "PredefinedType": {
                     "type": "IfcAlarmTypeEnum",
                     "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment": {
-            "ifcType": "entity",
-            "name": "IfcAlignment",
-            "abstract": false,
-            "supertype": "IfcLinearPositioningElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcAlignmentTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment2DHorizontal": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DHorizontal",
-            "abstract": false,
-            "supertype": "IfcGeometricRepresentationItem",
-            "subtypes": null,
-            "properties": {
-                "StartDistAlong": {
-                    "type": "IfcLengthMeasure",
-                    "optional": true
-                },
-                "Segments": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcAlignment2DHorizontalSegment",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ToAlignmentCurve": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcAlignmentCurve",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "for": "Horizontal"
-                }
-            },
-            "where": null
-        },
-        "IfcAlignment2DHorizontalSegment": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DHorizontalSegment",
-            "abstract": false,
-            "supertype": "IfcAlignment2DSegment",
-            "subtypes": null,
-            "properties": {
-                "CurveGeometry": {
-                    "type": "IfcCurveSegment2D",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ToHorizontal": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcAlignment2DHorizontal",
-                        "minSize": "1",
-                        "maxSize": "1"
-                    },
-                    "for": "Segments"
-                }
-            },
-            "where": null
-        },
-        "IfcAlignment2DSegment": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DSegment",
-            "abstract": true,
-            "supertype": "IfcGeometricRepresentationItem",
-            "subtypes": [
-                "IfcAlignment2DHorizontalSegment",
-                "IfcAlignment2DVerticalSegment"
-            ],
-            "properties": {
-                "TangentialContinuity": {
-                    "type": "IfcBoolean",
-                    "optional": true
-                },
-                "StartTag": {
-                    "type": "IfcLabel",
-                    "optional": true
-                },
-                "EndTag": {
-                    "type": "IfcLabel",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment2DVerSegCircularArc": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DVerSegCircularArc",
-            "abstract": false,
-            "supertype": "IfcAlignment2DVerticalSegment",
-            "subtypes": null,
-            "properties": {
-                "Radius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                },
-                "IsConvex": {
-                    "type": "IfcBoolean",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment2DVerSegLine": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DVerSegLine",
-            "abstract": false,
-            "supertype": "IfcAlignment2DVerticalSegment",
-            "subtypes": null,
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment2DVerSegParabolicArc": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DVerSegParabolicArc",
-            "abstract": false,
-            "supertype": "IfcAlignment2DVerticalSegment",
-            "subtypes": null,
-            "properties": {
-                "ParabolaConstant": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                },
-                "IsConvex": {
-                    "type": "IfcBoolean",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcAlignment2DVertical": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DVertical",
-            "abstract": false,
-            "supertype": "IfcGeometricRepresentationItem",
-            "subtypes": null,
-            "properties": {
-                "Segments": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcAlignment2DVerticalSegment",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ToAlignmentCurve": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcAlignmentCurve",
-                        "minSize": "1",
-                        "maxSize": "1"
-                    },
-                    "for": "Vertical"
-                }
-            },
-            "where": null
-        },
-        "IfcAlignment2DVerticalSegment": {
-            "ifcType": "entity",
-            "name": "IfcAlignment2DVerticalSegment",
-            "abstract": true,
-            "supertype": "IfcAlignment2DSegment",
-            "subtypes": [
-                "IfcAlignment2DVerSegCircularArc",
-                "IfcAlignment2DVerSegLine",
-                "IfcAlignment2DVerSegParabolicArc"
-            ],
-            "properties": {
-                "StartDistAlong": {
-                    "type": "IfcLengthMeasure",
-                    "optional": false
-                },
-                "HorizontalLength": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                },
-                "StartHeight": {
-                    "type": "IfcLengthMeasure",
-                    "optional": false
-                },
-                "StartGradient": {
-                    "type": "IfcRatioMeasure",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ToVertical": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcAlignment2DVertical",
-                        "minSize": "1",
-                        "maxSize": "1"
-                    },
-                    "for": "Segments"
-                }
-            },
-            "where": null
-        },
-        "IfcAlignmentCurve": {
-            "ifcType": "entity",
-            "name": "IfcAlignmentCurve",
-            "abstract": false,
-            "supertype": "IfcBoundedCurve",
-            "subtypes": null,
-            "properties": {
-                "Horizontal": {
-                    "type": "IfcAlignment2DHorizontal",
-                    "optional": false
-                },
-                "Vertical": {
-                    "type": "IfcAlignment2DVertical",
-                    "optional": true
-                },
-                "Tag": {
-                    "type": "IfcLabel",
-                    "optional": true
                 }
             },
             "unique": null,
@@ -6379,7 +5860,7 @@
             ],
             "properties": {
                 "Degree": {
-                    "type": "IfcInteger",
+                    "type": "INTEGER",
                     "optional": false
                 },
                 "ControlPointsList": {
@@ -6396,11 +5877,11 @@
                     "optional": false
                 },
                 "ClosedCurve": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "SelfIntersect": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 }
             },
@@ -6421,7 +5902,7 @@
                 "KnotMultiplicities": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "INTEGER",
                         "minSize": "2",
                         "maxSize": null
                     },
@@ -6456,11 +5937,11 @@
             ],
             "properties": {
                 "UDegree": {
-                    "type": "IfcInteger",
+                    "type": "INTEGER",
                     "optional": false
                 },
                 "VDegree": {
-                    "type": "IfcInteger",
+                    "type": "INTEGER",
                     "optional": false
                 },
                 "ControlPointsList": {
@@ -6482,15 +5963,15 @@
                     "optional": false
                 },
                 "UClosed": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "VClosed": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "SelfIntersect": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 }
             },
@@ -6511,7 +5992,7 @@
                 "UMultiplicities": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "INTEGER",
                         "minSize": "2",
                         "maxSize": null
                     },
@@ -6520,7 +6001,7 @@
                 "VMultiplicities": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "INTEGER",
                         "minSize": "2",
                         "maxSize": null
                     },
@@ -6602,40 +6083,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcBearing": {
-            "ifcType": "entity",
-            "name": "IfcBearing",
-            "abstract": false,
-            "supertype": "IfcBuildingElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBearingTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcBearingType": {
-            "ifcType": "entity",
-            "name": "IfcBearingType",
-            "abstract": false,
-            "supertype": "IfcBuildingElementType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBearingTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcBlobTexture": {
             "ifcType": "entity",
             "name": "IfcBlobTexture",
@@ -6648,7 +6095,7 @@
                     "optional": false
                 },
                 "RasterCode": {
-                    "type": "IfcBinary",
+                    "type": "BINARY",
                     "optional": false
                 }
             },
@@ -6914,23 +6361,15 @@
             "abstract": true,
             "supertype": "IfcCurve",
             "subtypes": [
-                "IfcAlignmentCurve",
                 "IfcBSplineCurve",
                 "IfcCompositeCurve",
-                "IfcCurveSegment2D",
-                "IfcIndexedPolyCurve",
                 "IfcPolyline",
                 "IfcTrimmedCurve"
             ],
-            "properties": {},
+            "properties": null,
             "unique": null,
             "derive": null,
-            "inverse": {
-                "PositioningElement": {
-                    "type": "IfcLinearPositioningElement",
-                    "for": "Axis"
-                }
-            },
+            "inverse": null,
             "where": null
         },
         "IfcBoundedSurface": {
@@ -6996,45 +6435,11 @@
             "inverse": null,
             "where": null
         },
-        "IfcBridge": {
-            "ifcType": "entity",
-            "name": "IfcBridge",
-            "abstract": false,
-            "supertype": "IfcFacility",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBridgeTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcBridgePart": {
-            "ifcType": "entity",
-            "name": "IfcBridgePart",
-            "abstract": false,
-            "supertype": "IfcFacilityPart",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcBridgePartTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcBuilding": {
             "ifcType": "entity",
             "name": "IfcBuilding",
             "abstract": false,
-            "supertype": "IfcFacility",
+            "supertype": "IfcSpatialStructureElement",
             "subtypes": null,
             "properties": {
                 "ElevationOfRefHeight": {
@@ -7062,16 +6467,15 @@
             "supertype": "IfcElement",
             "subtypes": [
                 "IfcBeam",
-                "IfcBearing",
                 "IfcBuildingElementProxy",
                 "IfcChimney",
                 "IfcColumn",
                 "IfcCovering",
                 "IfcCurtainWall",
-                "IfcDeepFoundation",
                 "IfcDoor",
                 "IfcFooting",
                 "IfcMember",
+                "IfcPile",
                 "IfcPlate",
                 "IfcRailing",
                 "IfcRamp",
@@ -7084,10 +6488,20 @@
                 "IfcWall",
                 "IfcWindow"
             ],
-            "properties": {},
+            "properties": null,
             "unique": null,
             "derive": null,
-            "inverse": null,
+            "inverse": {
+                "HasCoverings": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcRelCoversBldgElements",
+                        "minSize": "0",
+                        "maxSize": null
+                    },
+                    "for": "RelatingBuildingElement"
+                }
+            },
             "where": null
         },
         "IfcBuildingElementPart": {
@@ -7165,16 +6579,15 @@
             "supertype": "IfcElementType",
             "subtypes": [
                 "IfcBeamType",
-                "IfcBearingType",
                 "IfcBuildingElementProxyType",
                 "IfcChimneyType",
                 "IfcColumnType",
                 "IfcCoveringType",
                 "IfcCurtainWallType",
-                "IfcDeepFoundationType",
                 "IfcDoorType",
                 "IfcFootingType",
                 "IfcMemberType",
+                "IfcPileType",
                 "IfcPlateType",
                 "IfcRailingType",
                 "IfcRampFlightType",
@@ -7197,7 +6610,7 @@
             "ifcType": "entity",
             "name": "IfcBuildingStorey",
             "abstract": false,
-            "supertype": "IfcFacilityPart",
+            "supertype": "IfcSpatialStructureElement",
             "subtypes": null,
             "properties": {
                 "Elevation": {
@@ -7219,10 +6632,6 @@
             "properties": {
                 "PredefinedType": {
                     "type": "IfcBuildingSystemTypeEnum",
-                    "optional": true
-                },
-                "LongName": {
-                    "type": "IfcLabel",
                     "optional": true
                 }
             },
@@ -7434,40 +6843,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcCaissonFoundation": {
-            "ifcType": "entity",
-            "name": "IfcCaissonFoundation",
-            "abstract": false,
-            "supertype": "IfcDeepFoundation",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcCaissonFoundationTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCaissonFoundationType": {
-            "ifcType": "entity",
-            "name": "IfcCaissonFoundationType",
-            "abstract": false,
-            "supertype": "IfcDeepFoundationType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcCaissonFoundationTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcCartesianPoint": {
             "ifcType": "entity",
             "name": "IfcCartesianPoint",
@@ -7496,46 +6871,9 @@
             "abstract": true,
             "supertype": "IfcGeometricRepresentationItem",
             "subtypes": [
-                "IfcCartesianPointList2D",
                 "IfcCartesianPointList3D"
             ],
             "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCartesianPointList2D": {
-            "ifcType": "entity",
-            "name": "IfcCartesianPointList2D",
-            "abstract": false,
-            "supertype": "IfcCartesianPointList",
-            "subtypes": null,
-            "properties": {
-                "CoordList": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": {
-                            "type": "LIST",
-                            "contains": "IfcLengthMeasure",
-                            "minSize": "2",
-                            "maxSize": "2"
-                        },
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                },
-                "TagList": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcLabel",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": true
-                }
-            },
             "unique": null,
             "derive": null,
             "inverse": null,
@@ -7561,15 +6899,6 @@
                         "maxSize": null
                     },
                     "optional": false
-                },
-                "TagList": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcLabel",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": true
                 }
             },
             "unique": null,
@@ -7600,7 +6929,7 @@
                     "optional": false
                 },
                 "Scale": {
-                    "type": "IfcReal",
+                    "type": "REAL",
                     "optional": true
                 }
             },
@@ -7631,7 +6960,7 @@
             "subtypes": null,
             "properties": {
                 "Scale2": {
-                    "type": "IfcReal",
+                    "type": "REAL",
                     "optional": true
                 }
             },
@@ -7667,11 +6996,11 @@
             "subtypes": null,
             "properties": {
                 "Scale2": {
-                    "type": "IfcReal",
+                    "type": "REAL",
                     "optional": true
                 },
                 "Scale3": {
-                    "type": "IfcReal",
+                    "type": "REAL",
                     "optional": true
                 }
             },
@@ -7810,27 +7139,6 @@
             "properties": {
                 "Radius": {
                     "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCircularArcSegment2D": {
-            "ifcType": "entity",
-            "name": "IfcCircularArcSegment2D",
-            "abstract": false,
-            "supertype": "IfcCurveSegment2D",
-            "subtypes": null,
-            "properties": {
-                "Radius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                },
-                "IsCCW": {
-                    "type": "IfcBoolean",
                     "optional": false
                 }
             },
@@ -8246,7 +7554,7 @@
                     "optional": false
                 },
                 "SelfIntersect": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 }
             },
@@ -8283,7 +7591,7 @@
                     "optional": false
                 },
                 "SameSense": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "ParentCurve": {
@@ -9107,7 +8415,7 @@
             "properties": {
                 "Name": {
                     "type": "IfcLabel",
-                    "optional": false
+                    "optional": true
                 },
                 "Description": {
                     "type": "IfcText",
@@ -9115,7 +8423,7 @@
                 },
                 "GeodeticDatum": {
                     "type": "IfcIdentifier",
-                    "optional": true
+                    "optional": false
                 },
                 "VerticalDatum": {
                     "type": "IfcIdentifier",
@@ -9124,17 +8432,7 @@
             },
             "unique": null,
             "derive": null,
-            "inverse": {
-                "HasCoordinateOperation": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcCoordinateOperation",
-                        "minSize": "0",
-                        "maxSize": "1"
-                    },
-                    "for": "SourceCRS"
-                }
-            },
+            "inverse": null,
             "where": null
         },
         "IfcCostItem": {
@@ -9416,9 +8714,9 @@
                 "IfcBoundedCurve",
                 "IfcConic",
                 "IfcLine",
-                "IfcOffsetCurve",
-                "IfcPcurve",
-                "IfcSurfaceCurve"
+                "IfcOffsetCurve2D",
+                "IfcOffsetCurve3D",
+                "IfcPcurve"
             ],
             "properties": null,
             "unique": null,
@@ -9477,36 +8775,7 @@
                     "optional": false
                 },
                 "ImplicitOuter": {
-                    "type": "IfcBoolean",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcCurveSegment2D": {
-            "ifcType": "entity",
-            "name": "IfcCurveSegment2D",
-            "abstract": true,
-            "supertype": "IfcBoundedCurve",
-            "subtypes": [
-                "IfcCircularArcSegment2D",
-                "IfcLineSegment2D",
-                "IfcTransitionCurveSegment2D"
-            ],
-            "properties": {
-                "StartPoint": {
-                    "type": "IfcCartesianPoint",
-                    "optional": false
-                },
-                "StartDirection": {
-                    "type": "IfcPlaneAngleMeasure",
-                    "optional": false
-                },
-                "SegmentLength": {
-                    "type": "IfcPositiveLengthMeasure",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -9535,7 +8804,7 @@
                     "optional": true
                 },
                 "ModelOrDraughting": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 }
             },
@@ -9662,36 +8931,6 @@
                     "optional": false
                 }
             },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcDeepFoundation": {
-            "ifcType": "entity",
-            "name": "IfcDeepFoundation",
-            "abstract": false,
-            "supertype": "IfcBuildingElement",
-            "subtypes": [
-                "IfcCaissonFoundation",
-                "IfcPile"
-            ],
-            "properties": {},
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcDeepFoundationType": {
-            "ifcType": "entity",
-            "name": "IfcDeepFoundationType",
-            "abstract": false,
-            "supertype": "IfcBuildingElementType",
-            "subtypes": [
-                "IfcCaissonFoundationType",
-                "IfcPileType"
-            ],
-            "properties": null,
             "unique": null,
             "derive": null,
             "inverse": null,
@@ -9826,7 +9065,7 @@
                 "DirectionRatios": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcReal",
+                        "contains": "REAL",
                         "minSize": "2",
                         "maxSize": "3"
                     },
@@ -9865,39 +9104,6 @@
                 "PredefinedType": {
                     "type": "IfcDiscreteAccessoryTypeEnum",
                     "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcDistanceExpression": {
-            "ifcType": "entity",
-            "name": "IfcDistanceExpression",
-            "abstract": false,
-            "supertype": "IfcGeometricRepresentationItem",
-            "subtypes": null,
-            "properties": {
-                "DistanceAlong": {
-                    "type": "IfcLengthMeasure",
-                    "optional": false
-                },
-                "OffsetLateral": {
-                    "type": "IfcLengthMeasure",
-                    "optional": true
-                },
-                "OffsetVertical": {
-                    "type": "IfcLengthMeasure",
-                    "optional": true
-                },
-                "OffsetLongitudinal": {
-                    "type": "IfcLengthMeasure",
-                    "optional": true
-                },
-                "AlongHorizontal": {
-                    "type": "IfcBoolean",
-                    "optional": true
                 }
             },
             "unique": null,
@@ -10488,11 +9694,11 @@
                     "optional": false
                 },
                 "ParameterTakesPrecedence": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "Sizeable": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -10517,7 +9723,7 @@
                     "optional": false
                 },
                 "ParameterTakesPrecedence": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 },
                 "UserDefinedOperationType": {
@@ -10693,7 +9899,7 @@
                     "optional": false
                 },
                 "SameSense": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -11052,15 +10258,6 @@
                         "maxSize": "1"
                     },
                     "for": "RelatedElements"
-                },
-                "HasCoverings": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelCoversBldgElements",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatingBuildingElement"
                 }
             },
             "where": null
@@ -11114,7 +10311,6 @@
                 "IfcFastener",
                 "IfcMechanicalFastener",
                 "IfcReinforcingElement",
-                "IfcVibrationDamper",
                 "IfcVibrationIsolator"
             ],
             "properties": null,
@@ -11134,7 +10330,6 @@
                 "IfcFastenerType",
                 "IfcMechanicalFastenerType",
                 "IfcReinforcingElementType",
-                "IfcVibrationDamperType",
                 "IfcVibrationIsolatorType"
             ],
             "properties": null,
@@ -11202,9 +10397,7 @@
             "supertype": "IfcSurface",
             "subtypes": [
                 "IfcCylindricalSurface",
-                "IfcPlane",
-                "IfcSphericalSurface",
-                "IfcToroidalSurface"
+                "IfcPlane"
             ],
             "properties": {
                 "Position": {
@@ -11814,7 +11007,7 @@
                     "optional": false
                 },
                 "Orientation": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -11849,7 +11042,7 @@
                     "optional": false
                 },
                 "SameSense": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -11889,36 +11082,6 @@
                     "optional": false
                 }
             },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcFacility": {
-            "ifcType": "entity",
-            "name": "IfcFacility",
-            "abstract": false,
-            "supertype": "IfcSpatialStructureElement",
-            "subtypes": [
-                "IfcBridge",
-                "IfcBuilding"
-            ],
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcFacilityPart": {
-            "ifcType": "entity",
-            "name": "IfcFacilityPart",
-            "abstract": false,
-            "supertype": "IfcSpatialStructureElement",
-            "subtypes": [
-                "IfcBridgePart",
-                "IfcBuildingStorey"
-            ],
-            "properties": null,
             "unique": null,
             "derive": null,
             "inverse": null,
@@ -12101,7 +11264,7 @@
                     "optional": false
                 },
                 "ModelorDraughting": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 }
             },
@@ -12763,7 +11926,7 @@
                     "optional": false
                 },
                 "Precision": {
-                    "type": "IfcReal",
+                    "type": "REAL",
                     "optional": true
                 },
                 "WorldCoordinateSystem": {
@@ -12786,15 +11949,6 @@
                         "maxSize": null
                     },
                     "for": "ParentContext"
-                },
-                "HasCoordinateOperation": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcCoordinateOperation",
-                        "minSize": "0",
-                        "maxSize": "1"
-                    },
-                    "for": "SourceCRS"
                 }
             },
             "where": null
@@ -12805,9 +11959,6 @@
             "abstract": true,
             "supertype": "IfcRepresentationItem",
             "subtypes": [
-                "IfcAlignment2DHorizontal",
-                "IfcAlignment2DSegment",
-                "IfcAlignment2DVertical",
                 "IfcAnnotationFillArea",
                 "IfcBooleanResult",
                 "IfcBoundingBox",
@@ -12817,14 +11968,12 @@
                 "IfcCsgPrimitive3D",
                 "IfcCurve",
                 "IfcDirection",
-                "IfcDistanceExpression",
                 "IfcFaceBasedSurfaceModel",
                 "IfcFillAreaStyleHatching",
                 "IfcFillAreaStyleTiles",
                 "IfcGeometricSet",
                 "IfcHalfSpaceSolid",
                 "IfcLightSource",
-                "IfcOrientationExpression",
                 "IfcPlacement",
                 "IfcPlanarExtent",
                 "IfcPoint",
@@ -12899,7 +12048,7 @@
             "ifcType": "entity",
             "name": "IfcGrid",
             "abstract": false,
-            "supertype": "IfcPositioningElement",
+            "supertype": "IfcProduct",
             "subtypes": null,
             "properties": {
                 "UAxes": {
@@ -12936,7 +12085,17 @@
             },
             "unique": null,
             "derive": null,
-            "inverse": null,
+            "inverse": {
+                "ContainedInStructure": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcRelContainedInSpatialStructure",
+                        "minSize": "0",
+                        "maxSize": "1"
+                    },
+                    "for": "RelatedElements"
+                }
+            },
             "where": null
         },
         "IfcGridAxis": {
@@ -13065,7 +12224,7 @@
                     "optional": false
                 },
                 "AgreementFlag": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -13211,8 +12370,8 @@
                     "type": "IfcTessellatedFaceSet",
                     "optional": false
                 },
-                "Opacity": {
-                    "type": "IfcNormalisedRatioMeasure",
+                "Overrides": {
+                    "type": "IfcSurfaceStyleShading",
                     "optional": true
                 },
                 "Colours": {
@@ -13222,98 +12381,7 @@
                 "ColourIndex": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcPositiveInteger",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcIndexedPolyCurve": {
-            "ifcType": "entity",
-            "name": "IfcIndexedPolyCurve",
-            "abstract": false,
-            "supertype": "IfcBoundedCurve",
-            "subtypes": null,
-            "properties": {
-                "Points": {
-                    "type": "IfcCartesianPointList",
-                    "optional": false
-                },
-                "Segments": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcSegmentIndexSelect",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": true
-                },
-                "SelfIntersect": {
-                    "type": "IfcBoolean",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcIndexedPolygonalFace": {
-            "ifcType": "entity",
-            "name": "IfcIndexedPolygonalFace",
-            "abstract": false,
-            "supertype": "IfcTessellatedItem",
-            "subtypes": [
-                "IfcIndexedPolygonalFaceWithVoids"
-            ],
-            "properties": {
-                "CoordIndex": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcPositiveInteger",
-                        "minSize": "3",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ToFaceSet": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcPolygonalFaceSet",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "for": "Faces"
-                }
-            },
-            "where": null
-        },
-        "IfcIndexedPolygonalFaceWithVoids": {
-            "ifcType": "entity",
-            "name": "IfcIndexedPolygonalFaceWithVoids",
-            "abstract": false,
-            "supertype": "IfcIndexedPolygonalFace",
-            "subtypes": null,
-            "properties": {
-                "InnerCoordIndices": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": {
-                            "type": "LIST",
-                            "contains": "IfcPositiveInteger",
-                            "minSize": "3",
-                            "maxSize": null
-                        },
+                        "contains": "INTEGER",
                         "minSize": "1",
                         "maxSize": null
                     },
@@ -13360,7 +12428,7 @@
                         "type": "LIST",
                         "contains": {
                             "type": "LIST",
-                            "contains": "IfcPositiveInteger",
+                            "contains": "INTEGER",
                             "minSize": "3",
                             "maxSize": "3"
                         },
@@ -13404,18 +12472,6 @@
                     "optional": false
                 }
             },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcIntersectionCurve": {
-            "ifcType": "entity",
-            "name": "IfcIntersectionCurve",
-            "abstract": false,
-            "supertype": "IfcSurfaceCurve",
-            "subtypes": null,
-            "properties": {},
             "unique": null,
             "derive": null,
             "inverse": null,
@@ -14042,66 +13098,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcLineSegment2D": {
-            "ifcType": "entity",
-            "name": "IfcLineSegment2D",
-            "abstract": false,
-            "supertype": "IfcCurveSegment2D",
-            "subtypes": null,
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcLinearPlacement": {
-            "ifcType": "entity",
-            "name": "IfcLinearPlacement",
-            "abstract": false,
-            "supertype": "IfcObjectPlacement",
-            "subtypes": null,
-            "properties": {
-                "PlacementMeasuredAlong": {
-                    "type": "IfcCurve",
-                    "optional": false
-                },
-                "Distance": {
-                    "type": "IfcDistanceExpression",
-                    "optional": false
-                },
-                "Orientation": {
-                    "type": "IfcOrientationExpression",
-                    "optional": true
-                },
-                "CartesianPosition": {
-                    "type": "IfcAxis2Placement3D",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcLinearPositioningElement": {
-            "ifcType": "entity",
-            "name": "IfcLinearPositioningElement",
-            "abstract": false,
-            "supertype": "IfcPositioningElement",
-            "subtypes": [
-                "IfcAlignment"
-            ],
-            "properties": {
-                "Axis": {
-                    "type": "IfcCurve",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcLocalPlacement": {
             "ifcType": "entity",
             "name": "IfcLocalPlacement",
@@ -14109,6 +13105,10 @@
             "supertype": "IfcObjectPlacement",
             "subtypes": null,
             "properties": {
+                "PlacementRelTo": {
+                    "type": "IfcObjectPlacement",
+                    "optional": true
+                },
                 "RelativePlacement": {
                     "type": "IfcAxis2Placement",
                     "optional": false
@@ -14459,7 +13459,7 @@
                     "optional": true
                 },
                 "Priority": {
-                    "type": "IfcInteger",
+                    "type": "IfcNormalisedRatioMeasure",
                     "optional": true
                 }
             },
@@ -14610,7 +13610,7 @@
                     "optional": false
                 },
                 "Priority": {
-                    "type": "IfcInteger",
+                    "type": "IfcNormalisedRatioMeasure",
                     "optional": true
                 },
                 "Category": {
@@ -14974,7 +13974,7 @@
                 },
                 "DataValue": {
                     "type": "IfcMetricValueSelect",
-                    "optional": true
+                    "optional": false
                 },
                 "ReferencePath": {
                     "type": "IfcReference",
@@ -15222,15 +14222,9 @@
             "supertype": null,
             "subtypes": [
                 "IfcGridPlacement",
-                "IfcLinearPlacement",
                 "IfcLocalPlacement"
             ],
-            "properties": {
-                "PlacementRelTo": {
-                    "type": "IfcObjectPlacement",
-                    "optional": true
-                }
-            },
+            "properties": {},
             "unique": null,
             "derive": null,
             "inverse": {
@@ -15242,6 +14236,15 @@
                         "maxSize": null
                     },
                     "for": "ObjectPlacement"
+                },
+                "ReferencedByPlacements": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcLocalPlacement",
+                        "minSize": "0",
+                        "maxSize": null
+                    },
+                    "for": "PlacementRelTo"
                 }
             },
             "where": null
@@ -15297,40 +14300,23 @@
             "inverse": null,
             "where": null
         },
-        "IfcOffsetCurve": {
-            "ifcType": "entity",
-            "name": "IfcOffsetCurve",
-            "abstract": true,
-            "supertype": "IfcCurve",
-            "subtypes": [
-                "IfcOffsetCurve2D",
-                "IfcOffsetCurve3D",
-                "IfcOffsetCurveByDistances"
-            ],
-            "properties": {
-                "BasisCurve": {
-                    "type": "IfcCurve",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcOffsetCurve2D": {
             "ifcType": "entity",
             "name": "IfcOffsetCurve2D",
             "abstract": false,
-            "supertype": "IfcOffsetCurve",
+            "supertype": "IfcCurve",
             "subtypes": null,
             "properties": {
+                "BasisCurve": {
+                    "type": "IfcCurve",
+                    "optional": false
+                },
                 "Distance": {
                     "type": "IfcLengthMeasure",
                     "optional": false
                 },
                 "SelfIntersect": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 }
             },
@@ -15343,46 +14329,24 @@
             "ifcType": "entity",
             "name": "IfcOffsetCurve3D",
             "abstract": false,
-            "supertype": "IfcOffsetCurve",
+            "supertype": "IfcCurve",
             "subtypes": null,
             "properties": {
+                "BasisCurve": {
+                    "type": "IfcCurve",
+                    "optional": false
+                },
                 "Distance": {
                     "type": "IfcLengthMeasure",
                     "optional": false
                 },
                 "SelfIntersect": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "RefDirection": {
                     "type": "IfcDirection",
                     "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcOffsetCurveByDistances": {
-            "ifcType": "entity",
-            "name": "IfcOffsetCurveByDistances",
-            "abstract": false,
-            "supertype": "IfcOffsetCurve",
-            "subtypes": null,
-            "properties": {
-                "OffsetValues": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcDistanceExpression",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                },
-                "Tag": {
-                    "type": "IfcLabel",
-                    "optional": true
                 }
             },
             "unique": null,
@@ -15540,27 +14504,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcOrientationExpression": {
-            "ifcType": "entity",
-            "name": "IfcOrientationExpression",
-            "abstract": false,
-            "supertype": "IfcGeometricRepresentationItem",
-            "subtypes": null,
-            "properties": {
-                "LateralAxisDirection": {
-                    "type": "IfcDirection",
-                    "optional": false
-                },
-                "VerticalAxisDirection": {
-                    "type": "IfcDirection",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcOrientedEdge": {
             "ifcType": "entity",
             "name": "IfcOrientedEdge",
@@ -15573,7 +14516,7 @@
                     "optional": false
                 },
                 "Orientation": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -16039,7 +14982,7 @@
             "ifcType": "entity",
             "name": "IfcPile",
             "abstract": false,
-            "supertype": "IfcDeepFoundation",
+            "supertype": "IfcBuildingElement",
             "subtypes": null,
             "properties": {
                 "PredefinedType": {
@@ -16060,7 +15003,7 @@
             "ifcType": "entity",
             "name": "IfcPileType",
             "abstract": false,
-            "supertype": "IfcDeepFoundationType",
+            "supertype": "IfcBuildingElementType",
             "subtypes": null,
             "properties": {
                 "PredefinedType": {
@@ -16163,7 +15106,18 @@
                 "Pixel": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcBinary",
+                        "contains": {
+                            "type": "BINARY()",
+                            "maxSize": {
+                                "type": "punctuation",
+                                "value": "(",
+                                "text": "(",
+                                "offset": 28,
+                                "lineBreaks": 0,
+                                "line": 1,
+                                "col": 151
+                            }
+                        },
                         "minSize": "1",
                         "maxSize": null
                     },
@@ -16401,41 +15355,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcPolygonalFaceSet": {
-            "ifcType": "entity",
-            "name": "IfcPolygonalFaceSet",
-            "abstract": false,
-            "supertype": "IfcTessellatedFaceSet",
-            "subtypes": null,
-            "properties": {
-                "Closed": {
-                    "type": "IfcBoolean",
-                    "optional": true
-                },
-                "Faces": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcIndexedPolygonalFace",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                },
-                "PnIndex": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcPositiveInteger",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcPolyline": {
             "ifcType": "entity",
             "name": "IfcPolyline",
@@ -16496,41 +15415,6 @@
                         "maxSize": "1"
                     },
                     "for": "RelatingPort"
-                }
-            },
-            "where": null
-        },
-        "IfcPositioningElement": {
-            "ifcType": "entity",
-            "name": "IfcPositioningElement",
-            "abstract": true,
-            "supertype": "IfcProduct",
-            "subtypes": [
-                "IfcGrid",
-                "IfcLinearPositioningElement",
-                "IfcReferent"
-            ],
-            "properties": null,
-            "unique": null,
-            "derive": null,
-            "inverse": {
-                "ContainedInStructure": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelContainedInSpatialStructure",
-                        "minSize": "0",
-                        "maxSize": "1"
-                    },
-                    "for": "RelatedElements"
-                },
-                "Positions": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelPositions",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatingPositioningElement"
                 }
             },
             "where": null
@@ -16753,15 +15637,15 @@
             "subtypes": null,
             "properties": {
                 "LayerOn": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "LayerFrozen": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "LayerBlocked": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "LayerStyles": {
@@ -16918,8 +15802,8 @@
             "subtypes": [
                 "IfcAnnotation",
                 "IfcElement",
+                "IfcGrid",
                 "IfcPort",
-                "IfcPositioningElement",
                 "IfcProxy",
                 "IfcSpatialElement",
                 "IfcStructuralActivity",
@@ -16946,15 +15830,6 @@
                         "maxSize": null
                     },
                     "for": "RelatingProduct"
-                },
-                "PositionedRelativeTo": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelPositions",
-                        "minSize": "0",
-                        "maxSize": "1"
-                    },
-                    "for": "RelatedProducts"
                 }
             },
             "where": null
@@ -17234,24 +16109,6 @@
                         "maxSize": null
                     },
                     "for": "HasProperties"
-                },
-                "HasConstraints": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcResourceConstraintRelationship",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatedResourceObjects"
-                },
-                "HasApprovals": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcResourceApprovalRelationship",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatedResourceObjects"
                 }
             },
             "where": null
@@ -17537,7 +16394,7 @@
                         "type": "SET",
                         "contains": "IfcRelDefinesByProperties",
                         "minSize": "0",
-                        "maxSize": null
+                        "maxSize": "1"
                     },
                     "for": "RelatingPropertyDefinition"
                 }
@@ -18076,7 +16933,7 @@
                 "WeightsData": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcReal",
+                        "contains": "REAL",
                         "minSize": "2",
                         "maxSize": null
                     },
@@ -18100,7 +16957,7 @@
                         "type": "LIST",
                         "contains": {
                             "type": "LIST",
-                            "contains": "IfcReal",
+                            "contains": "REAL",
                             "minSize": "2",
                             "maxSize": null
                         },
@@ -18217,11 +17074,11 @@
                     "optional": false
                 },
                 "Usense": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "Vsense": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -18317,7 +17174,7 @@
                 "ListPositions": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "INTEGER",
                         "minSize": "1",
                         "maxSize": null
                     },
@@ -18325,27 +17182,6 @@
                 },
                 "InnerReference": {
                     "type": "IfcReference",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcReferent": {
-            "ifcType": "entity",
-            "name": "IfcReferent",
-            "abstract": false,
-            "supertype": "IfcPositioningElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcReferentTypeEnum",
-                    "optional": true
-                },
-                "RestartDistance": {
-                    "type": "IfcLengthMeasure",
                     "optional": true
                 }
             },
@@ -18531,8 +17367,7 @@
                 "IfcReinforcingBar",
                 "IfcReinforcingMesh",
                 "IfcTendon",
-                "IfcTendonAnchor",
-                "IfcTendonConduit"
+                "IfcTendonAnchor"
             ],
             "properties": {
                 "SteelGrade": {
@@ -18554,7 +17389,6 @@
                 "IfcReinforcingBarType",
                 "IfcReinforcingMeshType",
                 "IfcTendonAnchorType",
-                "IfcTendonConduitType",
                 "IfcTendonType"
             ],
             "properties": null,
@@ -19014,7 +17848,6 @@
                 "IfcRelFillsElement",
                 "IfcRelFlowControlElements",
                 "IfcRelInterferesElements",
-                "IfcRelPositions",
                 "IfcRelReferencedInSpatialStructure",
                 "IfcRelSequence",
                 "IfcRelServicesBuildings",
@@ -19064,7 +17897,7 @@
                 "RelatingPriorities": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "NUMBER",
                         "minSize": "0",
                         "maxSize": null
                     },
@@ -19073,7 +17906,7 @@
                 "RelatedPriorities": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcInteger",
+                        "contains": "NUMBER",
                         "minSize": "0",
                         "maxSize": null
                     },
@@ -19418,7 +18251,7 @@
                         "type": "SET",
                         "contains": "IfcObjectDefinition",
                         "minSize": "1",
-                        "maxSize": null
+                        "maxSize": "1"
                     },
                     "optional": false
                 },
@@ -19579,32 +18412,6 @@
                     "type": {
                         "type": "LIST",
                         "contains": "IfcObjectDefinition",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcRelPositions": {
-            "ifcType": "entity",
-            "name": "IfcRelPositions",
-            "abstract": false,
-            "supertype": "IfcRelConnects",
-            "subtypes": null,
-            "properties": {
-                "RelatingPositioningElement": {
-                    "type": "IfcPositioningElement",
-                    "optional": false
-                },
-                "RelatedProducts": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcProduct",
                         "minSize": "1",
                         "maxSize": null
                     },
@@ -20192,7 +18999,7 @@
                     "optional": true
                 },
                 "IsOverAllocated": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 },
                 "StatusTime": {
@@ -20489,18 +19296,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcSeamCurve": {
-            "ifcType": "entity",
-            "name": "IfcSeamCurve",
-            "abstract": false,
-            "supertype": "IfcSurfaceCurve",
-            "subtypes": null,
-            "properties": {},
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcSectionProperties": {
             "ifcType": "entity",
             "name": "IfcSectionProperties",
@@ -20560,60 +19355,6 @@
                         "minSize": "1",
                         "maxSize": null
                     },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcSectionedSolid": {
-            "ifcType": "entity",
-            "name": "IfcSectionedSolid",
-            "abstract": true,
-            "supertype": "IfcSolidModel",
-            "subtypes": [
-                "IfcSectionedSolidHorizontal"
-            ],
-            "properties": {
-                "Directrix": {
-                    "type": "IfcCurve",
-                    "optional": false
-                },
-                "CrossSections": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcProfileDef",
-                        "minSize": "2",
-                        "maxSize": null
-                    },
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcSectionedSolidHorizontal": {
-            "ifcType": "entity",
-            "name": "IfcSectionedSolidHorizontal",
-            "abstract": false,
-            "supertype": "IfcSectionedSolid",
-            "subtypes": null,
-            "properties": {
-                "CrossSectionPositions": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcDistanceExpression",
-                        "minSize": "2",
-                        "maxSize": null
-                    },
-                    "optional": false
-                },
-                "FixedAxisVertical": {
-                    "type": "IfcBoolean",
                     "optional": false
                 }
             },
@@ -20750,7 +19491,7 @@
                     "optional": true
                 },
                 "ProductDefinitional": {
-                    "type": "IfcLogical",
+                    "type": "LOGICAL",
                     "optional": false
                 },
                 "PartOfProductDefinitionShape": {
@@ -20760,17 +19501,7 @@
             },
             "unique": null,
             "derive": null,
-            "inverse": {
-                "HasExternalReferences": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcExternalReferenceRelationship",
-                        "minSize": "0",
-                        "maxSize": null
-                    },
-                    "for": "RelatedResourceObjects"
-                }
-            },
+            "inverse": null,
             "where": null
         },
         "IfcShapeModel": {
@@ -21057,7 +19788,6 @@
             "subtypes": [
                 "IfcCsgSolid",
                 "IfcManifoldSolidBrep",
-                "IfcSectionedSolid",
                 "IfcSweptAreaSolid",
                 "IfcSweptDiskSolid"
             ],
@@ -21237,8 +19967,8 @@
             "abstract": true,
             "supertype": "IfcSpatialElement",
             "subtypes": [
-                "IfcFacility",
-                "IfcFacilityPart",
+                "IfcBuilding",
+                "IfcBuildingStorey",
                 "IfcSite",
                 "IfcSpace"
             ],
@@ -21322,23 +20052,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcSphericalSurface": {
-            "ifcType": "entity",
-            "name": "IfcSphericalSurface",
-            "abstract": false,
-            "supertype": "IfcElementarySurface",
-            "subtypes": null,
-            "properties": {
-                "Radius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcStackTerminal": {
             "ifcType": "entity",
             "name": "IfcStackTerminal",
@@ -21397,12 +20110,12 @@
             "supertype": "IfcBuildingElement",
             "subtypes": null,
             "properties": {
-                "NumberOfRisers": {
-                    "type": "IfcInteger",
+                "NumberOfRiser": {
+                    "type": "INTEGER",
                     "optional": true
                 },
                 "NumberOfTreads": {
-                    "type": "IfcInteger",
+                    "type": "INTEGER",
                     "optional": true
                 },
                 "RiserHeight": {
@@ -21469,7 +20182,7 @@
             ],
             "properties": {
                 "DestabilizingLoad": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 }
             },
@@ -22209,7 +20922,7 @@
                     "optional": true
                 },
                 "IsLinear": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -22438,39 +21151,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcSurfaceCurve": {
-            "ifcType": "entity",
-            "name": "IfcSurfaceCurve",
-            "abstract": false,
-            "supertype": "IfcCurve",
-            "subtypes": [
-                "IfcIntersectionCurve",
-                "IfcSeamCurve"
-            ],
-            "properties": {
-                "Curve3D": {
-                    "type": "IfcCurve",
-                    "optional": false
-                },
-                "AssociatedGeometry": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcPcurve",
-                        "minSize": "1",
-                        "maxSize": "2"
-                    },
-                    "optional": false
-                },
-                "MasterRepresentation": {
-                    "type": "IfcPreferredSurfaceCurveRepresentation",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcSurfaceCurveSweptAreaSolid": {
             "ifcType": "entity",
             "name": "IfcSurfaceCurveSweptAreaSolid",
@@ -22673,6 +21353,10 @@
             "supertype": "IfcSurfaceStyleShading",
             "subtypes": null,
             "properties": {
+                "Transparency": {
+                    "type": "IfcNormalisedRatioMeasure",
+                    "optional": true
+                },
                 "DiffuseColour": {
                     "type": "IfcColourOrFactor",
                     "optional": true
@@ -22719,10 +21403,6 @@
                 "SurfaceColour": {
                     "type": "IfcColourRgb",
                     "optional": false
-                },
-                "Transparency": {
-                    "type": "IfcNormalisedRatioMeasure",
-                    "optional": true
                 }
             },
             "unique": null,
@@ -22764,11 +21444,11 @@
             ],
             "properties": {
                 "RepeatS": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "RepeatT": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "Mode": {
@@ -23144,13 +21824,18 @@
                     "optional": true
                 },
                 "IsHeading": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 }
             },
             "unique": null,
             "derive": null,
-            "inverse": null,
+            "inverse": {
+                "OfTable": {
+                    "type": "IfcTable",
+                    "for": "Rows"
+                }
+            },
             "where": null
         },
         "IfcTank": {
@@ -23203,11 +21888,11 @@
                     "optional": true
                 },
                 "IsMilestone": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "Priority": {
-                    "type": "IfcInteger",
+                    "type": "INTEGER",
                     "optional": true
                 },
                 "TaskTime": {
@@ -23274,7 +21959,7 @@
                     "optional": true
                 },
                 "IsCritical": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 },
                 "StatusTime": {
@@ -23314,7 +21999,7 @@
             "supertype": "IfcTaskTime",
             "subtypes": null,
             "properties": {
-                "Recurrence": {
+                "Recurrance": {
                     "type": "IfcRecurrencePattern",
                     "optional": false
                 }
@@ -23481,40 +22166,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcTendonConduit": {
-            "ifcType": "entity",
-            "name": "IfcTendonConduit",
-            "abstract": false,
-            "supertype": "IfcReinforcingElement",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcTendonConduitTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcTendonConduitType": {
-            "ifcType": "entity",
-            "name": "IfcTendonConduitType",
-            "abstract": false,
-            "supertype": "IfcReinforcingElementType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcTendonConduitTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcTendonType": {
             "ifcType": "entity",
             "name": "IfcTendonType",
@@ -23534,7 +22185,7 @@
                     "type": "IfcAreaMeasure",
                     "optional": true
                 },
-                "SheathDiameter": {
+                "SheethDiameter": {
                     "type": "IfcPositiveLengthMeasure",
                     "optional": true
                 }
@@ -23550,18 +22201,54 @@
             "abstract": true,
             "supertype": "IfcTessellatedItem",
             "subtypes": [
-                "IfcPolygonalFaceSet",
                 "IfcTriangulatedFaceSet"
             ],
             "properties": {
                 "Coordinates": {
                     "type": "IfcCartesianPointList3D",
                     "optional": false
+                },
+                "Normals": {
+                    "type": {
+                        "type": "LIST",
+                        "contains": {
+                            "type": "LIST",
+                            "contains": "IfcParameterValue",
+                            "minSize": "3",
+                            "maxSize": "3"
+                        },
+                        "minSize": "1",
+                        "maxSize": null
+                    },
+                    "optional": true
+                },
+                "Closed": {
+                    "type": "BOOLEAN",
+                    "optional": true
                 }
             },
             "unique": null,
             "derive": null,
-            "inverse": null,
+            "inverse": {
+                "HasColours": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcIndexedColourMap",
+                        "minSize": "0",
+                        "maxSize": "1"
+                    },
+                    "for": "MappedTo"
+                },
+                "HasTextures": {
+                    "type": {
+                        "type": "SET",
+                        "contains": "IfcIndexedTextureMap",
+                        "minSize": "0",
+                        "maxSize": null
+                    },
+                    "for": "MappedTo"
+                }
+            },
             "where": null
         },
         "IfcTessellatedItem": {
@@ -23570,7 +22257,6 @@
             "abstract": true,
             "supertype": "IfcGeometricRepresentationItem",
             "subtypes": [
-                "IfcIndexedPolygonalFace",
                 "IfcTessellatedFaceSet"
             ],
             "properties": null,
@@ -23647,7 +22333,7 @@
                     "optional": false
                 },
                 "ModelOrDraughting": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 }
             },
@@ -24016,27 +22702,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcToroidalSurface": {
-            "ifcType": "entity",
-            "name": "IfcToroidalSurface",
-            "abstract": false,
-            "supertype": "IfcElementarySurface",
-            "subtypes": null,
-            "properties": {
-                "MajorRadius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                },
-                "MinorRadius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcTransformer": {
             "ifcType": "entity",
             "name": "IfcTransformer",
@@ -24063,39 +22728,6 @@
             "properties": {
                 "PredefinedType": {
                     "type": "IfcTransformerTypeEnum",
-                    "optional": false
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcTransitionCurveSegment2D": {
-            "ifcType": "entity",
-            "name": "IfcTransitionCurveSegment2D",
-            "abstract": false,
-            "supertype": "IfcCurveSegment2D",
-            "subtypes": null,
-            "properties": {
-                "StartRadius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": true
-                },
-                "EndRadius": {
-                    "type": "IfcPositiveLengthMeasure",
-                    "optional": true
-                },
-                "IsStartRadiusCCW": {
-                    "type": "IfcBoolean",
-                    "optional": false
-                },
-                "IsEndRadiusCCW": {
-                    "type": "IfcBoolean",
-                    "optional": false
-                },
-                "TransitionCurveType": {
-                    "type": "IfcTransitionCurveType",
                     "optional": false
                 }
             },
@@ -24172,34 +22804,14 @@
             "name": "IfcTriangulatedFaceSet",
             "abstract": false,
             "supertype": "IfcTessellatedFaceSet",
-            "subtypes": [
-                "IfcTriangulatedIrregularNetwork"
-            ],
+            "subtypes": null,
             "properties": {
-                "Normals": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": {
-                            "type": "LIST",
-                            "contains": "IfcParameterValue",
-                            "minSize": "3",
-                            "maxSize": "3"
-                        },
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": true
-                },
-                "Closed": {
-                    "type": "IfcBoolean",
-                    "optional": true
-                },
                 "CoordIndex": {
                     "type": {
                         "type": "LIST",
                         "contains": {
                             "type": "LIST",
-                            "contains": "IfcPositiveInteger",
+                            "contains": "INTEGER",
                             "minSize": "3",
                             "maxSize": "3"
                         },
@@ -24208,36 +22820,19 @@
                     },
                     "optional": false
                 },
-                "PnIndex": {
+                "NormalIndex": {
                     "type": {
                         "type": "LIST",
-                        "contains": "IfcPositiveInteger",
+                        "contains": {
+                            "type": "LIST",
+                            "contains": "INTEGER",
+                            "minSize": "3",
+                            "maxSize": "3"
+                        },
                         "minSize": "1",
                         "maxSize": null
                     },
                     "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcTriangulatedIrregularNetwork": {
-            "ifcType": "entity",
-            "name": "IfcTriangulatedIrregularNetwork",
-            "abstract": false,
-            "supertype": "IfcTriangulatedFaceSet",
-            "subtypes": null,
-            "properties": {
-                "Flags": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcInteger",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "optional": false
                 }
             },
             "unique": null,
@@ -24275,7 +22870,7 @@
                     "optional": false
                 },
                 "SenseAgreement": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "MasterRepresentation": {
@@ -24713,40 +23308,6 @@
             "inverse": null,
             "where": null
         },
-        "IfcVibrationDamper": {
-            "ifcType": "entity",
-            "name": "IfcVibrationDamper",
-            "abstract": false,
-            "supertype": "IfcElementComponent",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcVibrationDamperTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
-        "IfcVibrationDamperType": {
-            "ifcType": "entity",
-            "name": "IfcVibrationDamperType",
-            "abstract": false,
-            "supertype": "IfcElementComponentType",
-            "subtypes": null,
-            "properties": {
-                "PredefinedType": {
-                    "type": "IfcVibrationDamperTypeEnum",
-                    "optional": true
-                }
-            },
-            "unique": null,
-            "derive": null,
-            "inverse": null,
-            "where": null
-        },
         "IfcVibrationIsolator": {
             "ifcType": "entity",
             "name": "IfcVibrationIsolator",
@@ -25093,11 +23654,11 @@
                     "optional": false
                 },
                 "ParameterTakesPrecedence": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 },
                 "Sizeable": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": false
                 }
             },
@@ -25122,7 +23683,7 @@
                     "optional": false
                 },
                 "ParameterTakesPrecedence": {
-                    "type": "IfcBoolean",
+                    "type": "BOOLEAN",
                     "optional": true
                 },
                 "UserDefinedPartitioningType": {
@@ -25334,21 +23895,6 @@
         }
     },
     "functions": {
-        "IfcAssociatedSurface": {
-            "ifcType": "function",
-            "name": "IfcAssociatedSurface",
-            "arguments": {
-                "Arg": {
-                    "type": "IfcPcurve",
-                    "generic": false
-                }
-            },
-            "code": null,
-            "returns": {
-                "type": "IfcSurface",
-                "generic": false
-            }
-        },
         "IfcBaseAxis": {
             "ifcType": "function",
             "name": "IfcBaseAxis",
@@ -25445,26 +23991,6 @@
                     "minSize": "3",
                     "maxSize": "3"
                 },
-                "generic": false
-            }
-        },
-        "IfcConsecutiveSegments": {
-            "ifcType": "function",
-            "name": "IfcConsecutiveSegments",
-            "arguments": {
-                "Segments": {
-                    "type": {
-                        "type": "LIST",
-                        "contains": "IfcSegmentIndexSelect",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "generic": false
-                }
-            },
-            "code": null,
-            "returns": {
-                "type": "BOOLEAN",
                 "generic": false
             }
         },
@@ -25927,21 +24453,6 @@
                 "generic": false
             }
         },
-        "IfcPointListDim": {
-            "ifcType": "function",
-            "name": "IfcPointListDim",
-            "arguments": {
-                "PointList": {
-                    "type": "IfcCartesianPointList",
-                    "generic": false
-                }
-            },
-            "code": null,
-            "returns": {
-                "type": "IfcDimensionCount",
-                "generic": false
-            }
-        },
         "IfcSameAxis2Placement": {
             "ifcType": "function",
             "name": "IfcSameAxis2Placement",
@@ -26177,26 +24688,6 @@
                 "generic": false
             }
         },
-        "IfcUniqueDefinitionNames": {
-            "ifcType": "function",
-            "name": "IfcUniqueDefinitionNames",
-            "arguments": {
-                "Relations": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcRelDefinesByProperties",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "generic": false
-                }
-            },
-            "code": null,
-            "returns": {
-                "type": "LOGICAL",
-                "generic": false
-            }
-        },
         "IfcUniquePropertyName": {
             "ifcType": "function",
             "name": "IfcUniquePropertyName",
@@ -26205,26 +24696,6 @@
                     "type": {
                         "type": "SET",
                         "contains": "IfcProperty",
-                        "minSize": "1",
-                        "maxSize": null
-                    },
-                    "generic": false
-                }
-            },
-            "code": null,
-            "returns": {
-                "type": "LOGICAL",
-                "generic": false
-            }
-        },
-        "IfcUniquePropertySetNames": {
-            "ifcType": "function",
-            "name": "IfcUniquePropertySetNames",
-            "arguments": {
-                "Properties": {
-                    "type": {
-                        "type": "SET",
-                        "contains": "IfcPropertySetDefinition",
                         "minSize": "1",
                         "maxSize": null
                     },

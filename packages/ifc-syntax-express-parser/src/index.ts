@@ -106,7 +106,5 @@ export enum IFCVersion {
 }
 
 export function getSchemaForRelease(version: IFCVersion) {
-  return new ExpressParser().parse(
-    releaseFolder + IfcReleases[IFCVersion.IFC4X2]
-  )
+  return new ExpressParser().parse(releaseFolder + IfcReleases[version])
 }
