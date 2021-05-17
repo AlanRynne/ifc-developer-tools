@@ -36,7 +36,7 @@ jobs:
       - name: 🛠 Build All packages
         run: npm run lerna -- run build
       - name: 🧪 Test all packages with coverage
-        run: lerna run coverage
+        run: npm run lerna -- run coverage
       - name: 📊 Upload test results to Codecov
         uses: codecov/codecov-action@v1
         with:
