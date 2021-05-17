@@ -5,7 +5,7 @@ node_modules/
 out/*
 **/Icon
 **/DS_Store
-
+**/results/*
 src/grammar/index.ts
 
 dist/
