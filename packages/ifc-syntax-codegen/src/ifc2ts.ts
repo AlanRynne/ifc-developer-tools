@@ -94,7 +94,7 @@ export class ifc2ts implements SchemaToCode {
 
   convert(rootFolder: string, opts?: SchemaToCodeOptions): Promise<void> {
     console.log(`Started typescript translation for ${this.release.schema}`)
-    const baseUrl = `${rootFolder}${this.release.schema}/`
+    const baseUrl = `${rootFolder}${this.release.schema.toLowerCase()}-ts/`
     const srcUrl = baseUrl + "src/"
     return fs.promises
       .mkdir(srcUrl, { recursive: true })
@@ -227,7 +227,7 @@ export class ifc2ts implements SchemaToCode {
 
     let props = this.convertProps(entity.properties, doc?.attributes, name => {
       if (entity.name != name)
-        imports[findKeyCaseInsensitive(name, this.release)] = true
+        imports[findKeyInSchemaCaseInsensitive(name, this.release)] = true
     })
 
     let propStatement = props.length == 0 ? "" : props.join("\n")
@@ -235,12 +235,13 @@ export class ifc2ts implements SchemaToCode {
     let inheritance = ""
     let constructor = this.createConstructor(entity, name => {
       if (entity.name != name)
-        imports[findKeyCaseInsensitive(name, this.release)] = true
+        imports[findKeyInSchemaCaseInsensitive(name, this.release)] = true
     })
 
     if (entity.supertype) {
       inheritance = `extends ${entity.supertype}`
-      imports[findKeyCaseInsensitive(entity.supertype, this.release)] = true
+      imports[findKeyInSchemaCaseInsensitive(entity.supertype, this.release)] =
+        true
     }
     const abs = entity.abstract ? "abstract" : ""
     const body = [
@@ -341,13 +342,14 @@ export class ifc2ts implements SchemaToCode {
     const name = func.name
     const args = this.convertProps(func.arguments, undefined, importName => {
       if (importName && name !== importName) {
-        importList[findKeyCaseInsensitive(importName, this.release)] = true
+        importList[findKeyInSchemaCaseInsensitive(importName, this.release)] =
+          true
       }
     }).join(", ")
 
     const header = this.getFileHeader([func.name])
     const importStatements = this.convertImports(importList, "functions")
-    const funcBody = this.ind() + "\n" + this.NOT_IMP
+    const funcBody = this.ind() + this.NOT_IMP
     const funcStatement = [
       `function ${name}(${args})`,
       `{`,
@@ -365,11 +367,16 @@ export class ifc2ts implements SchemaToCode {
   }
 
   convertImports(importList: any, currentFolder: string) {
-    return Object.keys(importList)
-      .map(val => {
-        let type = this.typeFromName(val)
-        return this.tsImport(val, type === currentFolder ? "./" : `../${type}`)
-      })
+    var typesByPath = {}
+    Object.keys(importList).forEach(val => {
+      var type = this.typeFromName(val)
+      var path = type === currentFolder ? "./" : `../${type}`
+      if (!typesByPath[path]) typesByPath[path] = []
+      typesByPath[path].push(val)
+    })
+
+    return Object.keys(typesByPath)
+      .map(path => this.tsImport(typesByPath[path].join(", "), path))
       .join("\n")
   }
 
@@ -398,7 +405,7 @@ export class ifc2ts implements SchemaToCode {
 
   generatePackageFiles(path: string) {
     const pkg: any = {
-      name: "ifc-typescript-" + this.release.schema.toLowerCase(),
+      name: `@alanrynne/${this.release.schema.toLowerCase()}-ts`,
       version: "1.0.0",
       description: "Ifc",
       main: "src/index.ts",
@@ -432,7 +439,7 @@ export class ifc2ts implements SchemaToCode {
         forceConsistentCasingInFileNames: true,
         resolveJsonModule: true
       },
-      exclude: ["build/**/*.ts"]
+      exclude: ["dist/**/*.ts"]
     }
     fs.writeFileSync(path + "tsconfig.json", JSON.stringify(tsConfig, null, 4))
   }

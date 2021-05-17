@@ -9,6 +9,7 @@ const sentOptions = {
   sanitize: true,
   preserve_whitespace: false
 }
+
 export default function ExtractEntityFromFile(
   path: string,
   fileName: string
@@ -21,7 +22,7 @@ export default function ExtractEntityFromFile(
   // GET document body
   const body = $("html body")
   body.children("script").remove()
-  
+
   // Extract entity name
   const name = body.children("h4").text()
   if (!name) throw Error(`No name found on file: ${path}`)

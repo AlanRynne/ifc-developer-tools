@@ -1,4 +1,3 @@
-import * as ifc4 from "@alanrynne/ifc-syntax-express-parser/results/IFC4.json"
 import * as ifc4x2 from "@alanrynne/ifc-syntax-express-parser/results/IFC4X2.json"
 import * as ifc4x3 from "@alanrynne/ifc-syntax-express-parser/results/IFC4X3.json"
 import * as ifc2x3tc1 from "@alanrynne/ifc-syntax-express-parser/results/IFC2X3_TC1.json"
@@ -42,10 +41,9 @@ export interface SchemaToCode {
   saveToFile(filePath: string, content: string): void
 }
 
-const path = "./build/ts/"
-new ifc2ts(ifc4 as any, ifc4x2docs)
+const path = "../"
+new ifc2ts(ifc4x2 as any, ifc4x2docs)
   .convert(path)
-  .then(() => new ifc2ts(ifc4x2 as any, ifc4x2docs).convert(path))
   .then(() => new ifc2ts(ifc4x3 as any, ifc4x2docs).convert(path))
   .then(() => new ifc2ts(ifc2x3tc1 as any, ifc4x2docs).convert(path))
   .finally(() => console.log("DONE"))

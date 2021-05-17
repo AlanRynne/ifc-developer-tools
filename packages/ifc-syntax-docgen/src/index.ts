@@ -2,18 +2,31 @@ import fs from "fs"
 import { downloadAndExtract } from "./download"
 import GenerateIndex from "./GenerateIndex"
 
+export async function extractDocInfo(
+  version: string,
+  downloadUrl: string,
+  downloadPath: string,
+  zipPath: string
+) {
+  // Set download folder and zipPath to read schema from
+  var folder = `${downloadPath}/${version}/`
+  var path = `${folder}${zipPath}`
+
+  // Only download if the folder doesn't already exist
+  if (!fs.existsSync(folder)) {
+    console.log("Downloading " + version)
+    await downloadAndExtract(downloadUrl, folder)
+  }
+
+  // Generate documentation JSON
+  return await GenerateIndex(version, path)
+}
+
 const schemas = [
   {
     version: "ifc4x2",
-    url:
-      "http://standards.buildingsmart.org/IFC/DEV/IFC4_2/FINAL/IFC4_2-HTML.zip",
-    zipPath: "HTML/schema/"
-  },
-  {
-    version: "ifc4x1",
-    url:
-      "http://standards.buildingsmart.org/IFC/RELEASE/IFC4_1/FINAL/IFC4_1-Final-HTML.zip",
-    zipPath: "IFC4_1/Final/HTML/schema/"
+    url: "http://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2_TC1/ifc4-add2-tc1.zip",
+    zipPath: "ifc4-add2-tc1/html/schema/"
   },
   {
     version: "ifc4x3-rc1",
@@ -22,27 +35,17 @@ const schemas = [
   }
 ]
 
-schemas.forEach(
-  async schema =>
-    await extractDocInfo(schema.version, schema.url, schema.zipPath)
-)
-
-async function extractDocInfo(version: string, url: string, zipPath: string) {
-  var folder = `data/${version}/`
-  var path = `${folder}${zipPath}`
-  if (!fs.existsSync(folder)) {
-    console.log("Downloading " + version)
-    await downloadAndExtract(url, folder)
-  }
-
-  await GenerateIndex(version, path)
-    .then((index: any) => {
-      fs.writeFileSync(
-        `out/${version}docs.json`,
-        JSON.stringify(index, null, 4)
-      )
-    })
-    .catch(err => {
-      console.warn(err)
-    })
-}
+schemas.forEach(async schema => {
+  // Extract
+  let docJson = await extractDocInfo(
+    schema.version,
+    schema.url,
+    "data",
+    schema.zipPath
+  )
+  // Write docs to file
+  fs.writeFileSync(
+    `out/${schema.version}docs.json`,
+    JSON.stringify(docJson, null, 4)
+  )
+})

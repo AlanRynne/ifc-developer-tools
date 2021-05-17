@@ -3,23 +3,28 @@ import { DocItem } from "./DocItem"
 import ExtractEntityFromFile from "./ExtractEntityFromFile"
 
 export default function GenerateIndex(version: string, dir: string) {
-  console.log("Started generating Docs")
   return new Promise<any>((resolve, reject) => {
     const result: any = {
       version: version.toUpperCase(),
       entities: {},
       domains: {}
     }
+    printProgress(`Started generating Docs for version ${result.version}}\n`)
     // Get all files in schema docs
-    glob(dir + "ifc*/lexical/*.htm", (err, files) => {
-      console.groupCollapsed("Extraction log")
+    return glob(dir + "ifc*/lexical/*.htm", (err, files) => {
       if (err) reject(err)
-      files.forEach(path => {
+      var count = files.length
+      files.forEach((path, index) => {
         // Extract url data
         const parts = path.split("/")
-        const category = parts[2]
+        const category = parts[parts.length - 3]
         const filename = parts[parts.length - 1].split(".htm")[0]
-        console.log(`Processing ${filename}`)
+        printProgress(
+          `${Math.floor(
+            ((index + 1) * 100) / count
+          )}% — Processing ${filename}`,
+          true
+        )
         result.entities[filename] = {}
         if (!result.domains[category]) result.domains[category] = []
         result.domains[category].push(filename)
@@ -31,9 +36,16 @@ export default function GenerateIndex(version: string, dir: string) {
           result.entities[filename] = null
         }
       })
-      console.groupEnd()
-      console.log("Finished generating Docs")
+      printProgress("\nFinished generating Docs\n")
       resolve(result)
     })
   })
+}
+
+function printProgress(progress, clear = false) {
+  if (clear) {
+    process.stdout.clearLine(0)
+    process.stdout.cursorTo(0)
+  }
+  process.stdout.write(progress)
 }
