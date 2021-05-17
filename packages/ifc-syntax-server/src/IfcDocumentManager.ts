@@ -1,4 +1,5 @@
 import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
+import IfcParser from "@alanrynne/ifc-syntax-parser"
 import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
 import { connection, documents, globalSettings } from "./server"
@@ -50,6 +51,7 @@ class IfcDocumentManager {
     if (text) {
       var config = new Ifc2AstConfig()
       config.maxLineLength = globalSettings.parser.maxLineLength
+      var v2parse = IfcParser.parse(text)
       return await new Ifc2Ast(config)
         .parseIfcFile(text.split(/[\n\r]/), true, err => {
           // Handle parse errors

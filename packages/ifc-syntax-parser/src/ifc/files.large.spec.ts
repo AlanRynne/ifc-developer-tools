@@ -2,7 +2,6 @@ import fs from "fs"
 import dir from "node-dir"
 import path from "path"
 import { parse } from "."
-import { checkParseResult } from "../checkParseResult"
 
 const INDIR = "../../examples/ifc/bigFiles"
 
@@ -23,3 +22,10 @@ if (ifcFiles != undefined)
       )
     })
   })
+
+
+export function checkParseResult(parseResult: any, expectedName: string) {
+  expect(parseResult.cst.name).toBe(expectedName);
+  expect(parseResult.lexErrors.length).toBe(0);
+  expect(parseResult.parseErrors.length).toBe(0);
+}

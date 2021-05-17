@@ -1,7 +1,7 @@
 import { parse } from "../ifc"
 import { BaseIFCVisitor } from "./BaseIFCVisitor"
 
-class IfcDefinitionVisitor extends BaseIFCVisitor {
+export class IfcDefinitionVisitor extends BaseIFCVisitor {
   constructor() {
     super()
     this.validateVisitor()
@@ -81,7 +81,7 @@ class IfcDefinitionVisitor extends BaseIFCVisitor {
   }
 }
 
-const definitionVisitor = new IfcDefinitionVisitor()
+export const definitionVisitor = new IfcDefinitionVisitor()
 
 export function toAst(inputText: string) {
   const result = parse(inputText)
