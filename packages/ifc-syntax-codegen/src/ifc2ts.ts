@@ -177,6 +177,9 @@ export class ifc2ts implements SchemaToCode {
       type.type.type === "SET"
     ) {
       if (!ExpressTypes[type.type.contains]) imports[type.type.contains] = true
+      tsType = `type ${type.name} = ${
+        ExpressTypes[type.type.contains] || type.type.contains
+      }[]`
     } else if (typeof type.type.type === "string") {
       tsType = `type ${type.name} = ${
         ExpressTypes[type.type.type] || type.type.type
