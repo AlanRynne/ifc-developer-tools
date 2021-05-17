@@ -3,6 +3,7 @@
 **/*.tsbuildinfo
 **/.DS_Store
 **/.idea
-
+**/build
 **/uncovered/*.ifc
 **/lerna-debug.log
+**/packages/ifc*-ts/
