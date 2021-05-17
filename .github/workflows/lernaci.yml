@@ -33,7 +33,9 @@ jobs:
         run: npm ci
       - name: 🥾 Bootstrap monorepo
         run: lerna bootstrap
-      - name: 🔨 Build all packages
+      - name: 🔨 Build IFC typescript packages
+        run: lerna run build:ts
+      - name: 🛠 Build All packages
         run: lerna run build
       - name: 🧪 Test all packages with coverage
         run: lerna run coverage
