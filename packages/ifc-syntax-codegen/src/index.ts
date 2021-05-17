@@ -1,14 +1,11 @@
-import * as ifc4x2 from "@alanrynne/ifc-syntax-express-parser/results/IFC4X2.json"
-import * as ifc4x3 from "@alanrynne/ifc-syntax-express-parser/results/IFC4X3.json"
-import * as ifc2x3tc1 from "@alanrynne/ifc-syntax-express-parser/results/IFC2X3_TC1.json"
 import * as ifc4x2docs from "./ifc4x2docs.json"
-
 import {
   ISchema,
   IType,
   IEntity,
   IFunction,
-  IRule
+  IRule,
+  ExpressParser
 } from "@alanrynne/ifc-syntax-express-parser"
 import { ifc2ts } from "./ifc2ts"
 
@@ -41,9 +38,29 @@ export interface SchemaToCode {
   saveToFile(filePath: string, content: string): void
 }
 
-const path = "../"
-new ifc2ts(ifc4x2 as any, ifc4x2docs)
-  .convert(path)
-  .then(() => new ifc2ts(ifc4x3 as any, ifc4x2docs).convert(path))
-  .then(() => new ifc2ts(ifc2x3tc1 as any, ifc4x2docs).convert(path))
-  .finally(() => console.log("DONE"))
+async function buildTSFiles() {
+  const expressFiles: any[] = [
+    new ExpressParser()
+      .parse("../../examples/express/IFC2X3 TC1.exp")
+      .catch(err => console.error(err)),
+    new ExpressParser()
+      .parse("../../examples/express/IFC4X3 RC1.exp")
+      .catch(err => console.error(err)),
+    new ExpressParser()
+      .parse("../../examples/express/IFC4x2.exp")
+      .catch(err => console.error(err))
+  ]
+
+  const schemas = await Promise.all(expressFiles)
+
+  var results = schemas.map(schema => {
+    return new ifc2ts(schema as any, ifc4x2docs).convert("../")
+  })
+
+  await Promise.all(results)
+
+  console.log("Done :)")
+}
+
+buildTSFiles()
+
