@@ -1,19 +1,19 @@
 {
   "name": "@alanrynne/ifc-syntax-codegen",
   "version": "0.2.1",
-  "description": "",
-  "main": "src/index.ts",
+  "description": "Typescript generator for IFC files",
+  "main": "dist/index.js",
   "private": true,
   "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
   "scripts": {
-    "build": "tsc -b",
-    "build:ts": "",
-    "build:csharp": "",
-    "build:all": "",
-    "start": "ts-node src/index.ts"
+    "build": "npm run start",
+    "build:ts": "ts-node src/index.ts",
+    "start": "tsc -b",
+    "poststart": "npm run build:ts",
+    "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alan Rynne",
   "license": "ISC",
   "dependencies": {
     "@alanrynne/ifc-syntax-express-parser": "^0.2.1"
