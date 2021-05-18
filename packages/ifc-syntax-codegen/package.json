@@ -4,7 +4,7 @@
   "description": "Typescript generator for IFC files",
   "main": "dist/index.js",
   "private": true,
-  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
+  "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "scripts": {
     "build": "tsc -b",
     "build:ts": "ts-node src/index.ts",

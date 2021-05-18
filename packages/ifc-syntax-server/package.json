@@ -5,7 +5,7 @@
   "description": "Language server for IFC files.",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
-  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
+  "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "license": "MIT",
   "dependencies": {
     "@alanrynne/ifc-syntax-ast-parser": "^0.2.1",
@@ -20,5 +20,6 @@
   },
   "devDependencies": {
     "typescript": "^4.2.4"
-  }
+  },
+  "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

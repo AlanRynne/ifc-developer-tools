@@ -2,7 +2,7 @@
   "name": "@alanrynne/ifc-syntax",
   "displayName": "IFC Syntax",
   "description": "Extension that brings IFC (Industry Foundation Classes) support to VSCode",
-  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
+  "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "icon": "https://github.com/AlanRynne/docs/assets/images/IFC-Syntax-Icon.png",
   "author": {
     "name": "Alan Rynne",

@@ -4,7 +4,7 @@
   "description": "Parser for IFC files based in Chevrotain.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
+  "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -28,5 +28,6 @@
     "node-dir": "^0.1.17",
     "ts-jest": "^26.5.6",
     "typescript": "^4.1.2"
-  }
+  },
+  "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

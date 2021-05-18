@@ -4,7 +4,7 @@
   "description": "IFC Doc2Json Generator",
   "main": "index.js",
   "private": true,
-  "repository": "https://github.com/alanrynne/ifc-tools-monorepo.git",
+  "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
