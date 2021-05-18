@@ -28,6 +28,5 @@
     "node-dir": "^0.1.17",
     "ts-jest": "^26.5.6",
     "typescript": "^4.1.2"
-  },
-  "gitHead": "6fe12e335a7c0d6a7af55c2a3047d4a84db86f94"
+  }
 }
