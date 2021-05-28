@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@alanrynne/ifc4x2.ts": "^0.2.2",
     "chevrotain": "^9.0.1"
   },
   "devDependencies": {
@@ -27,7 +28,8 @@
     "lodash": "^4.17.20",
     "node-dir": "^0.1.17",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "@alanrynne/ifc-syntax-ast-parser": "^0.2.2"
   },
   "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

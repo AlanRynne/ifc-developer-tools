@@ -38,7 +38,7 @@ export class IfcParser extends CstParser {
     super(lexer.allTokens, {
       // by default the error recovery / fault tolerance capabilities are disabled
       recoveryEnabled: true,
-      nodeLocationTracking: "onlyOffset",
+      nodeLocationTracking: "full",
       dynamicTokensEnabled: false
     })
 

@@ -151,5 +151,5 @@ export const allTokens: IMultiModeLexerDefinition = {
 }
 
 export const IfcLexer = new Lexer(allTokens, {
-  positionTracking: "onlyOffset"
+  positionTracking: "full"
 })
