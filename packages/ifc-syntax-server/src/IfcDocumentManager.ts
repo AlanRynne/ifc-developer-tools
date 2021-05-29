@@ -1,28 +1,23 @@
-import {Ifc2Ast, Ifc2AstConfig} from "@alanrynne/ifc-syntax-ast-parser"
+import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
 import IfcParser from "@alanrynne/ifc-syntax-parser"
-import {ASTNode} from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
-import {Diagnostic, DiagnosticSeverity} from "vscode-languageserver"
-import {connection, documents, globalSettings} from "./server"
+import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
+import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
+import { connection, documents, globalSettings } from "./server"
 
 class IfcDocumentManager {
-  private documentResults: Map<string, ASTNode>
-  private documentParseErrors: Map<string, Diagnostic[]>
-  private documentValidationErrors: Map<string, Diagnostic[]>
-
+  private documentResults: Map<string, { cst; parserErrors; lexerErrors }>
   constructor() {
-    this.documentResults = new Map<string, ASTNode>()
-    this.documentParseErrors = new Map<string, Diagnostic[]>()
-    this.documentValidationErrors = new Map<string, Diagnostic[]>()
+    this.documentResults = new Map<string, { cst; parserErrors; lexerErrors }>()
   }
 
   async getDiagnostics(uri: string) {
-    return this.documentParseErrors[uri] ?? []
+    return this.documentResults[uri].parserErrors ?? []
   }
 
   async get(uri: string) {
-    let ast = this.documentResults[uri]
-    if (ast) {
-      return ast
+    let docResult = this.documentResults[uri]
+    if (docResult) {
+      return docResult.cst
     }
     return this.parseDocument(uri).then(value => {
       console.log("document finished", uri)
@@ -39,7 +34,6 @@ class IfcDocumentManager {
 
   delete(uri: string) {
     console.log("deleting ast for doc: ", uri)
-    this.documentParseErrors.delete(uri)
     this.documentResults.delete(uri)
   }
 
@@ -52,49 +46,16 @@ class IfcDocumentManager {
     // Stop if there's no text in the file!
     if (!text) return
 
-    // V1 Parser
-    var config = new Ifc2AstConfig()
-    config.maxLineLength = globalSettings.parser.maxLineLength
-
-    // Parse using V2
-    // TODO: Diagnostics not included
-    var v2parse = IfcParser.parse(text)
-
-    // Parse using V1 + diagnostics
-    var docAst = await new Ifc2Ast(config)
-      .parseIfcFile(text.split(/[\n\r]/), true, err => {
-        // Handle parse errors
-        var token = err.token ?? err
-        let diagnostic: Diagnostic = {
-          severity:
-            token.type === "long"
-              ? DiagnosticSeverity.Warning
-              : DiagnosticSeverity.Error,
-          range: {
-            start: {
-              line: token.line - 1,
-              character: token.offset
-            },
-            end: {
-              line: token.line - 1,
-              character: token.offset + token.text.length
-            }
-          },
-          message: err.message ?? token.toString(),
-          source: "ifc-syntax"
-        }
-        diagnostics.push(diagnostic)
-      })
+    var docResult = IfcParser.parse(text)
 
     //Send V1 diagnostics
     // TODO: Should handle diagnostics outside this method?
-    this.documentParseErrors.set(uri, diagnostics)
-    connection.sendDiagnostics({uri, diagnostics})
+    // this.documentParseErrors.set(uri, diagnostics)
+    // connection.sendDiagnostics({uri, diagnostics})
 
     // Return the ast
-    return docAst
+    return docResult
   }
-
 }
 
 export default IfcDocumentManager

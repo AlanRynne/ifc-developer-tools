@@ -2,7 +2,7 @@ import {parse} from "../ifc"
 import {BaseIFCVisitor} from "./BaseIFCVisitor"
 import {CstNode, CstNodeLocation} from "chevrotain"
 
-interface Position {
+export interface Position {
   line: number
   character: number
 }
@@ -114,16 +114,6 @@ export class PositionVisitor extends BaseIFCVisitor {
 }
 
 export const positionVisitor = new PositionVisitor()
-
-export function searchAtPosition(inputText: string, line: number, char: number) {
-  const result = parse(inputText)
-  var pos: Position = {
-    line: line,
-    character: char
-  }
-  const defs = positionVisitor.visit(result.cst, pos)
-  return defs
-}
 
 function isBetweenNodes(pos: Position, loc1: CstNodeLocation, loc2: CstNodeLocation) {
   return isInsideNode(pos, joinLocations(loc1, loc2))

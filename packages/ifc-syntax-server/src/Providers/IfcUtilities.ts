@@ -143,7 +143,7 @@ function getInheritedProps(schema, entity) {
   }
   let parent = findEntityInSchema(schema, entity.supertype)
   let props = getInheritedProps(schema, parent)
-  return {...props, ...entity.properties}
+  return { ...props, ...entity.properties }
 }
 
 import ifcDocs from "../schemaDocs/ifc4x1docs.json"
@@ -167,9 +167,9 @@ export function entityDataToText(entity: any, version: string, schema: any) {
       entity.subtypes === null
         ? "**Subtypes:** _None_"
         : "**Subtypes:**\n" +
-        entity.subtypes
-          .map(type => "- " + createLink(type, schema.schema))
-          .join("\n")
+          entity.subtypes
+            .map(type => "- " + createLink(type, schema.schema))
+            .join("\n")
   return [header + " — " + type, description, props, subtypes]
 }
 
@@ -204,10 +204,9 @@ function caseInsensitiveKeyValue(object: any, key: string) {
 }
 
 export function getFileSchemaVersion(doc: any) {
-  let schemaObj = ((doc as DocumentNode)
-    .sections[0] as SectionNode).children.find(
-    item => (item as any).name === "FILE_SCHEMA"
-  )
+  let schemaObj = (
+    (doc as DocumentNode).sections[0] as SectionNode
+  ).children.find(item => (item as any).name === "FILE_SCHEMA")
   let schema = (schemaObj as any).args[0].items[0].text
   return schema
 }

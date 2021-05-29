@@ -41,18 +41,16 @@ export let hasDiagnosticRelatedInformationCapability: boolean = false
 // Server settings
 export let globalSettings: IfcSyntaxSettings = DefaultSettings
 // Cache the settings of all open documents
-export let documentSettings: Map<
-  string,
-  Thenable<IfcSyntaxSettings>
-> = new Map()
+export let documentSettings: Map<string, Thenable<IfcSyntaxSettings>> =
+  new Map()
 
 //#region Event handlers
 
 // Go to definition provider
-connection.onDefinition(processGoToDefinition)
+//connection.onDefinition(processGoToDefinition)
 
 // Document symbols handler
-connection.onDocumentSymbol(processDocumentSymbols)
+//connection.onDocumentSymbol(processDocumentSymbols)
 // Hover information handler
 connection.onHover(processHoverData)
 // Code completion handlers
@@ -87,8 +85,8 @@ connection.onInitialize((params: InitializeParams) => {
       // TODO: Ideally sync should be incremental to prevent re-parsing the entire file.
       textDocumentSync: TextDocumentSyncKind.Full,
       hoverProvider: true,
-      definitionProvider: true,
-      documentSymbolProvider: true
+      definitionProvider: false,
+      documentSymbolProvider: false
     }
   }
 })
