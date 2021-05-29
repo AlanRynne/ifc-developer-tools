@@ -32,7 +32,7 @@ describe("Visitor - Single File", () => {
     })
     //const ast = toAst(contents)
 
-    const ast = searchAtPosition(contents, 4, 12)
+    const ast = searchAtPosition(contents, 63,20)
 
     expect(ast).not.toBeNull()
   })

@@ -13,16 +13,32 @@ export class PositionVisitor extends BaseIFCVisitor {
     this.validateVisitor()
   }
 
-  visit(cstNode: CstNode | CstNode[], pos?: any): any {
-    var nodeLoc = cstNode["location"];
-    if (nodeLoc) {
-      if (isInsideNode(pos, nodeLoc)) {
-        var visitResult = super.visit(cstNode, pos)
-        return visitResult ? {...visitResult, location: nodeLoc} : cstNode
+  visit(cstNode: CstNode | CstNode[] | CstNodeLocation, pos?: any): any {
+    if (cstNode["tokenTypeIdx"]){
+      // Node is a token, shares location fields with CSTNodeLocation
+      if(isInsideNode(pos, cstNode as CstNodeLocation)){
+        return cstNode
       }
     }
-    else {
-      return super.visit(cstNode, pos)
+    else if (cstNode["location"]) {
+      // Node is an actual CSTNode
+      var node = cstNode as CstNode
+      if (isInsideNode(pos, node.location)) {
+        var result = super.visit(node, pos)
+        return result
+      }
+    }
+    else if(cstNode["length"]) {
+      // Is array, iterate through objects and visit individually
+      // Return when any match is found
+      var array = cstNode as CstNode[]
+      for (const node of array) {
+        if(isInsideNode(pos, node.location)) {
+          var result = this.visit(node, pos)
+          if (result)
+            return result
+        }
+      }
     }
   }
 
@@ -33,9 +49,9 @@ export class PositionVisitor extends BaseIFCVisitor {
     if(data) return data
   }
 
-  data(ctx: any, pos: any) {
+  data(ctx: any, pos: Position) {
     // Return undefined if no matching token is found
-    return undefined
+    return this.visit(ctx.instance, pos)
   }
 
   header(ctx: any, pos: Position) {
@@ -49,33 +65,45 @@ export class PositionVisitor extends BaseIFCVisitor {
   }
 
   headerInstance(ctx: any, pos: Position) {
-    return undefined
-  }
-
-  headerValue(ctx: any) {
-    return undefined
-  }
-
-  instance(ctx: any) {
-    return {
-      id: ctx.Id[0].image,
-      entity: this.visit(ctx.entity)
+    if(isInsideNode(pos, ctx.TypeRef[0]))
+      return ctx.TypeRef[0]
+    for (let i = 0; i < ctx.headerValue.length; i++) {
+      var val = this.visit(ctx.headerValue[i],pos)
+      if(val)
+        return val
     }
-  }
-
-  entity(ctx: any) {
-    var ent = {
-      name: ctx.TypeRef[0].image,
-      parameter: ctx.parameter.map(p => this.visit(p))
-    }
-    return ent
-  }
-
-  parameter(ctx: any) {
     return undefined
   }
 
-  collectionValue(ctx: any) {
+  headerValue(ctx: any, pos: Position) {
+    if(ctx.collection) {
+      var colResult = this.visit(ctx.collection, pos)
+      if(colResult)
+        return colResult
+    }
+    return undefined
+  }
+
+  instance(ctx: any, pos: Position) {
+    return this.visit(ctx.Id[0], pos) || this.visit(ctx.entity, pos)
+  }
+
+  entity(ctx: any, pos: Position) {
+    return this.visit(ctx.TypeRef[0], pos)
+      || this.visit(ctx.parameter, pos)
+  }
+
+  parameter(ctx: any, pos: Position) {
+    // Each ctx in parameter should only ever have one key/value pair, and we're only interested in it's value
+    return this.visit(Object.values(ctx)[0][0] as any, pos)
+  }
+
+  collection(ctx: any, pos: Position){
+    var res = this.visit(ctx.collectionValue, pos)
+    return res
+  }
+
+  collectionValue(ctx: any, pos: Position) {
     var value = Object.values(ctx).map((val: any) => {
       return val[0]
     })
@@ -102,6 +130,7 @@ function isBetweenNodes(pos: Position, loc1: CstNodeLocation, loc2: CstNodeLocat
 }
 
 function isInsideNode(pos: Position, nodeLoc: CstNodeLocation): boolean {
+  if(!pos || !nodeLoc) return false
   var pastStart = pos.line > nodeLoc.startLine || (pos.line == nodeLoc.startLine && pos.character >= nodeLoc.startColumn)
   var beforeEnd = pos.line < nodeLoc.endLine || (pos.line == nodeLoc.endLine && pos.character <= nodeLoc.endColumn)
   return pastStart && beforeEnd
