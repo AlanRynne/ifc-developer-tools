@@ -41,8 +41,10 @@ export let hasDiagnosticRelatedInformationCapability: boolean = false
 // Server settings
 export let globalSettings: IfcSyntaxSettings = DefaultSettings
 // Cache the settings of all open documents
-export let documentSettings: Map<string, Thenable<IfcSyntaxSettings>> =
-  new Map()
+export let documentSettings: Map<
+  string,
+  Thenable<IfcSyntaxSettings>
+> = new Map()
 
 //#region Event handlers
 
@@ -50,7 +52,7 @@ export let documentSettings: Map<string, Thenable<IfcSyntaxSettings>> =
 //connection.onDefinition(processGoToDefinition)
 
 // Document symbols handler
-//connection.onDocumentSymbol(processDocumentSymbols)
+connection.onDocumentSymbol(processDocumentSymbols)
 // Hover information handler
 connection.onHover(processHoverData)
 // Code completion handlers
@@ -89,7 +91,7 @@ connection.onInitialize((params: InitializeParams) => {
       textDocumentSync: TextDocumentSyncKind.Full,
       hoverProvider: true,
       definitionProvider: false,
-      documentSymbolProvider: false
+      documentSymbolProvider: true
     }
   }
 })

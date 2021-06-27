@@ -11,33 +11,52 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
     var header = this.visit(ctx.header)
     var data = this.visit(ctx.data)
     return {
-      type: "ifc",
-      version: "",
       header,
       data
     }
   }
 
   data(ctx: any) {
-    var entities = {}
+    var children = []
     ctx.instance.forEach((instance: any) => {
       var i = this.visit(instance)
-      entities[i.id] = i.entity
+      children.push(i)
     })
-    return entities
+    return {
+      name: "data",
+      location: {
+        startLine: ctx.dataTag[0].location.startLine,
+        startColumn: ctx.dataTag[0].location.startColumn,
+        endLine: ctx.endTag[0].location.endLine,
+        endColumn: ctx.endTag[0].location.endColumn
+      },
+      children
+    }
   }
 
   header(ctx: any) {
-    var headerData = ctx.headerInstance.map(i => this.visit(i))
+    var headerData = []
+    ctx.headerInstance.forEach(i => headerData.push(this.visit(i)))
     return {
-      type: "header",
-      ...headerData
+      name: "header",
+      location: {
+        startLine: ctx.headerTag[0].location.startLine,
+        startColumn: ctx.headerTag[0].location.startColumn,
+        endLine: ctx.endTag[0].location.endLine,
+        endColumn: ctx.endTag[0].location.endColumn
+      },
+      children: headerData
     }
   }
   headerInstance(ctx: any) {
     return {
       name: ctx.TypeRef[0].image,
-      value: ctx.headerValue.map(h => this.visit(h))
+      location: {
+        startLine: ctx.TypeRef[0].startLine,
+        startColumn: ctx.TypeRef[0].startColumn,
+        endLine: ctx.DotComma[0].endLine,
+        endColumn: ctx.DotComma[0].endColumn
+      }
     }
   }
   headerValue(ctx: any) {
@@ -47,7 +66,13 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
   instance(ctx: any) {
     return {
       id: ctx.Id[0].image,
-      entity: this.visit(ctx.entity)
+      name: this.visit(ctx.entity).name,
+      location: {
+        startLine: ctx.Id[0].startLine,
+        startColumn: ctx.Id[0].startColumn,
+        endLine: ctx.DotComma[0].endLine,
+        endColumn: ctx.DotComma[0].endColumn
+      }
     }
   }
 
