@@ -35,7 +35,7 @@ export const processHoverData = async (params: TextDocumentPositionParams) => {
 
         let text = positionResult.image
         let entity = findEntityInSchema(schema, text)
-
+        if (!entity) return null
         return {
           contents: entityDataToText(entity, "IFC4X2", schema),
           range: lineRange

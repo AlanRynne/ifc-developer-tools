@@ -60,7 +60,10 @@ connection.onHover(processHoverData)
 // Server initialization handlers
 connection.onInitialize((params: InitializeParams) => {
   let capabilities = params.capabilities
-
+  const used = process.memoryUsage().heapTotal / 1024 / 1024
+  console.log(
+    `The script uses approximately ${Math.round(used * 100) / 100} MB`
+  )
   // Does the client support the `workspace/configuration` request?
   // If not, we will fall back using global settings
   hasConfigurationCapability = !!(

@@ -14,7 +14,7 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
       type: "ifc",
       version: "",
       header,
-      data: data
+      data
     }
   }
 
@@ -53,32 +53,31 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
 
   entity(ctx: any) {
     var ent = {
-      name: ctx.TypeRef[0].image,
-      parameter: ctx.parameter.map(p => this.visit(p))
+      name: ctx.TypeRef[0].image
     }
     return ent
   }
 
-  parameter(ctx: any) {
-    var param = (Object.values(ctx)[0] as any)[0]
-    if (param?.name == "collection") {
-      return param.children.collectionValue?.map(v => this.visit(v)) ?? []
-    } else if (param?.name == "entity") {
-      return this.visit(param)
-    }
+  // parameter(ctx: any) {
+  //   var param = (Object.values(ctx)[0] as any)[0]
+  //   if (param?.name == "collection") {
+  //     return param.children.collectionValue?.map(v => this.visit(v)) ?? []
+  //   } else if (param?.name == "entity") {
+  //     return this.visit(param)
+  //   }
 
-    delete param.tokenType
-    return param
-  }
+  //   delete param.tokenType
+  //   return param
+  // }
 
-  collectionValue(ctx: any) {
-    var value = Object.values(ctx).map((val: any) => {
-      return val[0]
-    })
-    if (value.length > 1)
-      throw Error("Collection value had more than one value.")
-    return value[0]
-  }
+  // collectionValue(ctx: any) {
+  //   var value = Object.values(ctx).map((val: any) => {
+  //     return val[0]
+  //   })
+  //   if (value.length > 1)
+  //     throw Error("Collection value had more than one value.")
+  //   return value[0]
+  // }
 }
 
 export const definitionVisitor = new IfcDefinitionVisitor()

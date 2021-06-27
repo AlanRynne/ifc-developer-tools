@@ -1,8 +1,7 @@
-import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
 import IfcParser from "@alanrynne/ifc-syntax-parser"
-import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
-import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
-import { connection, documents, globalSettings } from "./server"
+
+import { Diagnostic } from "vscode-languageserver"
+import { connection, documents } from "./server"
 
 class IfcDocumentManager {
   private documentResults: Map<string, { cst; parserErrors; lexerErrors }>
@@ -21,7 +20,8 @@ class IfcDocumentManager {
     }
     return this.parseDocument(uri).then(value => {
       console.log("document finished", uri)
-      return value
+      this.documentResults[uri] = value
+      return value.cst
     })
   }
 
@@ -45,8 +45,11 @@ class IfcDocumentManager {
 
     // Stop if there's no text in the file!
     if (!text) return
-
     var docResult = IfcParser.parse(text)
+    console.log("finished parsing")
+    Promise.resolve(() =>
+      connection?.sendNotification("ifc-cache", { uri, cst: docResult })
+    )
 
     //Send V1 diagnostics
     // TODO: Should handle diagnostics outside this method?

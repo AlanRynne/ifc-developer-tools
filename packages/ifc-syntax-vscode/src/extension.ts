@@ -1,6 +1,4 @@
-import * as path from "path"
 import * as vscode from "vscode"
-import * as ServerIfc from "@alanrynne/ifc-syntax-server"
 
 import {
   LanguageClient,
@@ -74,7 +72,12 @@ function setupServer(context: vscode.ExtensionContext): LanguageClient {
 
   // The debug options for the server
   let debugOptions = {
-    execArgv: ["--nolazy", "--inspect=6009", "--inspect-brk"]
+    execArgv: [
+      "--max_old_space_size=8192",
+      "--nolazy",
+      "--inspect=6009",
+      "--inspect-brk"
+    ]
   }
 
   let serverOptions: ServerOptions = {
@@ -95,7 +98,7 @@ function setupServer(context: vscode.ExtensionContext): LanguageClient {
     documentSelector: [{ scheme: "file", language: "ifc" }],
     synchronize: {
       // Notify the server about file changes to '*.ifcconfig' files contained in the workspace
-      fileEvents: vscode.workspace.createFileSystemWatcher("**/*.ifcconfig")
+      fileEvents: [vscode.workspace.createFileSystemWatcher("**/*.ifcconfig")]
     }
   }
 
@@ -106,6 +109,26 @@ function setupServer(context: vscode.ExtensionContext): LanguageClient {
     serverOptions,
     clientOptions
   )
+
+  client.onReady().then(() => {
+    console.log("client is ready")
+    client.onNotification("ifc-cache", async ({ uri, cst }) => {
+      console.log("receive request to cache", cst)
+      const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath
+      var oldUri = vscode.Uri.parse(uri) // gets the path of the first workspace folder
+      var newUri = vscode.Uri.file(
+        wsPath + "/.ifc-cache/" + uri.split("/").slice(-1)[0] + "-cache"
+      )
+      var data = JSON.stringify(cst)
+      var wEdit = new vscode.WorkspaceEdit()
+      wEdit.createFile(newUri, { overwrite: true })
+      wEdit.insert(newUri, new vscode.Position(0, 0), data)
+      await vscode.workspace.applyEdit(wEdit).then(res => {
+        console.log("result from cache call", res)
+      })
+    })
+  })
+
   return client
 }
 
