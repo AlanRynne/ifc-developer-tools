@@ -1,7 +1,8 @@
 import fs from "fs"
+import { IfcParser } from "."
 import { IfcLexer } from "./lexer"
-import { parser } from "./index"
 
+const parser = new IfcParser()
 const path = "../../examples/ifc/TestIFC-001.ifc"
 
 describe("Single file test", () => {
@@ -19,9 +20,8 @@ describe("Single file test", () => {
   })
 })
 
-
 export function checkParseResult(parseResult: any, expectedName: string) {
-  expect(parseResult.cst.name).toBe(expectedName);
-  expect(parseResult.lexErrors.length).toBe(0);
-  expect(parseResult.parseErrors.length).toBe(0);
+  expect(parseResult.cst.name).toBe(expectedName)
+  expect(parseResult.lexErrors.length).toBe(0)
+  expect(parseResult.parseErrors.length).toBe(0)
 }

@@ -62,10 +62,7 @@ connection.onHover(processHoverData)
 // Server initialization handlers
 connection.onInitialize((params: InitializeParams) => {
   let capabilities = params.capabilities
-  const used = process.memoryUsage().heapTotal / 1024 / 1024
-  console.log(
-    `The script uses approximately ${Math.round(used * 100) / 100} MB`
-  )
+  reportMemoryUsage()
   // Does the client support the `workspace/configuration` request?
   // If not, we will fall back using global settings
   hasConfigurationCapability = !!(
@@ -88,7 +85,7 @@ connection.onInitialize((params: InitializeParams) => {
         }
       },
       // TODO: Ideally sync should be incremental to prevent re-parsing the entire file.
-      textDocumentSync: TextDocumentSyncKind.Full,
+      textDocumentSync: TextDocumentSyncKind.Incremental,
       hoverProvider: true,
       definitionProvider: false,
       documentSymbolProvider: true
@@ -133,26 +130,37 @@ connection.onDidChangeConfiguration(change => {
 connection.onDidChangeWatchedFiles(_change => {
   const uri = _change.changes[0].uri
   // Monitored files have change in VSCode
-  connection.console.log(`We received an file change event ${uri}`)
+  connection.console.log(`We received a file change event ${uri}`)
 })
 
 export const IfcDocManager = new IfcDocumentManager()
 
 // Only keep settings for open documents
 documents.onDidClose(e => {
+  console.log("file was closed", e.document.uri)
   documentSettings.delete(e.document.uri)
   IfcDocManager.delete(e.document.uri)
 })
 
-// The content of a text document has changed. This event is emitted when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
-  connection.console.log("file content was changed")
-  IfcDocManager.update(change.document.uri)
-  //validateTextDocument(change.document);
+documents.onDidOpen(change => {
+  console.log("file was opened", change.document.uri)
+  IfcDocManager.get(change.document.uri)
+  reportMemoryUsage()
 })
-//#endregion
+documents.onDidSave(change => {
+  console.log("file content was saved", change.document.uri)
+  IfcDocManager.get(change.document.uri)
+  reportMemoryUsage()
+})
 
 // Make the text document manager listen on the connection for open, change and close text document events
 documents.listen(connection)
 // Listen on the connection
 connection.listen()
+
+export function reportMemoryUsage() {
+  const used = process.memoryUsage().heapTotal / 1024 / 1024
+  console.log(
+    `The script uses approximately ${Math.round(used * 100) / 100} MB`
+  )
+}

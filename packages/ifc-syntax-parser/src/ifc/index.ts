@@ -37,7 +37,7 @@ export class IfcParser extends CstParser {
   constructor() {
     super(lexer.allTokens, {
       // by default the error recovery / fault tolerance capabilities are disabled
-      recoveryEnabled: true,
+      recoveryEnabled: false,
       nodeLocationTracking: "full",
       dynamicTokensEnabled: false
     })
@@ -110,14 +110,11 @@ export class IfcParser extends CstParser {
     })
 
     this.RULE("headerValue", () => {
-      this.OR(
-        this.headValueOr ||
-          (this.headValueOr = [
-            { ALT: () => this.SUBRULE(this.collection) },
-            { ALT: () => this.CONSUME(lexer.Undefined) },
-            { ALT: () => this.CONSUME(lexer.AnyString) }
-          ])
-      )
+      this.OR([
+        { ALT: () => this.SUBRULE(this.collection) },
+        { ALT: () => this.CONSUME(lexer.Undefined) },
+        { ALT: () => this.CONSUME(lexer.AnyString) }
+      ])
     })
 
     this.RULE("instance", () => {

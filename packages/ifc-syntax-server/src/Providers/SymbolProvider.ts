@@ -31,7 +31,7 @@ function convertToDocumentSymbol(symbolInfo: any) {
   let documentSymbol = DocumentSymbol.create(
     symbolInfo.name,
     symbolInfo.id,
-    SymbolKind.Class,
+    SymbolKind.Module,
     vsLoc,
     vsLoc,
     childSymbols
