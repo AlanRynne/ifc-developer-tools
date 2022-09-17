@@ -14,14 +14,14 @@ class IfcDocumentManager {
 
   async get(uri: string) {
     let docResult = this.documentResults[uri]
-    if (docResult) {
+    if (docResult != undefined) {
       return docResult.cst
     }
     reportMemoryUsage()
     return this.parseDocument(uri).then(value => {
       console.log("document finished", uri)
       this.documentResults[uri] = value
-      return value.cst
+      return value?.cst
     })
   }
 
@@ -54,7 +54,6 @@ class IfcDocumentManager {
     // TODO: Should handle diagnostics outside this method?
     // this.documentParseErrors.set(uri, diagnostics)
     // connection.sendDiagnostics({uri, diagnostics})
-
     // Return the ast
     return docResult
   }

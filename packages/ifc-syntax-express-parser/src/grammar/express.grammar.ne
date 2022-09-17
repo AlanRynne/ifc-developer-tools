@@ -69,7 +69,7 @@ function -> "FUNCTION"
                         ifcType: "function",
                         name: data[2],
                         arguments: data[6],
-                        code: null,
+                        code: data[16],
                         returns: data[12]
                     }
                 }
@@ -109,9 +109,37 @@ functionReturn -> (("GENERIC"|"Generic") _ ":"):? _ typeInput{%
     }
 %}
 
-functionContent -> %unsupported (( _ (anything|string)):+ _ ";"):+ {% 
+functionContent -> local_declarations:? _ unsupported {% 
     function(data: any[]) {
-        return null
+        return {
+            localDeclarations: data[0],
+            unsupported: data[2]
+        }
+    }
+%}
+
+unsupported -> %unsupported (( _ (anything|string)):+ _ ";"):+
+
+conditional_statement -> "IF" _ "(" _ logical_gate _ ")" _ "THEN" _ statement (_ "ELSE" _ statement):? _ "END_IF" ";"
+
+logical_gate -> "(" _ unsupported _ ")" (_ ("AND"|"OR") _ "(" _ unsupported _ ")" )
+
+statement -> unsupported
+
+local_declarations -> "LOCAL" _ local_declaration:+ _ "END_LOCAL" ";" {%
+    function(data: any[]){
+        return data[2]
+    }
+%}
+
+local_declaration -> word _ (_ "," _ word):* _ ":" _ typeInput (_ ":=" _ ("[" "]"|unsupported) ):? ";" {%
+    function(data: any[]) {
+        //TODO: Only grabbing first local var for now.
+        return {
+            code_type: "local_var",
+            name: data[0],
+            type: data[6]
+        }
     }
 %}
 

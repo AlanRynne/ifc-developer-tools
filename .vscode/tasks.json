@@ -24,9 +24,42 @@
         "isDefault": true
       },
       "presentation": {
-        "panel": "dedicated",
-        "reveal": "never"
+        "group": "1"
       },
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "path": "packages/ifc-syntax-server/",
+      "problemMatcher": ["$tsc-watch"],
+      "label": "Watch IFC Parser",
+      "detail": "tsc -b -w",
+      "isBackground": true,
+      "presentation": {
+        "group": "1"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "path": "packages/ifc-syntax-parser/",
+      "problemMatcher": ["$tsc-watch"],
+      "label": "Watch LSP Server",
+      "detail": "tsc --watch",
+      "isBackground": true,
+      "presentation": {
+        "group": "1"
+      }
+    },
+    {
+      "label": "Server setup",
+      "dependsOn": [
+        "Watch IFC Parser",
+        "Watch LSP Server",
+        "Watch VSCode Extension"
+      ],
+      "dependsOrder": "sequence",
       "problemMatcher": ["$tsc-watch"]
     }
   ]

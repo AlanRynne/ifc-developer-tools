@@ -9,6 +9,7 @@ import { IfcDocManager } from "../server"
 
 export const processDocumentSymbols = async (params: DocumentSymbolParams) => {
   return await IfcDocManager.get(params.textDocument.uri).then(doc => {
+    if (!doc) return
     let definitions = IfcParser.definitionVisitor.visit(doc)
     return Object.values(definitions).map(def => convertToDocumentSymbol(def))
   })

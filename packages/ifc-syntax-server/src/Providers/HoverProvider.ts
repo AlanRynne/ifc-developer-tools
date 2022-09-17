@@ -11,6 +11,7 @@ import {
 export const processHoverData = async (params: TextDocumentPositionParams) => {
   return await IfcDocManager.get(params.textDocument.uri).then(parsedDoc => {
     // Visit parsed doc at position
+    if (!parsedDoc) return
     var positionResult = IfcParser.positionVisitor.visit(parsedDoc, {
       line: params.position.line + 1,
       character: params.position.character + 1

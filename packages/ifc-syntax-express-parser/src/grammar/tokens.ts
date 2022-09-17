@@ -27,9 +27,35 @@ export const lexer = moo.states({
       match: ["END_ENTITY", "END_TYPE", "END_FUNCTION", "END_RULE"],
       pop: 1
     },
+    local: { match: ["LOCAL"], push: "local" },
     unsupported: {
-      match: ["DERIVE", "WHERE", "LOCAL", "CASE", "IF", "RETURN"],
+      match: ["DERIVE", "WHERE", "CASE", "IF", "RETURN"],
       next: "unsupported"
+    },
+    word: {
+      match: /\w+/,
+      type: moo.keywords({
+        list: ["LIST", "ARRAY", "BAG", "SET"],
+        primitive: [
+          "REAL",
+          "BINARY",
+          "LOGICAL",
+          "BOOLEAN",
+          "NUMBER",
+          "INTEGER",
+          "STRING"
+        ],
+        keywords: ["OF", "IN", "SELF", "OR", "INVERSE", "UNIQUE"]
+      })
+    }
+  },
+  local: {
+    punctuation: [";", ",", ":", "(", ")", "[", "]"],
+    space: { match: /\s+/, lineBreaks: true },
+    ";": ";",
+    local_end: {
+      match: ["END_LOCAL"],
+      pop: 1
     },
     word: {
       match: /\w+/,

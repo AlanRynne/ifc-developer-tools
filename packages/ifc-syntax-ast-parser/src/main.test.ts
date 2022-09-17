@@ -1,7 +1,7 @@
-import fs from "fs"
-import dir from "node-dir"
-import path from "path"
-import readline from "readline"
+import { createReadStream } from "fs"
+import { files } from "node-dir"
+import { extname } from "path"
+import { createInterface } from "readline"
 import { Ifc2Ast } from "./main"
 import { DocumentNode } from "./ast/nodes"
 import {
@@ -15,8 +15,8 @@ import { debug } from "console"
 
 const INDIR = "../../examples/ifc/ifcKit"
 
-var files = dir.files(INDIR, { sync: true })
-var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
+var fileNames = files(INDIR, { sync: true })
+var ifcFiles = fileNames?.filter(file => extname(file) === ".ifc")
 
 describe("IFC files line by line", () => {
   ifcFiles.forEach(file => {
@@ -33,8 +33,8 @@ describe("IFC files line by line", () => {
 })
 
 async function readLines(path: string) {
-  const stream = fs.createReadStream(path)
-  const rl = readline.createInterface({
+  const stream = createReadStream(path)
+  const rl = createInterface({
     input: stream,
     crlfDelay: Infinity
   })
