@@ -1,0 +1,49 @@
+{
+  "folders": [
+    {
+      "path": "./",
+      "name": "Monorepo"
+    },
+    {
+      "path": "./packages/ifc-syntax-ast-parser",
+      "name": "AST Parser"
+    },
+    {
+      "path": "./packages/ifc-syntax-codegen",
+      "name": "CodeGen"
+    },
+    {
+      "path": "./packages/ifc-syntax-docgen",
+      "name": "DocGen"
+    },
+    {
+      "path": "./packages/ifc-syntax-express-parser",
+      "name": "Express Parser"
+    },
+    {
+      "path": "./packages/ifc-syntax-parser",
+      "name": "IFC Parser"
+    },
+    {
+      "path": "./packages/ifc-syntax-server",
+      "name": "Language Server"
+    },
+    {
+      "path": "./packages/ifc-syntax-vscode",
+      "name": "VSCode Extension"
+    },
+    {
+      "path": "./packages/ifc2x3-ts",
+      "name": "IFC2X3"
+    },
+    {
+      "path": "./packages/ifc4x2-ts",
+      "name": "IFC4X2"
+    },
+    {
+      "path": "./packages/ifc4x3_rc1-ts",
+      "name": "IFC4X3_RC1"
+    }
+  ],
+  "settings": {}
+}
