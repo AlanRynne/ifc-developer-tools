@@ -11,5 +11,17 @@
   },
   "scripts": {
     "lerna": "lerna"
-  }
+  },
+  "workspaces": [
+    "packages/ifc-syntax-ast-parser",
+    "packages/ifc-syntax-codegen",
+    "packages/ifc-syntax-docgen",
+    "packages/ifc-syntax-express-parser",
+    "packages/ifc-syntax-parser",
+    "packages/ifc-syntax-server",
+    "packages/ifc-syntax-vscode",
+    "packages/ifc2x3-ts",
+    "packages/ifc4x2-ts",
+    "packages/ifc4x3_rc1"
+  ]
 }

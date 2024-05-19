@@ -1,7 +1,7 @@
-import fs from "fs"
-import dir from "node-dir"
-import path from "path"
-import readline from "readline"
+import * as fs from "fs"
+import * as dir from "node-dir"
+import * as path from "path"
+import * as readline from "readline"
 import { Ifc2Ast } from "./main"
 import { DocumentNode } from "./ast/nodes"
 import {

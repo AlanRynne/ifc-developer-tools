@@ -6,7 +6,7 @@
   "private": true,
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "start": "ts-node src/index.ts",
     "extract": "node dist/index.js",
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
