@@ -11,13 +11,13 @@
   "author": "Alan Rynne",
   "license": "MIT",
   "scripts": {
-    "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.ts && tsc",
+    "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.ts && tsc -b",
     "test": "jest",
-    "pretest": "yarn run build",
+    "pretest": "npm run build",
     "coverage": "jest --coverage",
     "diagrams": "nearley-railroad ./src/grammar/grammar.ne -o ./docs/ifc-diagrams.html",
-    "prepare": "yarn run build",
-    "prepublishOnly": "yarn test",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
   },
   "keywords": [

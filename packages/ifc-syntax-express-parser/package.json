@@ -8,13 +8,13 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "build": "yarn build-grammar && tsc -b",
+    "build": "npm run build-grammar && tsc -b",
     "build-grammar": "nearleyc src/grammar/express.grammar.ne --out src/grammar/index.ts",
     "compile": "tsc -b",
     "clean": "rm -r dist src/grammar/index.ts && rm tsconfig.tsbuildinfo",
-    "pretest": "yarn run build",
-    "prepare": "yarn run build",
-    "prepublishOnly": "yarn test"
+    "pretest": "npm run build",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "ifc",
