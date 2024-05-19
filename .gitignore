@@ -7,3 +7,4 @@
 **/uncovered/*.ifc
 **/lerna-debug.log
 # **/packages/ifc*-ts/
+examples/ifc/bigFiles/

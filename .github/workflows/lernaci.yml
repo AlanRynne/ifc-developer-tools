@@ -19,11 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🚧 Checkout code
-        uses: actions/checkout@v2
-        with:
-          lfs: true
+        uses: actions/checkout@v4
       - name: 🥁 Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
       - name: ♻️ NPM CI
         run: npm ci
       - name: 🛠 Build All packages
@@ -31,7 +31,7 @@ jobs:
       - name: 🧪 Test all packages with coverage
         run: npm run lerna -- run coverage
       - name: 📊 Upload test results to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           verbose: true # optional (default = false)
