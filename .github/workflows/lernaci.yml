@@ -9,15 +9,17 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  packages: write
+  contents: read
+
 jobs:
   build:
     name: Build Monorepo
-    runs-on: macos-latest
-
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
-
+        node-version: [20.x]
     steps:
       - name: 🚧 Checkout code
         uses: actions/checkout@v2

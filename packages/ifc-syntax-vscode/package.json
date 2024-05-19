@@ -1,5 +1,5 @@
 {
-  "name": "@alanrynne/ifc-syntax",
+  "name": "@alanrynne/ifc-syntax-vscode",
   "displayName": "IFC Syntax",
   "description": "Extension that brings IFC (Industry Foundation Classes) support to VSCode",
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",
@@ -20,90 +20,17 @@
   "version": "0.2.2",
   "publisher": "AlanRynne",
   "engines": {
-    "vscode": "^1.37.0"
+    "vscode": "^1.89.0"
   },
   "categories": [
     "Programming Languages"
   ],
   "activationEvents": [
-    "onLanguage:ifc",
-    "onCommand:ifcSyntax.sayHello",
-    "workspaceContains:**/.ifcconfig",
-    "workspaceContains:**/*.ifc"
+    "workspaceContains:**/*.ifc",
+    "workspaceContains:**/*.exp"
   ],
   "main": "dist/extension.js",
   "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "ifc-explorer",
-          "title": "IFC Explorer",
-          "icon": "./assets/building-black.svg"
-        }
-      ]
-    },
-    "views": {
-      "ifc-explorer": [
-        {
-          "id": "ifcStructure",
-          "name": "Entity Tree"
-        },
-        {
-          "id": "ifcPSets",
-          "name": "Property Sets"
-        },
-        {
-          "id": "ifcHeader",
-          "name": "Header Data"
-        }
-      ]
-    },
-    "menus": {
-      "editor/title": [
-        {
-          "command": "ifcSyntax.threeDimensionalViewer",
-          "group": "navigation",
-          "when": "editorLangId == ifc"
-        }
-      ]
-    },
-    "commands": [
-      {
-        "command": "ifcSyntax.threeDimensionalViewer",
-        "when": "editorLangId == ifc",
-        "title": "IFC: Open current file in 3D View",
-        "icon": "$(symbol-field)"
-      }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "IFC Syntax",
-      "properties": {
-        "ifcSyntax.server.enabled": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Enables the IFC Language Server"
-        },
-        "ifcSyntax.server.maxNumberOfProblems": {
-          "scope": "resource",
-          "type": "number",
-          "default": 100,
-          "description": "Controls the maximum number of problems produced by the server."
-        },
-        "ifcSyntax.server.trace": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between VS Code and the language server."
-        }
-      }
-    },
     "languages": [
       {
         "id": "ifc",
@@ -117,14 +44,15 @@
         "configuration": "./languages/ifc-language-configuration.json"
       },
       {
-        "id": "json",
+        "id": "express",
         "aliases": [
-          "cIFC",
-          "IFC Config"
+          "EXPRESS",
+          "exp"
         ],
         "extensions": [
-          ".ifcconfig"
-        ]
+          ".exp"
+        ],
+        "configuration": "./languages/express-language-configuration.json"
       }
     ],
     "grammars": [
@@ -132,31 +60,34 @@
         "language": "ifc",
         "scopeName": "source.ifc",
         "path": "./syntaxes/ifc.tmLanguage.json"
+      },
+      {
+        "language": "express",
+        "scopeName": "source.express",
+        "path": "./syntaxes/express.tmLanguage.json"
       }
     ]
   },
   "scripts": {
-    "update-vscode": "vscode-install",
-    "postinstall": "vscode-install",
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo",
     "build": "tsc -b",
     "watch": "tsc -b -w"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.3",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^10.17.32",
-    "glob": "^7.1.6",
-    "mocha": "^6.2.3",
-    "tslint": "^5.20.1",
-    "typescript": "^3.9.7",
-    "vscode": "^1.1.37",
-    "vscode-test": "^1.4.0"
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.89.0",
+    "glob": "^10.3.15",
+    "mocha": "^10.4.0",
+    "tslint": "^6.1.3",
+    "typescript": "^5.4.5",
+    "vscode-test": "^1.6.1"
   },
   "dependencies": {
     "@alanrynne/ifc-syntax-ast-parser": "^0.2.2",
     "@alanrynne/ifc-syntax-express-parser": "^0.2.2",
     "@alanrynne/ifc-syntax-server": "^0.2.2",
-    "vscode-languageclient": "^7.0.0"
+    "vscode-languageclient": "^9.0.1"
   }
 }
