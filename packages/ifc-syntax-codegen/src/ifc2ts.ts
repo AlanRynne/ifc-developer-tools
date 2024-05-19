@@ -418,14 +418,14 @@ export class ifc2ts implements SchemaToCode {
         build: "tsc -b",
         clean: "rm -rf ./dist && rm tsconfig.tsbuildinfo"
       },
-      keywords: ["IFC", "Industry Foundation Classses", "AEC"],
+      keywords: ["IFC", "Industry Foundation Classes", "AEC"],
       author: pckg.author,
       repository: pckg.repository,
       license: pckg.license,
       dependencies: {},
       devDependencies: {
         "@types/node": "^14.11.1",
-        typescript: "^4.2.4"
+        typescript: "^5.4.5"
       }
     }
     fs.writeFileSync(path + "package.json", JSON.stringify(pkg, null, 2))
@@ -442,6 +442,8 @@ export class ifc2ts implements SchemaToCode {
         outDir: "dist",
         rootDir: "src",
         strict: false,
+        skipLibCheck: true,
+        types: [],
         esModuleInterop: true,
         forceConsistentCasingInFileNames: true,
         resolveJsonModule: true
