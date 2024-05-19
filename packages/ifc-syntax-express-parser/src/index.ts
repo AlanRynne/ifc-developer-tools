@@ -89,7 +89,7 @@ export const IfcReleases = {
   IFC4_ADD2: "IFC4 ADD2.exp",
   IFC4_ADD2_TC1: "IFC4 ADD2 TC1.exp",
   IFC4X1: "IFC4X1.exp",
-  IFC4X2: "IFC4X2.exp",
+  IFC4X2: "ifc4X2.exp",
   IFC4X3: "IFC4X3 RC1.exp"
 }
 
