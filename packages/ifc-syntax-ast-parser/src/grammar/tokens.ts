@@ -34,6 +34,7 @@ export let lexer = moo.states({
     cmnt_strt: { match: /\/\*+/, push: "cmnt" }
   },
   cmnt: {
+    //@ts-ignore
     cmnt_end: { match: /\*+\//, pop: true },
     cmnt_line: { match: /[^\s\\]+?/ }
   },
@@ -41,6 +42,7 @@ export let lexer = moo.states({
   entity: {
     word: { match: /[\w\d]+/ },
     lparen: { match: /\(/, push: "input" },
+    //@ts-ignore
     eol: { match: ";", pop: true }
   },
   // Resolves anything inside the constructor parenthesis, including nested parenthesis.
@@ -58,20 +60,24 @@ export let lexer = moo.states({
     snglquote: { match: /\'/, push: "snglqt_str" },
     dblquote: { match: /\"/, push: "dblqt_str" },
     lparen: { match: "(", push: "input" },
+    //@ts-ignore
     rparen: { match: ")", pop: true }
   },
   // Resolves anything inside a parenthesis that is not the constructor parenthesis.
   // Close section tag "ENDSEC"
   endsec: {
+    //@ts-ignore
     endtag: { match: /ENDSEC/, pop: true }
   },
   // Resolves anything inside single or double quotes.
   snglqt_str: {
     string: { match: /[^\']+/, lineBreaks: true },
+    //@ts-ignore
     snglquote: { match: /\'/, pop: true }
   },
   dblqt_str: {
     string: { match: /[^\"]+/, lineBreaks: true },
+    //@ts-ignore
     dblquote: { match: /\"/, pop: true }
   }
 })
