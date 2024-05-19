@@ -5,8 +5,10 @@ import { parse } from "."
 
 const INDIR = "../../examples/ifc/bigFiles"
 
-var files = dir.files(INDIR, { sync: true })
-var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
+if (fs.existsSync(INDIR)) {
+  var files = dir.files(INDIR, { sync: true })
+  var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
+}
 
 if (ifcFiles != undefined)
   describe("Large Files", () => {
@@ -23,9 +25,8 @@ if (ifcFiles != undefined)
     })
   })
 
-
 export function checkParseResult(parseResult: any, expectedName: string) {
-  expect(parseResult.cst.name).toBe(expectedName);
-  expect(parseResult.lexErrors.length).toBe(0);
-  expect(parseResult.parseErrors.length).toBe(0);
+  expect(parseResult.cst.name).toBe(expectedName)
+  expect(parseResult.lexErrors.length).toBe(0)
+  expect(parseResult.parseErrors.length).toBe(0)
 }
