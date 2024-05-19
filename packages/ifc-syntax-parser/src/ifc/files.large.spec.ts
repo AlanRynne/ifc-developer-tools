@@ -14,7 +14,9 @@ if (fs.existsSync(INDIR)) {
 
 if (ifcFiles != undefined)
   describe("Large Files", () => {
-    it("Dummy test", () => expect(true))
+    it("Dummy test", () => {
+      expect(true)
+    })
 
     ifcFiles?.forEach(path => {
       it(
