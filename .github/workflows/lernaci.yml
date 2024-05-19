@@ -31,8 +31,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: ♻️ NPM CI
         run: npm ci
-      - name: 🔨 Build IFC typescript packages
-        run: npm run lerna -- run build:ts
       - name: 🛠 Build All packages
         run: npm run lerna -- run build
       - name: 🧪 Test all packages with coverage
