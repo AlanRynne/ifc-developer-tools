@@ -11,6 +11,7 @@
     "node": "20.11.1"
   },
   "scripts": {
+    "lerna": "lerna",
     "lint:dependency-versions": "check-dependency-version-consistency .",
     "lint:dependency-versions:fix": "check-dependency-version-consistency . --fix"
   },
