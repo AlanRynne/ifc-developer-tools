@@ -1,4 +1,4 @@
-import moo from "moo"
+import * as moo from "moo"
 
 export let lexer = moo.states({
   // Rules that apply to every state.
