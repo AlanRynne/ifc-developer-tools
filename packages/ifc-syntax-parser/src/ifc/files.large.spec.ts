@@ -8,6 +8,8 @@ const INDIR = "../../examples/ifc/bigFiles"
 if (fs.existsSync(INDIR)) {
   var files = dir.files(INDIR, { sync: true })
   var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
+} else {
+  var ifcFiles: string[] = []
 }
 
 if (ifcFiles != undefined)
