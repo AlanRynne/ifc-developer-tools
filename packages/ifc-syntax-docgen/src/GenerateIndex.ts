@@ -1,4 +1,4 @@
-import glob from "glob"
+import { glob } from "glob"
 import { DocItem } from "./DocItem"
 import ExtractEntityFromFile from "./ExtractEntityFromFile"
 
@@ -10,11 +10,9 @@ export default function GenerateIndex(version: string, dir: string) {
       domains: {}
     }
     printProgress(`Started generating Docs for version ${result.version}}\n`)
-    // Get all files in schema docs
-    return glob(dir + "ifc*/lexical/*.htm", (err, files) => {
-      if (err) reject(err)
+    return glob(dir + "ifc*/lexical/*.htm").then(files => {
       var count = files.length
-      files.forEach((path, index) => {
+      files.forEach((path: string, index: number) => {
         // Extract url data
         const parts = path.split("/")
         const category = parts[parts.length - 3]
@@ -37,12 +35,12 @@ export default function GenerateIndex(version: string, dir: string) {
         }
       })
       printProgress("\nFinished generating Docs\n")
-      resolve(result)
+      return result
     })
   })
 }
 
-function printProgress(progress, clear = false) {
+function printProgress(progress: string | Uint8Array, clear = false) {
   if (clear) {
     process.stdout.clearLine(0)
     process.stdout.cursorTo(0)
