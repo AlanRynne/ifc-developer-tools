@@ -19,7 +19,7 @@
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
   },
   "devDependencies": {
-    "typescript": "^4.2.4"
+    "typescript": "^5.4.5"
   },
   "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

@@ -25,8 +25,8 @@
   "author": "Alan Rynne",
   "license": "ISC",
   "dependencies": {
-    "moo": "^0.5.1",
-    "nearley": "^2.19.6"
+    "moo": "^0.5.2",
+    "nearley": "^2.20.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
