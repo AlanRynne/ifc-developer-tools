@@ -17,6 +17,8 @@ jobs:
     name: Build Monorepo
     runs-on: ubuntu-latest
     steps:
+      - name: 🚧 Checkout code
+        uses: actions/checkout@v4
       - uses: ./.github/workflows/check.yml
         with:
           secrets: inherit
