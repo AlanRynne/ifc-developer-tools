@@ -27,4 +27,4 @@ jobs:
       - name: 🛠 Build All packages
         run: npm run lerna -- run build
       - name: Publish
-        run: npm run lerna -- publish
+        run: npm run lerna -- publish from-package -y
