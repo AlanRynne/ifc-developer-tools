@@ -35,4 +35,4 @@ jobs:
       - name: 📦 Publish
         run: npm run lerna -- publish from-package -y
       - name: 🚀 Publish VSCode extension
-        run: npm run lerna -- publish:vsce --skip-duplicate
+        run: npm run lerna -- publish:vsce
