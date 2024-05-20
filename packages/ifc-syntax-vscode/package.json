@@ -17,7 +17,7 @@
     "Building Information Modelling",
     "BIM"
   ],
-  "version": "0.2.6",
+  "version": "0.2.7",
   "publisher": "AlanRynne",
   "engines": {
     "vscode": "^1.89.0"
