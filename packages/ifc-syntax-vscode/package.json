@@ -1,9 +1,9 @@
 {
-  "name": "@alanrynne/ifc-syntax-vscode",
+  "name": "ifc-syntax",
   "displayName": "IFC Syntax",
   "description": "Extension that brings IFC (Industry Foundation Classes) support to VSCode",
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",
-  "icon": "https://github.com/AlanRynne/docs/assets/images/IFC-Syntax-Icon.png",
+  "icon": "assets/ifc-syntax-logo.png",
   "author": {
     "name": "Alan Rynne",
     "email": "alan@rynne.es",
@@ -71,7 +71,8 @@
   "scripts": {
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo",
     "build": "tsc -b",
-    "watch": "tsc -b -w"
+    "watch": "tsc -b -w",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -86,10 +87,8 @@
     "typescript": "^5.4.5",
     "vscode-test": "^1.6.1"
   },
-  "dependencies": {
-    "@alanrynne/ifc-syntax-ast-parser": "^0.2.4",
-    "@alanrynne/ifc-syntax-express-parser": "^0.2.4",
-    "@alanrynne/ifc-syntax-server": "^0.2.4",
-    "vscode-languageclient": "^9.0.1"
-  }
+  "vsce": {
+    "dependencies": false
+  },
+  "license": "MIT"
 }
