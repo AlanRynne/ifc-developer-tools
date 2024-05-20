@@ -9,7 +9,7 @@
     "email": "alan@rynne.es",
     "url": "https://rynne.es"
   },
-  "private": false,
+  "private": true,
   "keywords": [
     "IFC",
     "Industry Foundation Classes",
@@ -72,7 +72,7 @@
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo",
     "build": "tsc -b",
     "watch": "tsc -b -w",
-    "publish": "vsce publish"
+    "publish:vsce": "vsce publish --skip-duplicate"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
@@ -90,5 +90,6 @@
   "vsce": {
     "dependencies": false
   },
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "b7bc0ef3576eb37e7aeaeb9b33ee05a01f5ace7e"
 }

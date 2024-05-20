@@ -32,5 +32,7 @@ jobs:
         run: npm ci
       - name: 🛠 Build All packages
         run: npm run lerna -- run build
-      - name: Publish
+      - name: 📦 Publish
         run: npm run lerna -- publish from-package -y
+      - name: 🚀 Publish VSCode extension
+        run: npm run lerna -- publish:vsce --skip-duplicate
