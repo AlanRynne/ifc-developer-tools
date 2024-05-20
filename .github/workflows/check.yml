@@ -6,6 +6,7 @@ name: Build check
 on:
   pull_request:
     types: [opened, synchronize]
+  workflow_call:
 
 jobs:
   build:
