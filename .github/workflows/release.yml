@@ -19,6 +19,8 @@ jobs:
     name: Release version
     runs-on: ubuntu-latest
     needs: build
+    env:
+      GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: 🚧 Checkout code
         uses: actions/checkout@v4
