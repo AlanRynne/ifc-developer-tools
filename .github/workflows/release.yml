@@ -21,6 +21,7 @@ jobs:
     needs: build
     env:
       GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
     steps:
       - name: 🚧 Checkout code
         uses: actions/checkout@v4
