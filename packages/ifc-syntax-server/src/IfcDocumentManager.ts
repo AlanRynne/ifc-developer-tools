@@ -1,5 +1,4 @@
 import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
-import IfcParser from "@alanrynne/ifc-syntax-parser"
 import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
 import { connection, documents, globalSettings } from "./server"
@@ -7,12 +6,10 @@ import { connection, documents, globalSettings } from "./server"
 class IfcDocumentManager {
   private documentResults: Map<string, ASTNode>
   private documentParseErrors: Map<string, Diagnostic[]>
-  private documentValidationErrors: Map<string, Diagnostic[]>
 
   constructor() {
     this.documentResults = new Map<string, ASTNode>()
     this.documentParseErrors = new Map<string, Diagnostic[]>()
-    this.documentValidationErrors = new Map<string, Diagnostic[]>()
   }
   async getDiagnostics(uri: string) {
     return this.documentParseErrors[uri] ?? []
@@ -50,8 +47,8 @@ class IfcDocumentManager {
     let diagnostics: Diagnostic[] = []
     if (text) {
       var config = new Ifc2AstConfig()
+
       config.maxLineLength = globalSettings.parser.maxLineLength
-      var v2parse = IfcParser.parse(text)
       return await new Ifc2Ast(config)
         .parseIfcFile(text.split(/[\n\r]/), true, err => {
           // Handle parse errors

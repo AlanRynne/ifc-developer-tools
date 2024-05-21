@@ -35,6 +35,12 @@ export const processHoverData = async (params: TextDocumentPositionParams) => {
           range: lineRange
         }
         return hover
+      } else {
+        let hover: Hover = {
+          contents: "Entity not found",
+          range: lineRange
+        }
+        return hover
       }
     }
     return null

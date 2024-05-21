@@ -22,7 +22,7 @@ export const DefaultSettings: IfcSyntaxSettings = {
     maxNumberOfProblems: 1000
   },
   parser: {
-    maxLineLength: 1000000
+    maxLineLength: 1000
   }
 }
 

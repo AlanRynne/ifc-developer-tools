@@ -3,14 +3,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/packages/ifc-test/"
-      ],
-      "name": "Launch Extension",
-      "request": "launch",
-      "type": "extensionHost"
-    },
-    {
       "type": "extensionHost",
       "request": "launch",
       "name": "Launch Client",

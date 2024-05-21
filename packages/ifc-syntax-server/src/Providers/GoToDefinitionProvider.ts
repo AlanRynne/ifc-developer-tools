@@ -1,37 +1,47 @@
-import { Location, TextDocumentPositionParams } from "vscode-languageserver"
+import {
+  Location,
+  Position,
+  Range,
+  TextDocumentIdentifier,
+  TextDocumentPositionParams
+} from "vscode-languageserver"
 import { IfcDocManager } from "../server"
 import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
-import { IVisitor } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/visitor/IVisitor"
-import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
+import { ASTNode, ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
 import * as nodes from "@alanrynne/ifc-syntax-ast-parser/dist/ast/nodes"
 import { ASTDefinitionFinderVisitor } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/visitor/ASTVisitor"
 
-// TODO: Create IVisitor provider and hook it up.
 export const processGoToDefinition = async (
   params: TextDocumentPositionParams
-) => {
-  return await IfcDocManager.get(params.textDocument.uri).then(doc => {
-    let p = new ASTPosition(params.position.line + 1, params.position.character)
-    let pv: any = new PositionVisitor().visit(doc, p)
-    if (pv instanceof nodes.VariableNode) {
-      let def: ASTNode = new ASTDefinitionFinderVisitor().visit(doc, pv.id)
-      if (def) {
-        return Location.create(params.textDocument.uri, {
-          start: {
-            line: def.loc.start.line - 1,
-            character: def.loc.start.character
-          },
-          end: {
-            line: def.loc.end.line - 1,
-            character: def.loc.end.character
-          }
-        })
-      }
-    }
+) =>
+  await IfcDocManager.get(params.textDocument.uri).then((doc: ASTNode) => {
+    let definition = findDefinitionNode(doc, params.position)
+
+    if (definition != undefined) return null
+
+    var location = toEditorRange(definition.loc)
+
+    return Location.create(params.textDocument.uri, location)
   })
+
+export function findDefinitionNode(doc: ASTNode, position: Position): ASTNode {
+  let p = new ASTPosition(position.line + 1, position.character)
+  let pv: any = new PositionVisitor().visit(doc, p)
+
+  if (pv instanceof nodes.VariableNode)
+    return new ASTDefinitionFinderVisitor().visit(doc, pv.id)
 }
 
-class GoToDefinitionProvider implements IVisitor {
-  visit(node: ASTNode, refNum: number) {}
+function toEditorRange(loc: ASTRange): Range {
+  return {
+    start: {
+      line: loc.start.line - 1,
+      character: loc.start.character
+    },
+    end: {
+      line: loc.end.line - 1,
+      character: loc.end.character
+    }
+  }
 }
