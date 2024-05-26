@@ -5,7 +5,7 @@ import {
   TextDocumentIdentifier,
   TextDocumentPositionParams
 } from "vscode-languageserver"
-import { IfcDocManager } from "../server"
+import { IfcDocManager } from "../documents"
 import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
 import { ASTNode, ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
@@ -14,17 +14,16 @@ import { ASTDefinitionFinderVisitor } from "@alanrynne/ifc-syntax-ast-parser/dis
 
 export const processGoToDefinition = async (
   params: TextDocumentPositionParams
-) =>
-  await IfcDocManager.get(params.textDocument.uri).then((doc: ASTNode) => {
-    let definition = findDefinitionNode(doc, params.position)
+) => {
+  let doc = await IfcDocManager.get(params.textDocument.uri)
+  let definition = findDefinitionNode(doc, params.position)
 
-    if (definition != undefined) return null
+  if (definition == undefined) return null
 
-    var location = toEditorRange(definition.loc)
+  var location = toEditorRange(definition.loc)
 
-    return Location.create(params.textDocument.uri, location)
-  })
-
+  return Location.create(params.textDocument.uri, location)
+}
 export function findDefinitionNode(doc: ASTNode, position: Position): ASTNode {
   let p = new ASTPosition(position.line + 1, position.character)
   let pv: any = new PositionVisitor().visit(doc, p)

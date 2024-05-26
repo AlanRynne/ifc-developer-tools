@@ -1,9 +1,6 @@
-import {
-  hasConfigurationCapability,
-  globalSettings,
-  documentSettings,
-  connection
-} from "./server"
+import { connection, globalSettings } from "./server"
+import { documentSettings } from './documents'
+import { hasConfigurationCapability } from "./setupConnectionEvents"
 
 // The example settings
 export interface IfcSyntaxSettings {

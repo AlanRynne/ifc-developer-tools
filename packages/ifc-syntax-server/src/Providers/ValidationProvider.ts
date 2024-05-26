@@ -1,5 +1,6 @@
 import { TextDocument } from "vscode-languageserver-textdocument"
-import { connection, IfcDocManager } from "../server"
+import { connection } from "../server"
+import { IfcDocManager } from "../documents"
 import { getDocumentSettings } from "../settings"
 
 export async function validateTextDocument(

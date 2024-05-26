@@ -14,7 +14,7 @@ import {
 } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/nodes"
 import { IVisitor } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/visitor/IVisitor"
 import { ASTNode, ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
-import { IfcDocManager } from "../server"
+import { IfcDocManager } from "../documents"
 
 export const processDocumentSymbols = async (params: DocumentSymbolParams) => {
   return await IfcDocManager.get(params.textDocument.uri).then(doc => {

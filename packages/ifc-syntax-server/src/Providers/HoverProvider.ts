@@ -1,5 +1,5 @@
 import { TextDocumentPositionParams, Hover } from "vscode-languageserver"
-import { documents, IfcDocManager } from "../server"
+import { documents, IfcDocManager } from "../documents"
 import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
 import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
 import IfcSchemas from "../schemas"

@@ -1,7 +1,8 @@
 import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
 import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
-import { connection, documents, globalSettings } from "./server"
+import { connection, globalSettings } from "./server"
+import { documents } from "./documents"
 
 class IfcDocumentManager {
   private documentResults: Map<string, ASTNode>
@@ -28,6 +29,7 @@ class IfcDocumentManager {
 
   update(uri: string) {
     console.log("updating ast of doc:", uri)
+
     return this.parseDocument(uri).then(value => {
       console.log("document finished", uri)
       this.documentResults[uri] = value
@@ -42,8 +44,10 @@ class IfcDocumentManager {
 
   private async parseDocument(uri: string) {
     console.log("parsing doc", uri)
+
     let doc = documents.get(uri)
     let text = doc ? doc.getText() : null
+
     let diagnostics: Diagnostic[] = []
     if (text) {
       var config = new Ifc2AstConfig()

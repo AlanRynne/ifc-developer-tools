@@ -11,10 +11,6 @@
         "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
       ],
       "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
-      "preLaunchTask": {
-        "type": "npm",
-        "script": "watch"
-      },
       "sourceMaps": true
     },
     {
