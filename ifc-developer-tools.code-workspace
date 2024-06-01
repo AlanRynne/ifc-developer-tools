@@ -1,0 +1,98 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "./"
+    },
+    {
+      "path": "packages/ifc-syntax-ast-parser"
+    },
+    {
+      "path": "packages/ifc-syntax-codegen"
+    },
+    {
+      "path": "packages/ifc-syntax-docgen"
+    },
+    {
+      "path": "packages/ifc-syntax-vscode"
+    },
+    {
+      "path": "packages/ifc-syntax-server"
+    },
+    {
+      "path": "packages/ifc-syntax-parser"
+    },
+    {
+      "path": "packages/ifc-syntax-express-parser"
+    }
+  ],
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "lerna-watch",
+        "type": "npm",
+        "script": "lerna-watch",
+        "isBackground": true,
+        "problemMatcher": [],
+        "detail": "lerna watch --verbose -- lerna run build --scope=\\$LERNA_PACKAGE_NAME ",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "extensionHost",
+        "request": "launch",
+        "name": "Launch Client",
+        "runtimeExecutable": "${execPath}",
+        "args": [
+          "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
+        ],
+        "outFiles": [
+          "${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"
+        ],
+        "sourceMaps": true
+      },
+      {
+        "type": "node",
+        "request": "attach",
+        "name": "Attach to Server",
+        "port": 6009,
+        "restart": true,
+        "timeout": 20000,
+        "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
+        "sourceMaps": true
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Client + Server",
+        "configurations": ["Launch Client", "Attach to Server"]
+      }
+    ]
+  },
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": false
+    },
+    "testing.openTesting": "neverOpen",
+    "jest.outputConfig": {
+      "revealOn": "run",
+      "revealWithFocus": "none",
+      "clearOnRun": "both"
+    },
+    "jest.disabledWorkspaceFolders": [
+      "root",
+      "ifc-syntax-codegen",
+      "ifc-syntax-docgen",
+      "ifc-syntax-vscode",
+      "ifc-syntax-server"
+    ]
+  }
+}

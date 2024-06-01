@@ -1,14 +1,8 @@
-import {
-  ISchema,
-  IType,
-  IEntity,
-  IFunction,
-  IRule
-} from "@alanrynne/ifc-syntax-express-parser"
+import { express } from "@alanrynne/ifc-syntax-express-parser"
 import fs from "fs"
 import { SchemaToCode, SchemaToCodeOptions, ExpressTypes } from "./index"
 
-function findInSchema(name: string, schema: ISchema) {
+function findInSchema(name: string, schema: express.ISchema) {
   return (
     schema.types[name] ||
     schema.entities[name] ||
@@ -20,7 +14,7 @@ function findKeyCaseInsensitive(key: string, obj: Object) {
   return Object.keys(obj).find(val => val.toLowerCase() === key.toLowerCase())
 }
 
-function findKeyInSchemaCaseInsensitive(name: string, schema: ISchema) {
+function findKeyInSchemaCaseInsensitive(name: string, schema: express.ISchema) {
   return (
     findKeyCaseInsensitive(name, schema.types) ||
     findKeyCaseInsensitive(name, schema.entities) ||
@@ -29,7 +23,11 @@ function findKeyInSchemaCaseInsensitive(name: string, schema: ISchema) {
   )
 }
 
-function getDerivedProps(entity: IEntity, schema: ISchema, origin?: string) {
+function getDerivedProps(
+  entity: express.IEntity,
+  schema: express.ISchema,
+  origin?: string
+) {
   if (entity.supertype) {
     const parent = findInSchema(entity.supertype, schema)
     const derived = getDerivedProps(parent, schema, origin || entity.name)
@@ -43,13 +41,13 @@ function getDerivedProps(entity: IEntity, schema: ISchema, origin?: string) {
 }
 
 export class ifc2ts implements SchemaToCode {
-  release: ISchema
+  release: express.ISchema
   releaseDocs: any
   fileExt: string = ".ts"
   NOT_IMP = "throw new Error('Function not implemented yet')"
   IND = 4
 
-  constructor(schema: ISchema, docs: any) {
+  constructor(schema: express.ISchema, docs: any) {
     this.release = schema
     this.releaseDocs = docs
   }
@@ -156,7 +154,7 @@ export class ifc2ts implements SchemaToCode {
     return `import { ${name} } from '${path}'`
   }
 
-  convertType(type: IType): string {
+  convertType(type: express.IType): string {
     let moduleOut = `export default ${type.name}`
     let header = this.getFileHeader([type.name])
     let imports = {}
@@ -220,7 +218,7 @@ export class ifc2ts implements SchemaToCode {
     }
   }
 
-  convertEntity(entity: IEntity): string {
+  convertEntity(entity: express.IEntity): string {
     let imports = {}
 
     let doc = this.releaseDocs.entities[entity.name.toLowerCase()]
@@ -264,7 +262,7 @@ export class ifc2ts implements SchemaToCode {
   }
 
   private createConstructor(
-    entity: IEntity,
+    entity: express.IEntity,
     onImport?: (name: string) => void
   ) {
     let inputs = entity.properties
@@ -313,7 +311,7 @@ export class ifc2ts implements SchemaToCode {
     return " ".repeat(this.IND).repeat(times)
   }
 
-  convertRule(rule: IRule): string {
+  convertRule(rule: express.IRule): string {
     return [
       `function ${rule.name}() {`,
 
@@ -322,7 +320,7 @@ export class ifc2ts implements SchemaToCode {
     ].join("\n")
   }
 
-  convertFunction(func: IFunction): string {
+  convertFunction(func: express.IFunction): string {
     let doc = this.releaseDocs.entities[func.name.toLowerCase()]
     let docCmnt = ""
     if (doc) {

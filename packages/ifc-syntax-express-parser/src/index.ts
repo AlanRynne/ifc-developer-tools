@@ -3,11 +3,7 @@ import grammar from "./grammar"
 import fs from "fs"
 import readline from "readline"
 
-export { ISchema } from "./express/ISchema"
-export { IType } from "./express/IType"
-export { IRule } from "./express/IRule"
-export { IFunction } from "./express/IFunction"
-export { IEntity } from "./express/IEntity"
+export * as express from "./express"
 
 export class ExpressParser {
   private parser: nearley.Parser

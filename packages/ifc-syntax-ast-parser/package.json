@@ -11,7 +11,7 @@
   "author": "Alan Rynne",
   "license": "MIT",
   "scripts": {
-    "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.ts && tsc -b",
+    "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.g.ts && tsc -b",
     "test": "jest",
     "pretest": "npm run build",
     "coverage": "jest --coverage",
