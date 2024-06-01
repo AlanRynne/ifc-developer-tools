@@ -1,13 +1,6 @@
- import {
-  TextDocument,
-  Diagnostic,
-  DiagnosticSeverity
-} from "vscode-languageserver"
-import {
-  hasDiagnosticRelatedInformationCapability,
-  connection,
-  IfcDocManager
-} from "../server"
+import { TextDocument } from "vscode-languageserver-textdocument"
+import { connection } from "../server"
+import { IfcDocManager } from "../documents"
 import { getDocumentSettings } from "../settings"
 
 export async function validateTextDocument(

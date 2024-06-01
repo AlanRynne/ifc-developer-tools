@@ -1,5 +1,5 @@
 import { TextDocumentPositionParams, Hover } from "vscode-languageserver"
-import { documents, IfcDocManager } from "../server"
+import { documents, IfcDocManager } from "../documents"
 import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
 import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
 import IfcSchemas from "../schemas"
@@ -32,6 +32,12 @@ export const processHoverData = async (params: TextDocumentPositionParams) => {
       if (entity) {
         let hover: Hover = {
           contents: entityDataToText(entity, version, schema),
+          range: lineRange
+        }
+        return hover
+      } else {
+        let hover: Hover = {
+          contents: "Entity not found",
           range: lineRange
         }
         return hover

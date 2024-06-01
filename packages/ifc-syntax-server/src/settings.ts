@@ -1,9 +1,6 @@
-import {
-  hasConfigurationCapability,
-  globalSettings,
-  documentSettings,
-  connection
-} from "./server"
+import { connection, globalSettings } from "./server"
+import { documentSettings } from './documents'
+import { hasConfigurationCapability } from "./setupConnectionEvents"
 
 // The example settings
 export interface IfcSyntaxSettings {
@@ -22,7 +19,7 @@ export const DefaultSettings: IfcSyntaxSettings = {
     maxNumberOfProblems: 1000
   },
   parser: {
-    maxLineLength: 1000000
+    maxLineLength: 1000
   }
 }
 

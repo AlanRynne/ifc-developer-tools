@@ -31,6 +31,35 @@
   ],
   "main": "dist/extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "IFC Syntax",
+      "properties": {
+        "ifcSyntax.server.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "(Experimental) Enables the IFC Language Server"
+        },
+        "ifcSyntax.server.maxNumberOfProblems": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "(Experimental) Controls the maximum number of problems produced by the server."
+        },
+        "ifcSyntax.server.trace": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "(Experimental) Traces the communication between VS Code and the language server."
+        }
+      }
+    },
     "languages": [
       {
         "id": "ifc",
@@ -73,6 +102,13 @@
     "build": "tsc -b",
     "watch": "tsc -b -w",
     "publish:vsce": "vsce publish --skip-duplicate"
+  },
+  "dependencies": {
+    "@alanrynne/ifc-syntax-ast-parser": "^0.2.3",
+    "@alanrynne/ifc-syntax-express-parser": "^0.2.3",
+    "@alanrynne/ifc-syntax-server": "^0.2.3",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

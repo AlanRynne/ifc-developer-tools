@@ -13,6 +13,7 @@
   },
   "scripts": {
     "lerna": "lerna",
+    "lerna-watch": "lerna watch --verbose -- lerna run build --scope=\\$LERNA_PACKAGE_NAME ",
     "lint:dependency-versions": "check-dependency-version-consistency .",
     "lint:dependency-versions:fix": "check-dependency-version-consistency . --fix"
   },

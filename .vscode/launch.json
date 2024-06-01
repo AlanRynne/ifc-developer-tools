@@ -3,14 +3,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/packages/ifc-test/"
-      ],
-      "name": "Launch Extension",
-      "request": "launch",
-      "type": "extensionHost"
-    },
-    {
       "type": "extensionHost",
       "request": "launch",
       "name": "Launch Client",
@@ -19,10 +11,6 @@
         "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
       ],
       "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
-      "preLaunchTask": {
-        "type": "npm",
-        "script": "watch"
-      },
       "sourceMaps": true
     },
     {

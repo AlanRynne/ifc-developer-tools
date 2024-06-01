@@ -1,18 +1,16 @@
 import { Ifc2Ast, Ifc2AstConfig } from "@alanrynne/ifc-syntax-ast-parser"
-import IfcParser from "@alanrynne/ifc-syntax-parser"
 import { ASTNode } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver"
-import { connection, documents, globalSettings } from "./server"
+import { connection, globalSettings } from "./server"
+import { documents } from "./documents"
 
 class IfcDocumentManager {
   private documentResults: Map<string, ASTNode>
   private documentParseErrors: Map<string, Diagnostic[]>
-  private documentValidationErrors: Map<string, Diagnostic[]>
 
   constructor() {
     this.documentResults = new Map<string, ASTNode>()
     this.documentParseErrors = new Map<string, Diagnostic[]>()
-    this.documentValidationErrors = new Map<string, Diagnostic[]>()
   }
   async getDiagnostics(uri: string) {
     return this.documentParseErrors[uri] ?? []
@@ -31,6 +29,7 @@ class IfcDocumentManager {
 
   update(uri: string) {
     console.log("updating ast of doc:", uri)
+
     return this.parseDocument(uri).then(value => {
       console.log("document finished", uri)
       this.documentResults[uri] = value
@@ -45,13 +44,15 @@ class IfcDocumentManager {
 
   private async parseDocument(uri: string) {
     console.log("parsing doc", uri)
+
     let doc = documents.get(uri)
     let text = doc ? doc.getText() : null
+
     let diagnostics: Diagnostic[] = []
     if (text) {
       var config = new Ifc2AstConfig()
+
       config.maxLineLength = globalSettings.parser.maxLineLength
-      var v2parse = IfcParser.parse(text)
       return await new Ifc2Ast(config)
         .parseIfcFile(text.split(/[\n\r]/), true, err => {
           // Handle parse errors
