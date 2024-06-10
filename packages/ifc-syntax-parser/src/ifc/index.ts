@@ -1,4 +1,4 @@
-import { CstParser, CstNode } from "chevrotain"
+import { CstParser, CstNode, ILexingError, IRecognitionException } from "chevrotain"
 import * as lexer from "./lexer"
 
 type ParserRule = (idx?: number, ...args: any[]) => CstNode
@@ -191,6 +191,11 @@ export class IfcParser extends CstParser {
 export const parserInstance = new IfcParser()
 
 // ----------------- wrapping it all together -----------------
+export type ParserResult = {
+  cst: CstNode
+  lexErrors: ILexingError[]
+  parseErrors: IRecognitionException[]
+}
 
 export function parse(text: string) {
   // tokenize input text

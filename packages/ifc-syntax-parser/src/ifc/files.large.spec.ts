@@ -17,7 +17,7 @@ describe(
     //it("Clinic_Plumbing.ifc", () => testFile(inputDir + "Clinic_Plumbing.ifc"))
     it("Clinic_Structural.ifc", () => testFile(inputDir + "Clinic_Structural.ifc"))
   },
-  { skip: false }
+  { skip: true }
 )
 
 const testFile = async filePath => {

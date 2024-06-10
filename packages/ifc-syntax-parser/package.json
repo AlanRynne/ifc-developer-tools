@@ -9,8 +9,7 @@
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b --watch",
-    "test": "vitest run --config ../../vitest.config.ts",
-    "coverage": "vitest --coverage",
+    "test": "vitest run",
     "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],

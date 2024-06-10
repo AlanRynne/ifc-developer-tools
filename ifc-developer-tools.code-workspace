@@ -78,18 +78,6 @@
       "**/node_modules": false
     },
     "testing.openTesting": "neverOpen",
-    "jest.outputConfig": {
-      "revealOn": "run",
-      "revealWithFocus": "none",
-      "clearOnRun": "both"
-    },
-    "jest.disabledWorkspaceFolders": [
-      "root",
-      "ifc-syntax-codegen",
-      "ifc-syntax-docgen",
-      "ifc-syntax-vscode",
-      "ifc-syntax-server"
-    ],
-    "jest.runMode": "on-demand"
+    "typescript.tsdk": "node_modules/typescript/lib"
   }
 }

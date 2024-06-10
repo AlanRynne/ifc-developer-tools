@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "vitest run --config ../../vitest.config.ts",
-    "coverage": "vitest run --config ../../vitest.config.ts --coverage",
+    "test": "vitest run",
     "build": "npm run build-grammar && tsc -b",
     "build-grammar": "nearleyc src/grammar/express.grammar.ne --out src/grammar/grammar.g.ts",
     "compile": "tsc -b",

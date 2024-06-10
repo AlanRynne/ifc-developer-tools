@@ -13,9 +13,8 @@
   "license": "MIT",
   "scripts": {
     "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.g.ts && tsc -b",
-    "test": "vitest run --config ../../vitest.config.ts",
+    "test": "vitest run",
     "pretest": "npm run build",
-    "coverage": "vitest --coverage",
     "diagrams": "nearley-railroad ./src/grammar/grammar.ne -o ./docs/ifc-diagrams.html",
     "prepublishOnly": "npm test",
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
