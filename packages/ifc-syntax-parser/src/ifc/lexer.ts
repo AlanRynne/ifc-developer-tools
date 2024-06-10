@@ -92,7 +92,7 @@ export const DateTime = createToken({
 
 export const Id = createToken({
   name: "Id",
-  pattern: /#\d+/,
+  pattern: /#\d+/
 })
 
 export const Word = createToken({
@@ -150,6 +150,6 @@ export const allTokens: IMultiModeLexerDefinition = {
   defaultMode: "fileMode"
 }
 
-export const IfcLexer = new Lexer(allTokens, {
+export const lexerInstance = new Lexer(allTokens, {
   positionTracking: "onlyOffset"
 })

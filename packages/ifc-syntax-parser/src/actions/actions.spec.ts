@@ -2,6 +2,7 @@ import { toAst } from "./definitionVisitor"
 import fs from "fs"
 import dir from "node-dir"
 import path from "path"
+import { describe, it, expect } from "vitest"
 
 const INDIR = "../../examples/ifc/ifcKit"
 

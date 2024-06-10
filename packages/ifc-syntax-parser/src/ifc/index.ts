@@ -1,6 +1,5 @@
 import { CstParser, CstNode } from "chevrotain"
 import * as lexer from "./lexer"
-import { debuglog } from "util"
 
 type ParserRule = (idx?: number, ...args: any[]) => CstNode
 
@@ -189,23 +188,23 @@ export class IfcParser extends CstParser {
   }
 }
 
-export const parser = new IfcParser()
+export const parserInstance = new IfcParser()
 
 // ----------------- wrapping it all together -----------------
 
 export function parse(text: string) {
   // tokenize input text
-  const lexResult = lexer.IfcLexer.tokenize(text)
+  const lexResult = lexer.lexerInstance.tokenize(text)
 
   // setting a new input will RESET the parser instance's state.
-  parser.input = lexResult.tokens
+  parserInstance.input = lexResult.tokens
 
   // any top level rule may be used as an entry point
-  const cst = parser.ifc()
+  const cst = parserInstance.ifc()
 
   return {
     cst: cst,
     lexErrors: lexResult.errors,
-    parseErrors: parser.errors
+    parseErrors: parserInstance.errors
   }
 }

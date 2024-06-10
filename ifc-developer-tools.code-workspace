@@ -51,12 +51,8 @@
         "request": "launch",
         "name": "Launch Client",
         "runtimeExecutable": "${execPath}",
-        "args": [
-          "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
-        ],
-        "outFiles": [
-          "${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"
-        ],
+        "args": ["--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"],
+        "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
         "sourceMaps": true
       },
       {
@@ -93,6 +89,7 @@
       "ifc-syntax-docgen",
       "ifc-syntax-vscode",
       "ifc-syntax-server"
-    ]
+    ],
+    "jest.runMode": "on-demand"
   }
 }

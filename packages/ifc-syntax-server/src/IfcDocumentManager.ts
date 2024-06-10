@@ -83,6 +83,7 @@ class IfcDocumentManager {
           connection.sendDiagnostics({ uri, diagnostics })
         })
     }
+    return undefined
   }
 }
 

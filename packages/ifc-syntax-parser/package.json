@@ -1,33 +1,36 @@
 {
   "name": "@alanrynne/ifc-syntax-parser",
+  "type": "module",
   "version": "0.2.5",
   "description": "Parser for IFC files based in Chevrotain.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "test": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest",
-    "coverage": "node --max_old_space_size=8192 --expose-gc ./node_modules/.bin/jest --coverage",
+    "build": "tsc -b",
+    "watch": "tsc -b --watch",
+    "test": "vitest run --config ../../vitest.config.ts",
+    "coverage": "vitest --coverage",
     "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chevrotain": "^9.0.1"
+    "chevrotain": "^11.0.0",
+    "chevrotain-allstar": "^0.3.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.165",
     "@types/node": "^20.12.12",
     "@types/node-dir": "0.0.33",
-    "jest": "^29.7.0",
     "lodash": "^4.17.20",
     "node-dir": "^0.1.17",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "ts-node": {
+    "esm": true
   },
   "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

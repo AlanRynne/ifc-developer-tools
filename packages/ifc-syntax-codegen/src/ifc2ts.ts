@@ -77,6 +77,8 @@ export class ifc2ts implements SchemaToCode {
       )
     )
       return "types"
+
+    throw new Error(`Could not find type for name: ${name}`)
   }
 
   getFileHeader(entities: string[]): string {

@@ -76,8 +76,10 @@ class SymbolProvider implements IVisitor {
       )
     } else {
       // console.log("Other node: " + node.constructor.name)
+      return undefined
     }
   }
+
   convertRange(range: ASTRange) {
     return {
       start: { line: range.start.line - 1, character: range.start.character },

@@ -1,6 +1,7 @@
 {
   "name": "@alanrynne/ifc-syntax-ast-parser",
   "version": "0.2.4",
+  "type": "module",
   "description": "An abstract syntax tree generator for IFC files.",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -12,11 +13,10 @@
   "license": "MIT",
   "scripts": {
     "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.g.ts && tsc -b",
-    "test": "jest",
+    "test": "vitest run --config ../../vitest.config.ts",
     "pretest": "npm run build",
-    "coverage": "jest --coverage",
+    "coverage": "vitest --coverage",
     "diagrams": "nearley-railroad ./src/grammar/grammar.ne -o ./docs/ifc-diagrams.html",
-    "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "clean": "rm -rf ./dist && rm tsconfig.tsbuildinfo"
   },
@@ -33,14 +33,12 @@
     "nearley": "^2.20.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.12",
     "@types/node-dir": "0.0.33",
     "directory-tree": "^2.2.9",
-    "jest": "^29.7.0",
     "node-dir": "^0.1.17",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }

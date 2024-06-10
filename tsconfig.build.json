@@ -9,11 +9,13 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "target": "es2015",
     "composite": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true
   }
 }

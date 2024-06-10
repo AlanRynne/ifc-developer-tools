@@ -30,6 +30,8 @@ export function findDefinitionNode(doc: ASTNode, position: Position): ASTNode {
 
   if (pv instanceof nodes.VariableNode)
     return new ASTDefinitionFinderVisitor().visit(doc, pv.id)
+
+  return undefined
 }
 
 function toEditorRange(loc: ASTRange): Range {

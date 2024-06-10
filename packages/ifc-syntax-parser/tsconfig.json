@@ -3,10 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "skipLibCheck": true,
-    "noImplicitReturns": true,
-    "strictNullChecks": false,
-    "forceConsistentCasingInFileNames": true
+    "types": []
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist, **/*.spec.ts"]
