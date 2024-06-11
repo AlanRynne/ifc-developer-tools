@@ -1,12 +1,7 @@
-import ifcGrammar from "./grammar/ifc" // Nearley generated file, not commited to source code!!
+import { ifcGrammar } from "./grammar" // Nearley generated file, not committed to source code!!
 import * as nearley from "nearley"
 import { ASTNode } from "./ast"
-import { DocumentNode } from "./ast/nodes"
-import {
-  ASTDefinitionVisitor,
-  ASTPositionVisitor
-} from "./ast/visitor/ASTVisitor"
-import { debug } from "console"
+import { ASTDefinitionFinderVisitor, ASTPositionVisitor } from "./ast"
 
 // The compiled nearley grammar
 export default ifcGrammar
@@ -83,5 +78,5 @@ export class Ifc2Ast {
   }
 }
 
-export const DefinitionVisitor = ASTDefinitionVisitor
+export const DefinitionVisitor = ASTDefinitionFinderVisitor
 export const PositionVisitor = ASTPositionVisitor

@@ -1,12 +1,5 @@
 import * as ifc4x2docs from "./ifc4x2docs.json"
-import {
-  ISchema,
-  IType,
-  IEntity,
-  IFunction,
-  IRule,
-  ExpressParser
-} from "@alanrynne/ifc-syntax-express-parser"
+import { express, ExpressParser } from "@alanrynne/ifc-syntax-express-parser"
 import { ifc2ts } from "./ifc2ts"
 
 export const ExpressTypes = {
@@ -25,11 +18,11 @@ export const ExpressTypes = {
 export interface SchemaToCodeOptions {}
 
 export interface SchemaToCode {
-  release: ISchema
-  convertType(type: IType): string
-  convertEntity(entity: IEntity): string
-  convertRule(rule: IRule): string
-  convertFunction(func: IFunction): string
+  release: express.ISchema
+  convertType(type: express.IType): string
+  convertEntity(entity: express.IEntity): string
+  convertRule(rule: express.IRule): string
+  convertFunction(func: express.IFunction): string
 
   getFileHeader(entities: string[]): string
 
@@ -63,4 +56,3 @@ async function buildTSFiles() {
 }
 
 buildTSFiles()
-

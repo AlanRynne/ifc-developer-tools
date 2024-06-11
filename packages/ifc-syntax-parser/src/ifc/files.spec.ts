@@ -3,6 +3,7 @@ import dir from "node-dir"
 import path from "path"
 import { parse } from "."
 import { checkParseResult } from "../checkParseResult"
+import { describe, it } from "vitest"
 
 const INDIR = "../../examples/ifc/ifcKit"
 

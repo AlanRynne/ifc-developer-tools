@@ -3,11 +3,7 @@ import grammar from "./grammar"
 import fs from "fs"
 import readline from "readline"
 
-export { ISchema } from "./express/ISchema"
-export { IType } from "./express/IType"
-export { IRule } from "./express/IRule"
-export { IFunction } from "./express/IFunction"
-export { IEntity } from "./express/IEntity"
+export * as express from "./express"
 
 export class ExpressParser {
   private parser: nearley.Parser
@@ -45,27 +41,19 @@ export class ExpressParser {
         if (this.parser.results.length != 0) {
           if (this.parser.results[0] != null) {
             var expEnt = this.parser.results[0]
-            if (expEnt.ifcType == "type")
-              expressSchema.types[expEnt.name] = expEnt
-            else if (expEnt.ifcType == "entity")
-              expressSchema.entities[expEnt.name] = expEnt
-            else if (expEnt.ifcType == "function")
-              expressSchema.functions[expEnt.name] = expEnt
-            else if (expEnt.ifcType == "rule")
-              expressSchema.rules[expEnt.name] = expEnt
-            else if (expEnt.ifcType == "comment")
-              expressSchema.header = expEnt.value
-            else if (expEnt.name == "schema")
-              expressSchema.schema = expEnt.version
+            if (expEnt.ifcType == "type") expressSchema.types[expEnt.name] = expEnt
+            else if (expEnt.ifcType == "entity") expressSchema.entities[expEnt.name] = expEnt
+            else if (expEnt.ifcType == "function") expressSchema.functions[expEnt.name] = expEnt
+            else if (expEnt.ifcType == "rule") expressSchema.rules[expEnt.name] = expEnt
+            else if (expEnt.ifcType == "comment") expressSchema.header = expEnt.value
+            else if (expEnt.name == "schema") expressSchema.schema = expEnt.version
             else {
               let name: string = expEnt.name
               // TODO: Ignored this compiling error, but this should be type checked.
               // @ts-ignore
               expressSchema[name] = expEnt
             }
-            this.parser = new nearley.Parser(
-              nearley.Grammar.fromCompiled(grammar)
-            )
+            this.parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar))
           }
         } else if (this.parser.results.length > 1) {
           reject("AMBIGUOUS LINE! Line" + line)

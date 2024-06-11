@@ -2,6 +2,7 @@
   "name": "@alanrynne/ifc-syntax-server",
   "author": "Alan Rynne",
   "version": "0.2.5",
+  "type": "module",
   "description": "Language server for IFC files.",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",

@@ -2,6 +2,7 @@
   "name": "@alanrynne/ifc-syntax-codegen",
   "version": "0.2.4",
   "description": "Typescript generator for IFC files",
+  "type": "module",
   "main": "dist/index.js",
   "private": true,
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",
