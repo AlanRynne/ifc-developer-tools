@@ -1,4 +1,4 @@
-import { IfcParser } from "../ifc";
+import { parserInstance } from "../ifc"
 
-export const parserInstance = new IfcParser();
-export const BaseIFCVisitor = parserInstance.getBaseCstVisitorConstructorWithDefaults();
+export const BaseIFCVisitor =
+  parserInstance.getBaseCstVisitorConstructorWithDefaults()

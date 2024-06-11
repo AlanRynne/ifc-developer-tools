@@ -1,9 +1,3 @@
-import * as ifcParserModule from "./ifc"
-import * as ifcLexerModule from "./ifc/lexer"
-import * as ifcActions from "./actions"
-
-export default {
-  ...ifcParserModule,
-  ...ifcLexerModule,
-  ...ifcActions
-}
+export * as parser from "./ifc"
+export * as lexer from "./ifc/lexer"
+export * as actions from "./actions"

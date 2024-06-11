@@ -1,33 +1,27 @@
 import fs from "fs"
-import dir from "node-dir"
-import path from "path"
 import { parse } from "."
-import { checkParseResult } from '../checkParseResult'
+import { describe, it } from "vitest"
+import { checkParseResult } from "../checkParseResult"
 
-const INDIR = "../../examples/ifc/bigFiles"
+const inputDir = "../../examples/ifc/bigFiles/"
 
-if (fs.existsSync(INDIR)) {
-  var files = dir.files(INDIR, { sync: true })
-  var ifcFiles = files?.filter(file => path.extname(file) === ".ifc")
-} else {
-  var ifcFiles: string[] = []
+describe(
+  "Large Files",
+  () => {
+    it("1604-SA65_EST.ifc", () => testFile(inputDir + "1604-SA65_EST.ifc"))
+    it("20200820IFC4_Convenience_store_Renga_4.1.ifc", () =>
+      testFile(inputDir + "20200820IFC4_Convenience_store_Renga_4.1.ifc"))
+    it("Clinic_Architectural.ifc", () => testFile(inputDir + "Clinic_Architectural.ifc"))
+    it("Clinic_Electrical.ifc", () => testFile(inputDir + "Clinic_Electrical.ifc"))
+    it("Clinic_HVAC.ifc", () => testFile(inputDir + "Clinic_HVAC.ifc"))
+    //it("Clinic_Plumbing.ifc", () => testFile(inputDir + "Clinic_Plumbing.ifc"))
+    it("Clinic_Structural.ifc", () => testFile(inputDir + "Clinic_Structural.ifc"))
+  },
+  { skip: true }
+)
+
+const testFile = async filePath => {
+  var contents = fs.readFileSync(filePath).toString()
+  var result = parse(contents)
+  checkParseResult(result, "ifc")
 }
-
-if (ifcFiles != undefined)
-  describe("Large Files", () => {
-    it("Dummy test", () => {
-      expect(true)
-    })
-
-    ifcFiles?.forEach(path => {
-      it(
-        path,
-        async () => {
-          var contents = fs.readFileSync(path).toString()
-          var result = parse(contents)
-          checkParseResult(result, "ifc")
-        },
-        1000
-      )
-    })
-  })

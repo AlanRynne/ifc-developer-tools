@@ -2,6 +2,7 @@
   "name": "@alanrynne/ifc-syntax-docgen",
   "version": "0.2.4",
   "description": "IFC Doc2Json Generator",
+  "type": "module",
   "main": "index.js",
   "private": true,
   "repository": "https://github.com/AlanRynne/ifc-developer-tools",

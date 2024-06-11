@@ -51,12 +51,8 @@
         "request": "launch",
         "name": "Launch Client",
         "runtimeExecutable": "${execPath}",
-        "args": [
-          "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"
-        ],
-        "outFiles": [
-          "${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"
-        ],
+        "args": ["--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"],
+        "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
         "sourceMaps": true
       },
       {
@@ -82,17 +78,6 @@
       "**/node_modules": false
     },
     "testing.openTesting": "neverOpen",
-    "jest.outputConfig": {
-      "revealOn": "run",
-      "revealWithFocus": "none",
-      "clearOnRun": "both"
-    },
-    "jest.disabledWorkspaceFolders": [
-      "root",
-      "ifc-syntax-codegen",
-      "ifc-syntax-docgen",
-      "ifc-syntax-vscode",
-      "ifc-syntax-server"
-    ]
+    "typescript.tsdk": "node_modules/typescript/lib"
   }
 }

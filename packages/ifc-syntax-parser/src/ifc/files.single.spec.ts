@@ -1,18 +1,18 @@
 import fs from "fs"
-import { IfcLexer } from "./lexer"
-import { parser } from "./index"
+import { lexerInstance } from "./lexer"
+import { parserInstance } from "./index"
+import { describe, it, expect } from "vitest"
 
 const path = "../../examples/ifc/TestIFC-001.ifc"
 
 describe("Single file test", () => {
   it(path, async () => {
     var contents = fs.readFileSync(path).toString()
-    const lexResult = IfcLexer.tokenize(contents)
+    const lexResult = lexerInstance.tokenize(contents)
 
     expect(lexResult.errors.length).toBe(0)
+    parserInstance.input = lexResult.tokens
 
-    parser.input = lexResult.tokens
-
-    var res = parser.ifc()
+    var res = parserInstance.ifc()
   })
 })

@@ -1,4 +1,3 @@
-import { parse } from "../ifc"
 import { BaseIFCVisitor } from "./BaseIFCVisitor"
 
 export class IfcDefinitionVisitor extends BaseIFCVisitor {
@@ -75,16 +74,9 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
     var value = Object.values(ctx).map((val: any) => {
       return val[0]
     })
-    if (value.length > 1)
-      throw Error("Collection value had more than one value.")
+    if (value.length > 1) throw Error("Collection value had more than one value.")
     return value[0]
   }
 }
 
 export const definitionVisitor = new IfcDefinitionVisitor()
-
-export function toAst(inputText: string) {
-  const result = parse(inputText)
-  const defs = definitionVisitor.visit(result.cst)
-  return defs
-}

@@ -4,14 +4,11 @@ import * as path from "path"
 import * as readline from "readline"
 import { Ifc2Ast } from "./main"
 import { DocumentNode } from "./ast/nodes"
-import {
-  ASTPositionVisitor,
-  ASTDefinitionFinderVisitor,
-  ASTDefinitionVisitor
-} from "./ast/visitor/ASTVisitor"
+import { ASTPositionVisitor, ASTDefinitionFinderVisitor, ASTDefinitionVisitor } from "./ast/visitor/ASTVisitor"
 import { ASTPosition } from "./ast/core/ASTPosition"
 import { ASTNode, ASTType } from "./ast"
 import { debug } from "console"
+import { describe, it, expect } from "vitest"
 
 const INDIR = "../../examples/ifc/ifcKit"
 
@@ -46,7 +43,6 @@ async function readLines(path: string) {
       lines.push(line)
     })
     rl.on("close", _ => {
-      console.timeEnd("byline")
       resolve(lines)
     })
   })

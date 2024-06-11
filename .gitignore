@@ -17,7 +17,7 @@
 !**/.gitkeep
 
 # **/packages/ifc*-ts/
-examples/ifc/bigFiles/
+examples/ifc/bigFiles/**
 
 
 **/bin/

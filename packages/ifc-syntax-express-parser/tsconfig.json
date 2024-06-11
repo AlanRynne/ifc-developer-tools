@@ -6,8 +6,6 @@
     "checkJs": false,
     "outDir": "dist",
     "rootDir": "src",
-    "baseUrl": ".",
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
+    "baseUrl": "."
   }
 }

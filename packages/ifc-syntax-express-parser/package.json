@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
+    "test": "vitest run --coverage",
     "build": "npm run build-grammar && tsc -b",
     "build-grammar": "nearleyc src/grammar/express.grammar.ne --out src/grammar/grammar.g.ts",
     "compile": "tsc -b",
@@ -29,11 +28,10 @@
     "nearley": "^2.20.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
     "@types/moo": "^0.5.9",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.5"
+    "@vitest/coverage-v8": "^1.6.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "gitHead": "d6b73f141d615e8cea77aab9d193105f80217481"
 }
