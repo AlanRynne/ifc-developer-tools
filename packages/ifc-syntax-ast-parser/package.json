@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "build": "nearleyc ./src/grammar/grammar.ne --out ./src/grammar/ifc.g.ts && tsc -b",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "pretest": "npm run build",
     "diagrams": "nearley-railroad ./src/grammar/grammar.ne -o ./docs/ifc-diagrams.html",
     "prepublishOnly": "npm test",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@types/node-dir": "0.0.33",
+    "@vitest/coverage-v8": "^1.6.0",
     "directory-tree": "^2.2.9",
     "node-dir": "^0.1.17",
     "typescript": "^5.4.5",

@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b --watch",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "@types/lodash": "^4.14.165",
     "@types/node": "^20.12.12",
     "@types/node-dir": "0.0.33",
+    "@vitest/coverage-v8": "^1.6.0",
     "lodash": "^4.17.20",
     "node-dir": "^0.1.17",
     "typescript": "^5.4.5",

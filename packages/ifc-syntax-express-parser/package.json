@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "build": "npm run build-grammar && tsc -b",
     "build-grammar": "nearleyc src/grammar/express.grammar.ne --out src/grammar/grammar.g.ts",
     "compile": "tsc -b",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/moo": "^0.5.9",
+    "@vitest/coverage-v8": "^1.6.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   },
