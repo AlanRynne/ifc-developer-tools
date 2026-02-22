@@ -10,24 +10,25 @@
     "build": "tsc -b",
     "watch": "tsc -b --watch",
     "test": "vitest run --coverage",
+    "test:large": "NODE_OPTIONS='--max-old-space-size=12288 --expose-gc' vitest run --config vitest.large.config.ts",
     "clean": "rm -rf dist  tsconfig.tsbuildinfo"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chevrotain": "^11.0.0",
+    "chevrotain": "^11.1.1",
     "chevrotain-allstar": "^0.3.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.165",
+    "@types/lodash": "^4.17.23",
     "@types/node": "^20.12.12",
-    "@types/node-dir": "0.0.33",
-    "@vitest/coverage-v8": "^1.6.0",
-    "lodash": "^4.17.20",
+    "@types/node-dir": "^0.0.37",
+    "@vitest/coverage-v8": "^3.2.0",
+    "lodash": "^4.17.21",
     "node-dir": "^0.1.17",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.0"
   },
   "ts-node": {
     "esm": true

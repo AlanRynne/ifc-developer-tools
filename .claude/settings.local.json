@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm show:*)",
+      "Bash(tail:*)",
+      "Bash(cd /Users/alan/Desktop/Repos/ifc-developer-tools/packages/ifc-syntax-parser && npm run build 2>&1)",
+      "Bash(npm test:*)",
+      "Bash(npm run:*)",
+      "Bash(head:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

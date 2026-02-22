@@ -27,7 +27,7 @@ export const WhiteSpace = createToken({
   group: Lexer.SKIPPED
 })
 
-export const AnyString = createToken({ name: "AnyString", pattern: /\'.*?\'/ })
+export const AnyString = createToken({ name: "AnyString", pattern: /\'(?:[^']|'')*\'/ })
 
 export const Undefined = createToken({ name: "Undefined", pattern: /[$]/ })
 
@@ -124,15 +124,15 @@ const collectionMode = [
   WhiteSpace,
   Id,
   EndTag,
+  LogicalBool,
   EnumValue,
   TypeRef,
   RealLiteral,
   StringLiteral,
   Comment,
-  AnyString,
   DateTime,
+  AnyString,
   Derived,
-  LogicalBool,
   Word,
   LParen,
   RParen,

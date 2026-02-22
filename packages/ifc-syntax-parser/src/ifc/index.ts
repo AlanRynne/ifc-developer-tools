@@ -28,11 +28,6 @@ export class IfcParser extends CstParser {
   private entity: ParserRule
   private parameter: ParserRule
 
-  // OR rule optimization props
-  private colValueOr: any = undefined
-  private paramOr: any = undefined
-  private headValueOr: any = undefined
-
   constructor() {
     super(lexer.allTokens, {
       // by default the error recovery / fault tolerance capabilities are disabled
@@ -109,14 +104,12 @@ export class IfcParser extends CstParser {
     })
 
     this.RULE("headerValue", () => {
-      this.OR(
-        this.headValueOr ||
-          (this.headValueOr = [
-            { ALT: () => this.SUBRULE(this.collection) },
-            { ALT: () => this.CONSUME(lexer.Undefined) },
-            { ALT: () => this.CONSUME(lexer.AnyString) }
-          ])
-      )
+      this.OR([
+        { ALT: () => this.SUBRULE(this.collection) },
+        { ALT: () => this.CONSUME(lexer.Undefined) },
+        { ALT: () => this.CONSUME(lexer.DateTime) },
+        { ALT: () => this.CONSUME(lexer.AnyString) }
+      ])
     })
 
     this.RULE("instance", () => {
@@ -139,18 +132,16 @@ export class IfcParser extends CstParser {
     })
 
     this.RULE("collectionValue", () => {
-      this.OR(
-        this.colValueOr ||
-          (this.colValueOr = [
-            { ALT: () => this.SUBRULE(this.collection) },
-            { ALT: () => this.SUBRULE(this.entity) },
-            { ALT: () => this.CONSUME(lexer.RealLiteral) },
-            { ALT: () => this.CONSUME(lexer.StringLiteral) },
-            { ALT: () => this.CONSUME(lexer.AnyString) },
-            { ALT: () => this.CONSUME(lexer.Id) },
-            { ALT: () => this.CONSUME(lexer.Undefined) }
-          ])
-      )
+      this.OR([
+        { ALT: () => this.SUBRULE(this.collection) },
+        { ALT: () => this.SUBRULE(this.entity) },
+        { ALT: () => this.CONSUME(lexer.RealLiteral) },
+        { ALT: () => this.CONSUME(lexer.StringLiteral) },
+        { ALT: () => this.CONSUME(lexer.DateTime) },
+        { ALT: () => this.CONSUME(lexer.AnyString) },
+        { ALT: () => this.CONSUME(lexer.Id) },
+        { ALT: () => this.CONSUME(lexer.Undefined) }
+      ])
     })
 
     this.RULE("entity", () => {
@@ -167,21 +158,19 @@ export class IfcParser extends CstParser {
     })
 
     this.RULE("parameter", () => {
-      this.OR(
-        this.paramOr ||
-          (this.paramOr = [
-            { ALT: () => this.SUBRULE(this.entity) },
-            { ALT: () => this.SUBRULE(this.collection) },
-            { ALT: () => this.CONSUME(lexer.StringLiteral) },
-            { ALT: () => this.CONSUME(lexer.Undefined) },
-            { ALT: () => this.CONSUME(lexer.Derived) },
-            { ALT: () => this.CONSUME(lexer.EnumValue) },
-            { ALT: () => this.CONSUME(lexer.LogicalBool) },
-            { ALT: () => this.CONSUME(lexer.RealLiteral) },
-            { ALT: () => this.CONSUME(lexer.AnyString) },
-            { ALT: () => this.CONSUME(lexer.Id) }
-          ])
-      )
+      this.OR([
+        { ALT: () => this.SUBRULE(this.entity) },
+        { ALT: () => this.SUBRULE(this.collection) },
+        { ALT: () => this.CONSUME(lexer.StringLiteral) },
+        { ALT: () => this.CONSUME(lexer.Undefined) },
+        { ALT: () => this.CONSUME(lexer.Derived) },
+        { ALT: () => this.CONSUME(lexer.EnumValue) },
+        { ALT: () => this.CONSUME(lexer.LogicalBool) },
+        { ALT: () => this.CONSUME(lexer.RealLiteral) },
+        { ALT: () => this.CONSUME(lexer.DateTime) },
+        { ALT: () => this.CONSUME(lexer.AnyString) },
+        { ALT: () => this.CONSUME(lexer.Id) }
+      ])
     })
 
     this.performSelfAnalysis()

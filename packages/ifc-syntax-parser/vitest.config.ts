@@ -6,6 +6,7 @@ export default defineConfig({
     reporters: ["verbose"],
     maxConcurrency: 4,
     logHeapUsage: true,
+    exclude: ["**/node_modules/**", "**/files.large.spec.ts"],
     poolOptions: {
       vmThreads: {
         memoryLimit: 8196

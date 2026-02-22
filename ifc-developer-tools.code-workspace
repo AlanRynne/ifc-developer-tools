@@ -2,29 +2,36 @@
   "folders": [
     {
       "name": "root",
-      "path": "./"
+      "path": ".",
     },
     {
-      "path": "packages/ifc-syntax-ast-parser"
+      "name": "ifc-syntax-ast-parser",
+      "path": "packages/ifc-syntax-ast-parser",
     },
     {
-      "path": "packages/ifc-syntax-codegen"
+      "name": "ifc-syntax-codegen",
+      "path": "packages/ifc-syntax-codegen",
     },
     {
-      "path": "packages/ifc-syntax-docgen"
+      "name": "ifc-syntax-docgen",
+      "path": "packages/ifc-syntax-docgen",
     },
     {
-      "path": "packages/ifc-syntax-vscode"
+      "name": "ifc-syntax-vscode",
+      "path": "packages/ifc-syntax-vscode",
     },
     {
-      "path": "packages/ifc-syntax-server"
+      "name": "ifc-syntax-server",
+      "path": "packages/ifc-syntax-server",
     },
     {
-      "path": "packages/ifc-syntax-parser"
+      "name": "ifc-syntax-parser",
+      "path": "packages/ifc-syntax-parser",
     },
     {
-      "path": "packages/ifc-syntax-express-parser"
-    }
+      "name": "ifc-syntax-express-parser",
+      "path": "packages/ifc-syntax-express-parser",
+    },
   ],
   "tasks": {
     "version": "2.0.0",
@@ -38,10 +45,10 @@
         "detail": "lerna watch --verbose -- lerna run build --scope=\\$LERNA_PACKAGE_NAME ",
         "group": {
           "kind": "build",
-          "isDefault": true
-        }
-      }
-    ]
+          "isDefault": true,
+        },
+      },
+    ],
   },
   "launch": {
     "version": "0.2.0",
@@ -51,9 +58,13 @@
         "request": "launch",
         "name": "Launch Client",
         "runtimeExecutable": "${execPath}",
-        "args": ["--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/"],
-        "outFiles": ["${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js"],
-        "sourceMaps": true
+        "args": [
+          "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/",
+        ],
+        "outFiles": [
+          "${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js",
+        ],
+        "sourceMaps": true,
       },
       {
         "type": "node",
@@ -63,21 +74,22 @@
         "restart": true,
         "timeout": 20000,
         "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
-        "sourceMaps": true
-      }
+        "sourceMaps": true,
+      },
     ],
     "compounds": [
       {
         "name": "Client + Server",
-        "configurations": ["Launch Client", "Attach to Server"]
-      }
-    ]
+        "configurations": ["Launch Client", "Attach to Server"],
+      },
+    ],
   },
   "settings": {
     "files.exclude": {
-      "**/node_modules": false
+      "**/node_modules": false,
     },
     "testing.openTesting": "neverOpen",
-    "typescript.tsdk": "node_modules/typescript/lib"
-  }
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "testing.automaticallyOpenTestResults": "neverOpen",
+  },
 }

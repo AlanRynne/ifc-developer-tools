@@ -19,7 +19,7 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
 
   data(ctx: any) {
     var entities = {}
-    ctx.instance.forEach((instance: any) => {
+    ;(ctx.instance ?? []).forEach((instance: any) => {
       var i = this.visit(instance)
       entities[i.id] = i.entity
     })
@@ -27,7 +27,7 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
   }
 
   header(ctx: any) {
-    var headerData = ctx.headerInstance.map(i => this.visit(i))
+    var headerData = (ctx.headerInstance ?? []).map(i => this.visit(i))
     return {
       type: "header",
       ...headerData
@@ -53,7 +53,7 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
   entity(ctx: any) {
     var ent = {
       name: ctx.TypeRef[0].image,
-      parameter: ctx.parameter.map(p => this.visit(p))
+      parameter: (ctx.parameter ?? []).map(p => this.visit(p))
     }
     return ent
   }
@@ -66,8 +66,8 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
       return this.visit(param)
     }
 
-    delete param.tokenType
-    return param
+    const { tokenType: _, ...rest } = param
+    return rest
   }
 
   collectionValue(ctx: any) {
@@ -75,7 +75,14 @@ export class IfcDefinitionVisitor extends BaseIFCVisitor {
       return val[0]
     })
     if (value.length > 1) throw Error("Collection value had more than one value.")
-    return value[0]
+    const v = value[0]
+    if (v?.name === "entity") {
+      return this.visit(v)
+    }
+    if (v?.name === "collection") {
+      return v.children.collectionValue?.map((cv: any) => this.visit(cv)) ?? []
+    }
+    return v
   }
 }
 
