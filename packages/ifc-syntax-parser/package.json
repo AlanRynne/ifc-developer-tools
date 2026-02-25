@@ -1,6 +1,5 @@
 {
   "name": "@alanrynne/ifc-syntax-parser",
-  "type": "module",
   "version": "0.2.5",
   "description": "Parser for IFC files based in Chevrotain.js",
   "main": "dist/index.js",

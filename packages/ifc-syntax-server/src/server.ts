@@ -3,19 +3,12 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-import {
-  createConnection,
-  ProposedFeatures,
-  Connection
-} from "vscode-languageserver/node"
-
 import { setupConnectionEvents } from "./setupConnectionEvents"
 import { documents } from "./documents"
-import { IfcSyntaxSettings, DefaultSettings } from "./settings"
+import { IfcSyntaxSettings, DefaultSettings } from "./types"
+import { connection } from "./connection"
 
 export var globalSettings: IfcSyntaxSettings = DefaultSettings
-
-export let connection: Connection = createConnection(ProposedFeatures.all)
 
 setupConnectionEvents(connection)
 

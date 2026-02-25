@@ -59,10 +59,10 @@
         "name": "Launch Client",
         "runtimeExecutable": "${execPath}",
         "args": [
-          "--extensionDevelopmentPath=${workspaceRoot}/packages/ifc-syntax-vscode/",
+          "--extensionDevelopmentPath=${workspaceFolder:root}/packages/ifc-syntax-vscode/",
         ],
         "outFiles": [
-          "${workspaceRoot}/packages/ifc-syntax-vscode/dist/**/*.js",
+          "${workspaceFolder:root}/packages/ifc-syntax-vscode/dist/**/*.js",
         ],
         "sourceMaps": true,
       },
@@ -73,7 +73,7 @@
         "port": 6009,
         "restart": true,
         "timeout": 20000,
-        "outFiles": ["${workspaceRoot}/packages/**/dist/**/*.js"],
+        "outFiles": ["${workspaceFolder:root}/packages/**/dist/**/*.js"],
         "sourceMaps": true,
       },
     ],

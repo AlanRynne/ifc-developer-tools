@@ -1,7 +1,4 @@
-import {
-  DocumentNode,
-  SectionNode
-} from "@alanrynne/ifc-syntax-ast-parser/dist/ast/nodes"
+import { CstNode, IToken } from "chevrotain"
 
 export function findEntityInSchema(schema, name: string) {
   return (
@@ -200,11 +197,66 @@ function caseInsensitiveKeyValue(object: any, key: string) {
     return object[existingKey]
   }
 }
-export function getFileSchemaVersion(doc: any) {
-  let schemaObj = ((doc as DocumentNode)
-    .sections[0] as SectionNode).children.find(
-    item => (item as any).name === "FILE_SCHEMA"
-  )
-  let schema = (schemaObj as any).args[0].items[0].text
-  return schema
+export function getFileSchemaVersion(cst: CstNode): string | null {
+  const headerCst = cst.children["header"]?.[0] as CstNode | undefined
+  if (!headerCst) return null
+  for (const inst of (headerCst.children["headerInstance"] ?? [])) {
+    const instanceNode = inst as CstNode
+    const typeRefImg = (instanceNode.children["TypeRef"]?.[0] as IToken | undefined)?.image
+    if (typeRefImg !== "FILE_SCHEMA") continue
+    for (const hv of (instanceNode.children["headerValue"] ?? [])) {
+      const hvNode = hv as CstNode
+      for (const col of (hvNode.children["collection"] ?? [])) {
+        for (const cv of ((col as CstNode).children["collectionValue"] ?? [])) {
+          const raw = ((cv as CstNode).children["AnyString"]?.[0] as IToken | undefined)?.image
+          if (raw) return raw.replace(/'/g, '')
+        }
+      }
+    }
+  }
+  return null
+}
+
+/** Walk the CST and return the deepest IToken whose offset range contains `offset`. */
+export function findTokenAtOffset(node: CstNode, offset: number): IToken | null {
+  for (const childKey of Object.keys(node.children)) {
+    for (const child of node.children[childKey]) {
+      if (!child) continue
+      if ((child as any).name !== undefined) {
+        const found = findTokenAtOffset(child as CstNode, offset)
+        if (found) return found
+      } else {
+        const token = child as IToken
+        const start = token.startOffset
+        const end = token.endOffset !== undefined ? token.endOffset : token.startOffset + token.image.length - 1
+        if (offset >= start && offset <= end) return token
+      }
+    }
+  }
+  return null
+}
+
+/** Find a TypeRef token (entity type name) at the given offset. */
+export function findTypeRefAtOffset(cst: CstNode, offset: number): IToken | null {
+  const token = findTokenAtOffset(cst, offset)
+  return token?.tokenType?.name === "TypeRef" ? token : null
+}
+
+/** Find an Id token (#N reference) at the given offset. */
+export function findIdAtOffset(cst: CstNode, offset: number): IToken | null {
+  const token = findTokenAtOffset(cst, offset)
+  return token?.tokenType?.name === "Id" ? token : null
+}
+
+/** Find the instance CstNode in the DATA section whose Id token image matches idImage (e.g. "#42"). */
+export function findInstanceById(cst: CstNode, idImage: string): CstNode | null {
+  const dataCst = cst.children["data"]?.[0] as CstNode | undefined
+  if (!dataCst) return null
+  for (const inst of (dataCst.children["instance"] ?? [])) {
+    const instanceNode = inst as CstNode
+    if ((instanceNode.children["Id"]?.[0] as IToken | undefined)?.image === idImage) {
+      return instanceNode
+    }
+  }
+  return null
 }

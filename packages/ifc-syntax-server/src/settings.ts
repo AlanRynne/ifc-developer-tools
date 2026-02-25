@@ -1,27 +1,12 @@
-import { connection, globalSettings } from "./server"
+import { connection } from "./connection"
+import { globalSettings } from "./server"
 import { documentSettings } from './documents'
 import { hasConfigurationCapability } from "./setupConnectionEvents"
+import { IfcSyntaxSettings, DefaultSettings } from "./types"
 
-// The example settings
-export interface IfcSyntaxSettings {
-  diagnostics: {
-    maxNumberOfProblems: number
-  }
-  parser: {
-    maxLineLength: number
-  }
-}
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-export const DefaultSettings: IfcSyntaxSettings = {
-  diagnostics: {
-    maxNumberOfProblems: 1000
-  },
-  parser: {
-    maxLineLength: 1000
-  }
-}
+// Re-export for consumers of this module
+export type { IfcSyntaxSettings }
+export { DefaultSettings }
 
 export function getDocumentSettings(
   resource: string

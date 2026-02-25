@@ -1,48 +1,24 @@
-import {
-  Location,
-  Position,
-  Range,
-  TextDocumentIdentifier,
-  TextDocumentPositionParams
-} from "vscode-languageserver"
-import { IfcDocManager } from "../documents"
-import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
-import { ASTNode, ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
-import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
-import * as nodes from "@alanrynne/ifc-syntax-ast-parser/dist/ast/nodes"
-import { ASTDefinitionFinderVisitor } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/visitor/ASTVisitor"
+import { Location, Range, TextDocumentPositionParams } from "vscode-languageserver"
+import { IToken } from "chevrotain"
+import { IfcDocManager, documents } from "../documents"
+import { findIdAtOffset, findInstanceById } from "./IfcUtilities"
 
-export const processGoToDefinition = async (
-  params: TextDocumentPositionParams
-) => {
-  let doc = await IfcDocManager.get(params.textDocument.uri)
-  let definition = findDefinitionNode(doc, params.position)
+export const processGoToDefinition = async (params: TextDocumentPositionParams): Promise<Location | null> => {
+  const doc = documents.get(params.textDocument.uri)
+  if (!doc) return null
+  const cst = await IfcDocManager.get(params.textDocument.uri)
+  if (!cst) return null
 
-  if (definition == undefined) return null
+  const idToken = findIdAtOffset(cst, doc.offsetAt(params.position))
+  if (!idToken) return null
 
-  var location = toEditorRange(definition.loc)
+  const instanceNode = findInstanceById(cst, idToken.image)
+  if (!instanceNode) return null
 
-  return Location.create(params.textDocument.uri, location)
-}
-export function findDefinitionNode(doc: ASTNode, position: Position): ASTNode {
-  let p = new ASTPosition(position.line + 1, position.character)
-  let pv: any = new PositionVisitor().visit(doc, p)
+  const defIdToken = instanceNode.children["Id"]?.[0] as IToken | undefined
+  if (!defIdToken) return null
 
-  if (pv instanceof nodes.VariableNode)
-    return new ASTDefinitionFinderVisitor().visit(doc, pv.id)
-
-  return undefined
-}
-
-function toEditorRange(loc: ASTRange): Range {
-  return {
-    start: {
-      line: loc.start.line - 1,
-      character: loc.start.character
-    },
-    end: {
-      line: loc.end.line - 1,
-      character: loc.end.character
-    }
-  }
+  const start = doc.positionAt(defIdToken.startOffset)
+  const end = doc.positionAt(defIdToken.endOffset !== undefined ? defIdToken.endOffset + 1 : defIdToken.startOffset + defIdToken.image.length)
+  return Location.create(params.textDocument.uri, { start, end } as Range)
 }

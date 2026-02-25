@@ -180,25 +180,48 @@ export class IfcParser extends CstParser {
 export const parserInstance = new IfcParser()
 
 // ----------------- wrapping it all together -----------------
+export type ParseOptions = {
+  maxTokenizationLineLength?: number
+}
+
 export type ParserResult = {
   cst: CstNode
   lexErrors: ILexingError[]
   parseErrors: IRecognitionException[]
+  skippedLines?: number[]
 }
 
-export function parse(text: string) {
-  // tokenize input text
-  const lexResult = lexer.lexerInstance.tokenize(text)
+export function parse(text: string, options?: ParseOptions): ParserResult {
+  let processedText = text
+  let skippedLines: number[] | undefined
 
-  // setting a new input will RESET the parser instance's state.
+  if (options?.maxTokenizationLineLength) {
+    const limit = options.maxTokenizationLineLength
+    const lines = text.split('\n')
+    const result: string[] = []
+    const skipped: number[] = []
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].length > limit) {
+        result.push(' '.repeat(lines[i].length))
+        skipped.push(i + 1)
+      } else {
+        result.push(lines[i])
+      }
+    }
+    if (skipped.length > 0) {
+      processedText = result.join('\n')
+      skippedLines = skipped
+    }
+  }
+
+  const lexResult = lexer.lexerInstance.tokenize(processedText)
   parserInstance.input = lexResult.tokens
-
-  // any top level rule may be used as an entry point
   const cst = parserInstance.ifc()
 
   return {
-    cst: cst,
+    cst,
     lexErrors: lexResult.errors,
-    parseErrors: parserInstance.errors
+    parseErrors: parserInstance.errors,
+    ...(skippedLines ? { skippedLines } : {})
   }
 }

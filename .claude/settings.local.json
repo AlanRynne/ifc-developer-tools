@@ -8,7 +8,15 @@
       "Bash(npm run:*)",
       "Bash(head:*)",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm view:*)",
+      "Bash(lerna run:*)",
+      "Bash(npx lerna:*)",
+      "Bash(cd /Users/alan/Desktop/Repos/ifc-developer-tools/packages/ifc-syntax-server && npm install 2>&1)",
+      "Bash(cd /Users/alan/Desktop/Repos/ifc-developer-tools/packages/ifc-syntax-server && npx tsc --noEmit 2>&1)",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:code.visualstudio.com)"
     ]
   }
 }

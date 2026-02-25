@@ -1,61 +1,27 @@
 import { TextDocumentPositionParams, Hover } from "vscode-languageserver"
 import { documents, IfcDocManager } from "../documents"
-import { PositionVisitor } from "@alanrynne/ifc-syntax-ast-parser"
-import { ASTPosition } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/core/ASTPosition"
 import IfcSchemas from "../schemas"
-import {
-  getFileSchemaVersion,
-  findEntityInSchema,
-  entityDataToText
-} from "./IfcUtilities"
-import { ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
+import { getFileSchemaVersion, findEntityInSchema, entityDataToText, findTypeRefAtOffset } from "./IfcUtilities"
 
-export const processHoverData = async (params: TextDocumentPositionParams) => {
+export const processHoverData = async (params: TextDocumentPositionParams): Promise<Hover | null> => {
   const doc = documents.get(params.textDocument.uri)
-  return await IfcDocManager.get(params.textDocument.uri).then(parsedDoc => {
-    let p = new ASTPosition(params.position.line + 1, params.position.character)
+  if (!doc) return null
+  const cst = await IfcDocManager.get(params.textDocument.uri)
+  if (!cst) return null
 
-    let pv: any = new PositionVisitor().visit(parsedDoc, p)
-    if (pv === undefined || pv === null) {
-      return null
-    }
+  const token = findTypeRefAtOffset(cst, doc.offsetAt(params.position))
+  if (!token) return null
 
-    let lineRange = adjustRange(pv.loc)
-    // Check only if it is a string node
-    // TODO: This must be better specified, clearer code...
-    if (pv.type === 12) {
-      let version = getFileSchemaVersion(parsedDoc)
-      let schema = IfcSchemas[version] || IfcSchemas.IFC4X2
-      let text = doc.getText(lineRange)
-      let entity = findEntityInSchema(schema, text)
-      //   entity.properties = getInheritedProps(schema, entity)
-      if (entity) {
-        let hover: Hover = {
-          contents: entityDataToText(entity, version, schema),
-          range: lineRange
-        }
-        return hover
-      } else {
-        let hover: Hover = {
-          contents: "Entity not found",
-          range: lineRange
-        }
-        return hover
-      }
-    }
-    return null
-  })
-}
+  const version = getFileSchemaVersion(cst) ?? "IFC4X2"
+  const schema = IfcSchemas[version] ?? IfcSchemas["IFC4X2"]
+  const entity = findEntityInSchema(schema, token.image)
 
-function adjustRange(loc: ASTRange) {
+  const start = doc.positionAt(token.startOffset)
+  const end = doc.positionAt(token.endOffset !== undefined ? token.endOffset + 1 : token.startOffset + token.image.length)
+  const range = { start, end }
+
   return {
-    start: {
-      line: loc.start.line - 1,
-      character: loc.start.character
-    },
-    end: {
-      line: loc.end.line - 1,
-      character: loc.end.character
-    }
+    contents: entity ? entityDataToText(entity, version, schema) : `Entity not found: ${token.image}`,
+    range
   }
 }

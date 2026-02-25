@@ -1,89 +1,33 @@
-import {
-  DocumentSymbol,
-  SymbolKind,
-  DocumentSymbolParams
-} from "vscode-languageserver"
-import {
-  DocumentNode,
-  AssignmentNode,
-  VariableNode,
-  ConstructorNode,
-  SectionNode,
-  FunctionNode,
-  StringNode
-} from "@alanrynne/ifc-syntax-ast-parser/dist/ast/nodes"
-import { IVisitor } from "@alanrynne/ifc-syntax-ast-parser/dist/ast/visitor/IVisitor"
-import { ASTNode, ASTRange } from "@alanrynne/ifc-syntax-ast-parser/dist/ast"
-import { IfcDocManager } from "../documents"
+import { DocumentSymbol, SymbolKind, DocumentSymbolParams } from "vscode-languageserver"
+import { CstNode, IToken } from "chevrotain"
+import { IfcDocManager, documents } from "../documents"
 
-export const processDocumentSymbols = async (params: DocumentSymbolParams) => {
-  return await IfcDocManager.get(params.textDocument.uri).then(doc => {
-    let pv = new SymbolProvider().visit(doc)
-    return pv as DocumentSymbol[]
+export const processDocumentSymbols = async (params: DocumentSymbolParams): Promise<DocumentSymbol[]> => {
+  const uri = params.textDocument.uri
+  const doc = documents.get(uri)
+  const cst = await IfcDocManager.get(uri)
+  if (!cst || !doc) return []
+
+  const dataCst = cst.children["data"]?.[0] as CstNode | undefined
+  if (!dataCst) return []
+
+  return (dataCst.children["instance"] ?? []).flatMap(inst => {
+    const instanceNode = inst as CstNode
+    const idToken = instanceNode.children["Id"]?.[0] as IToken | undefined
+    const entityNode = instanceNode.children["entity"]?.[0] as CstNode | undefined
+    if (!idToken || !entityNode) return []
+
+    const typeRefImg = (entityNode.children["TypeRef"]?.[0] as IToken | undefined)?.image ?? ""
+
+    const idStartOff = idToken.startOffset
+    const idEndOff = idToken.endOffset !== undefined ? idToken.endOffset + 1 : idStartOff + idToken.image.length
+    const idRange = { start: doc.positionAt(idStartOff), end: doc.positionAt(idEndOff) }
+
+    // fullRange must contain idRange — clamp to guarantee that even under error recovery
+    const instStartOff = Math.min(instanceNode.location?.startOffset ?? idStartOff, idStartOff)
+    const instEndOff = Math.max((instanceNode.location?.endOffset ?? idEndOff - 1) + 1, idEndOff)
+    const fullRange = { start: doc.positionAt(instStartOff), end: doc.positionAt(instEndOff) }
+
+    return [DocumentSymbol.create(idToken.image, typeRefImg, SymbolKind.Field, fullRange, idRange)]
   })
-}
-
-class SymbolProvider implements IVisitor {
-  visit(node: ASTNode, ...data: any[]) {
-    if (node instanceof AssignmentNode) {
-      let name = node.name as VariableNode
-      let constructor = node.value as ConstructorNode
-      return DocumentSymbol.create(
-        `#${name.id}`,
-        (constructor.name as StringNode).text,
-        SymbolKind.Field,
-        this.convertRange(node.loc),
-        this.convertRange(node.name.loc)
-      )
-    } else if (node instanceof FunctionNode) {
-      let name: any = node.name
-      return DocumentSymbol.create(
-        name,
-        "",
-        SymbolKind.Key,
-        this.convertRange(node.loc),
-        this.convertRange(node.loc)
-      )
-    } else if (node instanceof DocumentNode) {
-      let secs: any[] = []
-      node.sections.forEach(sec => {
-        let sectionResult = sec.accept(this)
-        if (sectionResult) {
-          secs.push(sectionResult)
-        }
-      })
-      return secs as DocumentSymbol[]
-    } else if (node instanceof SectionNode) {
-      let name: any = node.name
-      let description = {
-        DATA: "Data section",
-        HEADER: "Header section"
-      }[name.text]
-      let children: any[] = []
-      node.children.forEach(child => {
-        let d = child.accept(this)
-        if (d) {
-          children.push(d)
-        }
-      })
-      return DocumentSymbol.create(
-        name.text,
-        description,
-        SymbolKind.Namespace,
-        this.convertRange(node.loc),
-        this.convertRange(node.name.loc),
-        children
-      )
-    } else {
-      // console.log("Other node: " + node.constructor.name)
-      return undefined
-    }
-  }
-
-  convertRange(range: ASTRange) {
-    return {
-      start: { line: range.start.line - 1, character: range.start.character },
-      end: { line: range.end.line - 1, character: range.end.character }
-    }
-  }
 }

@@ -5,14 +5,15 @@ import {
   InitializeResult,
   Connection
 } from "vscode-languageserver/node"
-import { IfcSyntaxSettings, DefaultSettings } from "./settings"
+import { IfcSyntaxSettings, DefaultSettings } from "./types"
 import { validateTextDocument } from "./Providers/ValidationProvider"
 import { processDocumentSymbols } from "./Providers/SymbolProvider"
 import { processHoverData } from "./Providers/HoverProvider"
 import { processGoToDefinition } from "./Providers/GoToDefinitionProvider"
 import { findEntityInSchema } from "./Providers/IfcUtilities"
 import IfcSchemas from "./schemas"
-import { connection, globalSettings } from "./server"
+import { connection } from "./connection"
+import { globalSettings } from "./server"
 import { documents, documentSettings, IfcDocManager } from "./documents"
 
 // Setup configuration flags

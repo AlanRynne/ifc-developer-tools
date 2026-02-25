@@ -1,5 +1,5 @@
 import { TextDocument } from "vscode-languageserver-textdocument"
-import { connection } from "../server"
+import { connection } from "../connection"
 import { IfcDocManager } from "../documents"
 import { getDocumentSettings } from "../settings"
 

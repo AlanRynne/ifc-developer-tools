@@ -8,7 +8,7 @@ import { setupServer } from "./setupServer"
 let extensionConfig: vscode.WorkspaceConfiguration = null
 let languageClient: LanguageClient = null
 
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
   console.log("IFC-Syntax has been activated.")
 
   extensionConfig = vscode.workspace.getConfiguration("ifcSyntax")
@@ -24,13 +24,12 @@ export function activate(context: vscode.ExtensionContext) {
   languageClient = setupServer(context)
   var serverEnabled = extensionConfig.get("server.enabled")
   if (serverEnabled) {
-    // Start the client. This will also launch the server
-    languageClient.start()
+    await languageClient.start()
     console.log("Client has started")
   }
 }
 
-function handleServerEnableChanged(context: vscode.ExtensionContext) {
+async function handleServerEnableChanged(context: vscode.ExtensionContext) {
   extensionConfig = vscode.workspace.getConfiguration("ifcSyntax")
   var serverEnabled = extensionConfig.get("server.enabled")
   if (serverEnabled) {
@@ -38,14 +37,15 @@ function handleServerEnableChanged(context: vscode.ExtensionContext) {
     if (languageClient === null) {
       languageClient = setupServer(context)
     }
-    languageClient.start()
+    await languageClient.start()
   } else {
     console.log("Stopping server")
-    languageClient.stop()
+    await languageClient.dispose()
     languageClient = null
   }
 }
 
-export function deactivate(): Thenable<void> {
-  return languageClient?.stop().then(() => (languageClient = null))
+export async function deactivate(): Promise<void> {
+  await languageClient?.dispose()
+  languageClient = null
 }
